@@ -92,6 +92,13 @@ target_compile_options(trinity-compile-option-interface
   INTERFACE
     /Zc:throwingNew)
 
+if(NOT (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 19.0.23026.0))
+  # 把 utf-8 加入命令行以支持中文
+  target_compile_options(trinity-compile-option-interface
+    INTERFACE
+      /utf-8)
+endif()
+
 # Define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES - eliminates the warning by changing the strcpy call to strcpy_s, which prevents buffer overruns
 target_compile_definitions(trinity-compile-option-interface
   INTERFACE
