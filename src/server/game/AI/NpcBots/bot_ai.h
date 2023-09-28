@@ -1,4 +1,4 @@
-#ifndef _BOT_AI_H
+﻿#ifndef _BOT_AI_H
 #define _BOT_AI_H
 
 #include "botcommon.h"
@@ -163,7 +163,7 @@ class bot_ai : public CreatureAI
 
         bool IAmFree() const;
 
-        //wandering bots
+        //漫游机器人
         bool IsWanderer() const { return _wanderer; }
         void SetWanderer();
         WanderNode const* GetNextTravelNode(Position const* from, bool random) const;

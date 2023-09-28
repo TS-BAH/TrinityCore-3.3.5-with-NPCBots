@@ -1,4 +1,4 @@
-#include "Bag.h"
+﻿#include "Bag.h"
 #include "bot_ai.h"
 #include "botdatamgr.h"
 #include "botdump.h"

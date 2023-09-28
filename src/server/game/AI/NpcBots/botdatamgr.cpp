@@ -1,4 +1,4 @@
-#include "BattlegroundMgr.h"
+﻿#include "BattlegroundMgr.h"
 #include "BattlegroundQueue.h"
 #include "bot_ai.h"
 #include "botdatamgr.h"
@@ -1324,7 +1324,7 @@ void BotDataMgr::GenerateWanderingBots()
     if (wandering_bots_desired == 0)
         return;
 
-    TC_LOG_INFO("server.loading", "Spawning wandering bots...");
+    TC_LOG_INFO("server.loading", "生成漫游机器人...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1345,7 +1345,7 @@ void BotDataMgr::GenerateWanderingBots()
         ASSERT(false);
     }
 
-    TC_LOG_INFO("server.loading", ">> Set up spawning of {} wandering bots in {} ms", spawned_count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 设置生成 {} 个漫游机器人, 用时 {} 毫秒", spawned_count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool BotDataMgr::GenerateBattlegroundBots(Player const* groupLeader, [[maybe_unused]] Group const* group, BattlegroundQueue* queue, PvPDifficultyEntry const* bracketEntry, GroupQueueInfo const* gqinfo)

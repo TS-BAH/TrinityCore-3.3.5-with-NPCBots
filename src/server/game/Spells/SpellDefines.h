@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -42,12 +42,12 @@ namespace WorldPackets
 
 enum SpellInterruptFlags : uint32
 {
-    SPELL_INTERRUPT_FLAG_MOVEMENT     = 0x01, // why need this for instant?
-    SPELL_INTERRUPT_FLAG_PUSH_BACK    = 0x02, // push back
-    SPELL_INTERRUPT_FLAG_UNK3         = 0x04, // any info?
-    SPELL_INTERRUPT_FLAG_INTERRUPT    = 0x08, // interrupt
-    SPELL_INTERRUPT_FLAG_ABORT_ON_DMG = 0x10  // _complete_ interrupt on direct damage
-  //SPELL_INTERRUPT_UNK               = 0x20                // unk, 564 of 727 spells having this spell start with "Glyph"
+    SPELL_INTERRUPT_FLAG_MOVEMENT     = 0x01, // 移动中断标志, 表示法术可以中断目标的移动  // why need this for instant?
+    SPELL_INTERRUPT_FLAG_PUSH_BACK    = 0x02, // 推回中断标志, 表示法术可以将目标推回     // push back
+    SPELL_INTERRUPT_FLAG_UNK3         = 0x04, // 未知标志3, 用于表示某种未知的中断信息    // any info?
+    SPELL_INTERRUPT_FLAG_INTERRUPT    = 0x08, // 中断标志, 表示法术可以中断目标的施法     // interrupt
+    SPELL_INTERRUPT_FLAG_ABORT_ON_DMG = 0x10  // 完全中断标志, 表示法术可以在受到直接伤害时完全中断  //_complete_ interrupt on direct damage
+  //SPELL_INTERRUPT_UNK               = 0x20  // 未知标志, 564 个中的 727 个法术具有此标志, 这些法术通常以 “Glyph” 开头     // unk, 564 of 727 spells having this spell start with "Glyph"
 };
 
 // See SpellAuraInterruptFlags for other values definitions
@@ -59,33 +59,33 @@ enum SpellChannelInterruptFlags : uint32
 
 enum SpellAuraInterruptFlags : uint32
 {
-    AURA_INTERRUPT_FLAG_HITBYSPELL                  = 0x00000001,   // 0    removed when getting hit by a negative spell?
-    AURA_INTERRUPT_FLAG_TAKE_DAMAGE                 = 0x00000002,   // 1    removed by any damage
-    AURA_INTERRUPT_FLAG_CAST                        = 0x00000004,   // 2    cast any spells
-    AURA_INTERRUPT_FLAG_MOVE                        = 0x00000008,   // 3    removed by any movement
-    AURA_INTERRUPT_FLAG_TURNING                     = 0x00000010,   // 4    removed by any turning
-    AURA_INTERRUPT_FLAG_JUMP                        = 0x00000020,   // 5    removed by entering combat
-    AURA_INTERRUPT_FLAG_NOT_MOUNTED                 = 0x00000040,   // 6    removed by dismounting
-    AURA_INTERRUPT_FLAG_NOT_ABOVEWATER              = 0x00000080,   // 7    removed by entering water
-    AURA_INTERRUPT_FLAG_NOT_UNDERWATER              = 0x00000100,   // 8    removed by leaving water
-    AURA_INTERRUPT_FLAG_NOT_SHEATHED                = 0x00000200,   // 9    removed by unsheathing
-    AURA_INTERRUPT_FLAG_TALK                        = 0x00000400,   // 10   talk to npc / interact?
-    AURA_INTERRUPT_FLAG_LOOTING                     = 0x00000800,   // 11   mine/use/open action on gameobject / loot
-    AURA_INTERRUPT_FLAG_MELEE_ATTACK                = 0x00001000,   // 12   removed by attacking
+    AURA_INTERRUPT_FLAG_HITBYSPELL                  = 0x00000001,   // 0    被负面法术击中时移除?
+    AURA_INTERRUPT_FLAG_TAKE_DAMAGE                 = 0x00000002,   // 1    任何伤害会移除
+    AURA_INTERRUPT_FLAG_CAST                        = 0x00000004,   // 2    施放任何法术时移除
+    AURA_INTERRUPT_FLAG_MOVE                        = 0x00000008,   // 3    任何移动会移除
+    AURA_INTERRUPT_FLAG_TURNING                     = 0x00000010,   // 4    任何转向会移除
+    AURA_INTERRUPT_FLAG_JUMP                        = 0x00000020,   // 5    进入战斗时移除
+    AURA_INTERRUPT_FLAG_NOT_MOUNTED                 = 0x00000040,   // 6    下马时移除
+    AURA_INTERRUPT_FLAG_NOT_ABOVEWATER              = 0x00000080,   // 7    进入水中时移除
+    AURA_INTERRUPT_FLAG_NOT_UNDERWATER              = 0x00000100,   // 8    离开水中时移除
+    AURA_INTERRUPT_FLAG_NOT_SHEATHED                = 0x00000200,   // 9    解鞘武器时移除
+    AURA_INTERRUPT_FLAG_TALK                        = 0x00000400,   // 10   与 NPC 交互时移除?
+    AURA_INTERRUPT_FLAG_LOOTING                     = 0x00000800,   // 11   对游戏对象进行采集/使用/开启操作或拾取时移除
+    AURA_INTERRUPT_FLAG_MELEE_ATTACK                = 0x00001000,   // 12   攻击时移除
     AURA_INTERRUPT_FLAG_SPELL_ATTACK                = 0x00002000,   // 13   ???
     AURA_INTERRUPT_FLAG_UNK14                       = 0x00004000,   // 14
-    AURA_INTERRUPT_FLAG_TRANSFORM                   = 0x00008000,   // 15   removed by transform?
+    AURA_INTERRUPT_FLAG_TRANSFORM                   = 0x00008000,   // 15   变身时移除?
     AURA_INTERRUPT_FLAG_UNK16                       = 0x00010000,   // 16
-    AURA_INTERRUPT_FLAG_MOUNT                       = 0x00020000,   // 17   misdirect, aspect, swim speed
-    AURA_INTERRUPT_FLAG_NOT_SEATED                  = 0x00040000,   // 18   removed by standing up (used by food and drink mostly and sleep/Fake Death like)
-    AURA_INTERRUPT_FLAG_CHANGE_MAP                  = 0x00080000,   // 19   leaving map/getting teleported
-    AURA_INTERRUPT_FLAG_IMMUNE_OR_LOST_SELECTION    = 0x00100000,   // 20   removed by auras that make you invulnerable, or make other to lose selection on you
+    AURA_INTERRUPT_FLAG_MOUNT                       = 0x00020000,   // 17   误导、宠物技能、游泳速度等移除
+    AURA_INTERRUPT_FLAG_NOT_SEATED                  = 0x00040000,   // 18   站立起来时移除 (主要用于食物、饮料以及休息/假死类效果)
+    AURA_INTERRUPT_FLAG_CHANGE_MAP                  = 0x00080000,   // 19   离开地图/被传送时移除
+    AURA_INTERRUPT_FLAG_IMMUNE_OR_LOST_SELECTION    = 0x00100000,   // 20   被使你无敌的光环移除, 或使其他人失去对你的选择
     AURA_INTERRUPT_FLAG_UNK21                       = 0x00200000,   // 21
-    AURA_INTERRUPT_FLAG_TELEPORTED                  = 0x00400000,   // 22
-    AURA_INTERRUPT_FLAG_ENTER_PVP_COMBAT            = 0x00800000,   // 23   removed by entering pvp combat
-    AURA_INTERRUPT_FLAG_DIRECT_DAMAGE               = 0x01000000,   // 24   removed by any direct damage
-    AURA_INTERRUPT_FLAG_LANDING                     = 0x02000000,   // 25   removed by hitting the ground
-    AURA_INTERRUPT_FLAG_LEAVE_COMBAT                = 0x80000000,   // 31   removed by leaving combat
+    AURA_INTERRUPT_FLAG_TELEPORTED                  = 0x00400000,   // 22   传送时移除
+    AURA_INTERRUPT_FLAG_ENTER_PVP_COMBAT            = 0x00800000,   // 23   进入 PvP 战斗时移除
+    AURA_INTERRUPT_FLAG_DIRECT_DAMAGE               = 0x01000000,   // 24   任何直接伤害会移除
+    AURA_INTERRUPT_FLAG_LANDING                     = 0x02000000,   // 25   着陆时移除
+    AURA_INTERRUPT_FLAG_LEAVE_COMBAT                = 0x80000000,   // 31   离开战斗时移除
 
     AURA_INTERRUPT_FLAG_NOT_VICTIM = (AURA_INTERRUPT_FLAG_HITBYSPELL | AURA_INTERRUPT_FLAG_TAKE_DAMAGE | AURA_INTERRUPT_FLAG_DIRECT_DAMAGE)
 };
@@ -145,57 +145,57 @@ enum SpellFacingFlags
 
 enum TriggerCastFlags : uint32
 {
-    TRIGGERED_NONE                                  = 0x00000000,   //! Not triggered
-    TRIGGERED_IGNORE_GCD                            = 0x00000001,   //! Will ignore GCD
-    TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD          = 0x00000002,   //! Will ignore Spell and Category cooldowns
-    TRIGGERED_IGNORE_POWER_AND_REAGENT_COST         = 0x00000004,   //! Will ignore power and reagent cost
-    TRIGGERED_IGNORE_CAST_ITEM                      = 0x00000008,   //! Will not take away cast item or update related achievement criteria
-    TRIGGERED_IGNORE_AURA_SCALING                   = 0x00000010,   //! Will ignore aura scaling
-    TRIGGERED_IGNORE_CAST_IN_PROGRESS               = 0x00000020,   //! Will not check if a current cast is in progress
-    TRIGGERED_IGNORE_COMBO_POINTS                   = 0x00000040,   //! Will ignore combo point requirement
-    TRIGGERED_CAST_DIRECTLY                         = 0x00000080,   //! In Spell::prepare, will be cast directly without setting containers for executed spell
-    TRIGGERED_IGNORE_AURA_INTERRUPT_FLAGS           = 0x00000100,   //! Will ignore interruptible aura's at cast
-    TRIGGERED_IGNORE_SET_FACING                     = 0x00000200,   //! Will not adjust facing to target (if any)
-    TRIGGERED_IGNORE_SHAPESHIFT                     = 0x00000400,   //! Will ignore shapeshift checks
-    TRIGGERED_IGNORE_CASTER_AURASTATE               = 0x00000800,   //! Will ignore caster aura states including combat requirements and death state
-    TRIGGERED_DISALLOW_PROC_EVENTS                  = 0x00001000,   //! Disallows proc events from triggered spell (default)
-    TRIGGERED_IGNORE_CASTER_MOUNTED_OR_ON_VEHICLE   = 0x00002000,   //! Will ignore mounted/on vehicle restrictions
+    TRIGGERED_NONE                                  = 0x00000000,   //! 未触发
+    TRIGGERED_IGNORE_GCD                            = 0x00000001,   //! 忽略全局冷却时间 (GCD)
+    TRIGGERED_IGNORE_SPELL_AND_CATEGORY_CD          = 0x00000002,   //! 忽略法术 (Spell) 和类别 (Category) 冷却时间
+    TRIGGERED_IGNORE_POWER_AND_REAGENT_COST         = 0x00000004,   //! 忽略能量和材料消耗
+    TRIGGERED_IGNORE_CAST_ITEM                      = 0x00000008,   //! 不会消耗施法物品或更新相关的成就条件
+    TRIGGERED_IGNORE_AURA_SCALING                   = 0x00000010,   //! 忽略光环的缩放
+    TRIGGERED_IGNORE_CAST_IN_PROGRESS               = 0x00000020,   //! 不会检查当前是否正在施放法术
+    TRIGGERED_IGNORE_COMBO_POINTS                   = 0x00000040,   //! 忽略连击点要求
+    TRIGGERED_CAST_DIRECTLY                         = 0x00000080,   //! 在 Spell::prepare 中, 将直接施放法术, 不会设置已执行法术的容器
+    TRIGGERED_IGNORE_AURA_INTERRUPT_FLAGS           = 0x00000100,   //! 忽略可中断光环的中断标志
+    TRIGGERED_IGNORE_SET_FACING                     = 0x00000200,   //! 不会调整面向目标 (如果有的话)
+    TRIGGERED_IGNORE_SHAPESHIFT                     = 0x00000400,   //! 忽略变形检查
+    TRIGGERED_IGNORE_CASTER_AURASTATE               = 0x00000800,   //! 忽略施法者光环状态, 包括战斗要求和死亡状态
+    TRIGGERED_DISALLOW_PROC_EVENTS                  = 0x00001000,   //! 禁止触发法术的事件 (默认)
+    TRIGGERED_IGNORE_CASTER_MOUNTED_OR_ON_VEHICLE   = 0x00002000,   //! 忽略施法者处于骑乘或在载具上的限制
     // reuse                                        = 0x00004000,
     // reuse                                        = 0x00008000,
-    TRIGGERED_IGNORE_CASTER_AURAS                   = 0x00010000,   //! Will ignore caster aura restrictions or requirements
-    TRIGGERED_DONT_RESET_PERIODIC_TIMER             = 0x00020000,   //! Will allow periodic aura timers to keep ticking (instead of resetting)
-    TRIGGERED_DONT_REPORT_CAST_ERROR                = 0x00040000,   //! Will return SPELL_FAILED_DONT_REPORT in CheckCast functions
-    TRIGGERED_FULL_MASK                             = 0x0007FFFF,   //! Used when doing CastSpell with triggered == true
+    TRIGGERED_IGNORE_CASTER_AURAS                   = 0x00010000,   //! 忽略施法者的光环限制或要求
+    TRIGGERED_DONT_RESET_PERIODIC_TIMER             = 0x00020000,   //! 允许周期性光环定时器继续计时 (而不是重置)
+    TRIGGERED_DONT_REPORT_CAST_ERROR                = 0x00040000,   //! 在 CheckCast 函数中返回 SPELL_FAILED_DONT_REPORT
+    TRIGGERED_FULL_MASK                             = 0x0007FFFF,   //! 执行 CastSpell 时 triggered 参数设置为 true 时使用的
 
-    // debug flags (used with .cast triggered commands)
-    TRIGGERED_IGNORE_EQUIPPED_ITEM_REQUIREMENT      = 0x00080000,   //! Will ignore equipped item requirements
+    // 调试标志 (用于 .cast triggered 命令)
+    TRIGGERED_IGNORE_EQUIPPED_ITEM_REQUIREMENT      = 0x00080000,   //! 忽略装备物品要求
     TRIGGERED_FULL_DEBUG_MASK                       = 0xFFFFFFFF
 };
 
 enum SpellCastTargetFlags : uint32
 {
     TARGET_FLAG_NONE            = 0x00000000,
-    TARGET_FLAG_UNUSED_1        = 0x00000001,               // not used
-    TARGET_FLAG_UNIT            = 0x00000002,               // pguid
-    TARGET_FLAG_UNIT_RAID       = 0x00000004,               // not sent, used to validate target (if raid member)
-    TARGET_FLAG_UNIT_PARTY      = 0x00000008,               // not sent, used to validate target (if party member)
-    TARGET_FLAG_ITEM            = 0x00000010,               // pguid
-    TARGET_FLAG_SOURCE_LOCATION = 0x00000020,               // pguid, 3 float
-    TARGET_FLAG_DEST_LOCATION   = 0x00000040,               // pguid, 3 float
-    TARGET_FLAG_UNIT_ENEMY      = 0x00000080,               // not sent, used to validate target (if enemy)
-    TARGET_FLAG_UNIT_ALLY       = 0x00000100,               // not sent, used to validate target (if ally)
-    TARGET_FLAG_CORPSE_ENEMY    = 0x00000200,               // pguid
-    TARGET_FLAG_UNIT_DEAD       = 0x00000400,               // not sent, used to validate target (if dead creature)
-    TARGET_FLAG_GAMEOBJECT      = 0x00000800,               // pguid, used with TARGET_GAMEOBJECT_TARGET
-    TARGET_FLAG_TRADE_ITEM      = 0x00001000,               // pguid
-    TARGET_FLAG_STRING          = 0x00002000,               // string
-    TARGET_FLAG_GAMEOBJECT_ITEM = 0x00004000,               // not sent, used with TARGET_GAMEOBJECT_ITEM_TARGET
-    TARGET_FLAG_CORPSE_ALLY     = 0x00008000,               // pguid
-    TARGET_FLAG_UNIT_MINIPET    = 0x00010000,               // pguid, used to validate target (if non combat pet)
-    TARGET_FLAG_GLYPH_SLOT      = 0x00020000,               // used in glyph spells
-    TARGET_FLAG_DEST_TARGET     = 0x00040000,               // sometimes appears with DEST_TARGET spells (may appear or not for a given spell)
-    TARGET_FLAG_UNUSED20        = 0x00080000,               // uint32 counter, loop { vec3 - screen position (?), guid }, not used so far
-    TARGET_FLAG_UNIT_PASSENGER  = 0x00100000,               // guessed, used to validate target (if vehicle passenger)
+    TARGET_FLAG_UNUSED_1        = 0x00000001,               // 未使用
+    TARGET_FLAG_UNIT            = 0x00000002,               // 单位目标, 通常使用目标的 GUID (pguid)
+    TARGET_FLAG_UNIT_RAID       = 0x00000004,               // 不发送, 用于验证目标是否为团队成员
+    TARGET_FLAG_UNIT_PARTY      = 0x00000008,               // 不发送, 用于验证目标是否为队伍成员
+    TARGET_FLAG_ITEM            = 0x00000010,               // 物品目标, 通常使用目标的 GUID (pguid)
+    TARGET_FLAG_SOURCE_LOCATION = 0x00000020,               // 源位置目标, 通常使用目标的 GUID 和 3 个浮点数坐标
+    TARGET_FLAG_DEST_LOCATION   = 0x00000040,               // 目标位置目标, 通常使用目标的 GUID 和 3 个浮点数坐标
+    TARGET_FLAG_UNIT_ENEMY      = 0x00000080,               // 不发送, 用于验证目标是否为敌人
+    TARGET_FLAG_UNIT_ALLY       = 0x00000100,               // 不发送, 用于验证目标是否为盟友
+    TARGET_FLAG_CORPSE_ENEMY    = 0x00000200,               // 尸体目标, 通常使用目标的 GUID (pguid)
+    TARGET_FLAG_UNIT_DEAD       = 0x00000400,               // 不发送, 用于验证目标是否为已死亡生物
+    TARGET_FLAG_GAMEOBJECT      = 0x00000800,               // 游戏对象目标, 通常使用目标的 GUID (pguid), 与 TARGET_GAMEOBJECT_TARGET 一起使用
+    TARGET_FLAG_TRADE_ITEM      = 0x00001000,               // 交易物品目标, 通常使用目标的 GUID (pguid)
+    TARGET_FLAG_STRING          = 0x00002000,               // 字符串目标, 通常使用字符串
+    TARGET_FLAG_GAMEOBJECT_ITEM = 0x00004000,               // 不发送, 与 TARGET_GAMEOBJECT_ITEM_TARGET 一起使用
+    TARGET_FLAG_CORPSE_ALLY     = 0x00008000,               // 尸体盟友目标, 通常使用目标的 GUID (pguid)
+    TARGET_FLAG_UNIT_MINIPET    = 0x00010000,               // 小宠物目标, 通常使用目标的 GUID (pguid), 用于验证目标是否为非战斗宠物
+    TARGET_FLAG_GLYPH_SLOT      = 0x00020000,               // 用于雕文 (glyph) 法术
+    TARGET_FLAG_DEST_TARGET     = 0x00040000,               // 有时与 DEST_TARGET 法术一起出现 (对于给定法术可能会出现或不出现)
+    TARGET_FLAG_UNUSED20        = 0x00080000,               // uint32 计数器, 循环 { vec3 - 屏幕位置 (?), guid }, 目前尚未使用
+    TARGET_FLAG_UNIT_PASSENGER  = 0x00100000,               // 猜测, 用于验证目标是否为载具乘客
 
     TARGET_FLAG_UNIT_MASK = TARGET_FLAG_UNIT | TARGET_FLAG_UNIT_RAID | TARGET_FLAG_UNIT_PARTY
         | TARGET_FLAG_UNIT_ENEMY | TARGET_FLAG_UNIT_ALLY | TARGET_FLAG_UNIT_DEAD | TARGET_FLAG_UNIT_MINIPET | TARGET_FLAG_UNIT_PASSENGER,

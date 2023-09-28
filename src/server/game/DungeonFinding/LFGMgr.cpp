@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -487,11 +487,11 @@ void LFGMgr::JoinLfg(Player* player, uint8 roles, LfgDungeonSet& dungeons, const
                         //disabled in config
                         if (!BotMgr::IsNpcBotDungeonFinderEnabled())
                         {
-                            (ChatHandler(plrg->GetSession())).SendSysMessage("Using npcbots in Dungeon Finder is restricted. Contact your administration.");
+                            (ChatHandler(plrg->GetSession())).SendSysMessage("在地下城查找器中使用 NPC 机器人受到限制. 请联系管理员.");
 
                             if (plrg->GetGUID() != grp->GetLeaderGUID())
                                 if (Player* leader = ObjectAccessor::FindPlayer(grp->GetLeaderGUID()))
-                                    (ChatHandler(leader->GetSession())).PSendSysMessage("There is a npcbot in your group (owner: %s). Using npcbots in Dungeon Finder is restricted. Contact your administration.",
+                                    (ChatHandler(leader->GetSession())).PSendSysMessage("There is a npcbot in your group (owner: %s). 在地下城查找器中使用 NPC 机器人受到限制. 请联系管理员.",
                                         plrg->GetName().c_str());
 
                             joinData.result = LFG_JOIN_PARTY_NOT_MEET_REQS;
@@ -1115,7 +1115,7 @@ void LFGMgr::MakeNewGroup(LfgProposal const& proposal)
                 {
                     //only one player in group
                     ChatHandler ch(player->GetSession());
-                    ch.SendSysMessage("You are the only player in your group, loot method set to Free For All");
+                    ch.SendSysMessage("你是队伍中唯一的玩家, 拾取方式设置为自由拾取");
                     grp->SetLootMethod(FREE_FOR_ALL);
                 }
             }
