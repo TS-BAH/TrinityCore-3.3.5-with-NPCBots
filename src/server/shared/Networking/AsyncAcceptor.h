@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -61,7 +61,7 @@ public:
                 }
                 catch (boost::system::system_error const& err)
                 {
-                    TC_LOG_INFO("network", "Failed to initialize client's socket {}", err.what());
+                    TC_LOG_INFO("network", "初始化客户端套接字失败 {}", err.what());
                 }
             }
 
@@ -76,7 +76,7 @@ public:
         _acceptor.open(_endpoint.protocol(), errorCode);
         if (errorCode)
         {
-            TC_LOG_INFO("network", "Failed to open acceptor {}", errorCode.message());
+            TC_LOG_INFO("network", "打开接收器失败 {}", errorCode.message());
             return false;
         }
 
@@ -84,7 +84,7 @@ public:
         _acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true), errorCode);
         if (errorCode)
         {
-            TC_LOG_INFO("network", "Failed to set reuse_address option on acceptor {}", errorCode.message());
+            TC_LOG_INFO("network", "在接收器上设置 reuse_address 选项失败 {}", errorCode.message());
             return false;
         }
 #endif
@@ -92,14 +92,14 @@ public:
         _acceptor.bind(_endpoint, errorCode);
         if (errorCode)
         {
-            TC_LOG_INFO("network", "Could not bind to {}:{} {}", _endpoint.address().to_string(), _endpoint.port(), errorCode.message());
+            TC_LOG_INFO("network", "无法绑定到 {}:{} {}", _endpoint.address().to_string(), _endpoint.port(), errorCode.message());
             return false;
         }
 
         _acceptor.listen(TRINITY_MAX_LISTEN_CONNECTIONS, errorCode);
         if (errorCode)
         {
-            TC_LOG_INFO("network", "Failed to start listening on {}:{} {}", _endpoint.address().to_string(), _endpoint.port(), errorCode.message());
+            TC_LOG_INFO("network", "在 {}:{} 上启动监听失败 {}", _endpoint.address().to_string(), _endpoint.port(), errorCode.message());
             return false;
         }
 
@@ -141,7 +141,7 @@ void AsyncAcceptor::AsyncAccept()
             }
             catch (boost::system::system_error const& err)
             {
-                TC_LOG_INFO("network", "Failed to retrieve client's remote address {}", err.what());
+                TC_LOG_INFO("network", "无法获取客户端的远程地址 {}", err.what());
             }
         }
 

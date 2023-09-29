@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -35,7 +35,7 @@ void WardenCheckMgr::LoadWardenChecks()
     // Check if Warden is enabled by config before loading anything
     if (!sWorld->getBoolConfig(CONFIG_WARDEN_ENABLED))
     {
-        TC_LOG_INFO("warden", ">> Warden disabled, loading checks skipped.");
+        TC_LOG_INFO("warden", ">> 典狱长已禁用, 跳过加载检查.");
         return;
     }
 
@@ -43,7 +43,7 @@ void WardenCheckMgr::LoadWardenChecks()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Warden checks. DB table `warden_checks` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个典狱长检查. 数据库表 `warden_checks` 为空!");
         return;
     }
 
@@ -99,7 +99,7 @@ void WardenCheckMgr::LoadWardenChecks()
 
         wardenCheck.Comment = fields[7].GetString();
         if (wardenCheck.Comment.empty())
-            wardenCheck.Comment = "Undocumented Check";
+            wardenCheck.Comment = "未记录的检查";
 
         if (type == LUA_EVAL_CHECK)
         {
@@ -122,7 +122,7 @@ void WardenCheckMgr::LoadWardenChecks()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} warden checks in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个典狱长检查, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void WardenCheckMgr::LoadWardenOverrides()
@@ -132,7 +132,7 @@ void WardenCheckMgr::LoadWardenOverrides()
     // Check if Warden is enabled by config before loading anything
     if (!sWorld->getBoolConfig(CONFIG_WARDEN_ENABLED))
     {
-        TC_LOG_INFO("warden", ">> Warden disabled, loading check overrides skipped.");
+        TC_LOG_INFO("warden", ">> 典狱长已禁用, 跳过加载检查覆盖.");
         return;
     }
 
@@ -141,7 +141,7 @@ void WardenCheckMgr::LoadWardenOverrides()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Warden action overrides. DB table `warden_action` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个典狱长行为覆盖. 数据库表 `warden_action` 为空!");
         return;
     }
 
@@ -168,7 +168,7 @@ void WardenCheckMgr::LoadWardenOverrides()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} warden action overrides in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个典狱长行为覆盖, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 WardenCheckMgr* WardenCheckMgr::instance()

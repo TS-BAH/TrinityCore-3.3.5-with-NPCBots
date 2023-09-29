@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -250,7 +250,7 @@ UpdateResult UpdateFetcher::Update(bool const redundancyChecks,
                 // It is safe to treat the file as renamed here
                 else
                 {
-                    TC_LOG_INFO("sql.updates", ">> Renaming update \"{}\" to \"{}\" \'{}\'.",
+                    TC_LOG_INFO("sql.updates", ">> 正在将更新从 \"{}\" 重命名为 \"{}\" \'{}\'.",
                         hashIter->second, availableQuery.first.filename().string(), hash.substr(0, 7));
 
                     RenameEntry(hashIter->second, availableQuery.first.filename().string());
@@ -261,7 +261,7 @@ UpdateResult UpdateFetcher::Update(bool const redundancyChecks,
             // Apply the update if it was never seen before.
             else
             {
-                TC_LOG_INFO("sql.updates", ">> Applying update \"{}\" \'{}\'...",
+                TC_LOG_INFO("sql.updates", ">> 正在应用更新 \"{}\" \'{}\'...",
                     availableQuery.first.filename().string(), hash.substr(0, 7));
             }
         }
@@ -270,15 +270,15 @@ UpdateResult UpdateFetcher::Update(bool const redundancyChecks,
         {
             mode = MODE_REHASH;
 
-            TC_LOG_INFO("sql.updates", ">> Re-hashing update \"{}\" \'{}\'...", availableQuery.first.filename().string(),
+            TC_LOG_INFO("sql.updates", ">> 重新计算更新的哈希值 \"{}\" \'{}\'...", availableQuery.first.filename().string(),
                 hash.substr(0, 7));
         }
         else
         {
-            // If the hash of the files differs from the one stored in our database, reapply the update (because it changed).
+            // 如果文件的哈希值与存储在我们的数据库中的哈希值不同, 重新应用更新 (因为它发生了变化).
             if (iter->second.hash != hash)
             {
-                TC_LOG_INFO("sql.updates", ">> Reapplying update \"{}\" \'{}\' -> \'{}\' (it changed)...", availableQuery.first.filename().string(),
+                TC_LOG_INFO("sql.updates", ">> 正在重新应用更新 \"{}\" \'{}\' -> \'{}\' (已更改)...", availableQuery.first.filename().string(),
                     iter->second.hash.substr(0, 7), hash.substr(0, 7));
             }
             else
@@ -330,7 +330,7 @@ UpdateResult UpdateFetcher::Update(bool const redundancyChecks,
                 " your update directory now!", entry.first);
 
             if (doCleanup)
-                TC_LOG_INFO("sql.updates", "Deleting orphaned entry \'{}\'...", entry.first);
+                TC_LOG_INFO("sql.updates", "正在删除孤立的条目 \'{}\'...", entry.first);
         }
 
         if (doCleanup)

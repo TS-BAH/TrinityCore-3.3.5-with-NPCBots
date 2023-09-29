@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -40,26 +40,26 @@ bool AuctionBotConfig::Initialize()
 
     if (!GetConfig(CONFIG_AHBOT_BUYER_ENABLED) && !GetConfig(CONFIG_AHBOT_SELLER_ENABLED))
     {
-        TC_LOG_INFO("ahbot", "AHBOT is Disabled.");
+        TC_LOG_INFO("ahbot", "拍卖行机器人已禁用.");
         return false;
     }
 
     if (GetConfig(CONFIG_AHBOT_ALLIANCE_ITEM_AMOUNT_RATIO) == 0 && GetConfig(CONFIG_AHBOT_HORDE_ITEM_AMOUNT_RATIO) == 0 && GetConfig(CONFIG_AHBOT_NEUTRAL_ITEM_AMOUNT_RATIO) == 0 &&
         !GetConfig(CONFIG_AHBOT_BUYER_ALLIANCE_ENABLED) && !GetConfig(CONFIG_AHBOT_BUYER_HORDE_ENABLED) && !GetConfig(CONFIG_AHBOT_BUYER_NEUTRAL_ENABLED))
     {
-        TC_LOG_INFO("ahbot", "All feature of AuctionHouseBot are disabled!");
+        TC_LOG_INFO("ahbot", "拍卖行机器人的所有功能都已禁用!");
         return false;
     }
 
     if (GetConfig(CONFIG_AHBOT_ALLIANCE_ITEM_AMOUNT_RATIO) == 0 && GetConfig(CONFIG_AHBOT_HORDE_ITEM_AMOUNT_RATIO) == 0 && GetConfig(CONFIG_AHBOT_NEUTRAL_ITEM_AMOUNT_RATIO) == 0)
-        TC_LOG_INFO("ahbot", "AuctionHouseBot SELLER is disabled!");
+        TC_LOG_INFO("ahbot", "拍卖行机器人的卖家功能已禁用!");
 
     if (!GetConfig(CONFIG_AHBOT_BUYER_ALLIANCE_ENABLED) && !GetConfig(CONFIG_AHBOT_BUYER_HORDE_ENABLED) && !GetConfig(CONFIG_AHBOT_BUYER_NEUTRAL_ENABLED))
-        TC_LOG_INFO("ahbot", "AuctionHouseBot BUYER is disabled!");
+        TC_LOG_INFO("ahbot", "拍卖行机器人的买家功能已禁用!");
 
     if (sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION))
     {
-        TC_LOG_INFO("ahbot", "AllowTwoSide.Interaction.Auction is enabled, AuctionHouseBot faction-specific settings might not work as expected!");
+        TC_LOG_INFO("ahbot", "AllowTwoSide.Interaction.Auction 已启用, 拍卖行机器人的阵营特定设置可能不会按预期工作!");
         if (GetConfig(CONFIG_AHBOT_ALLIANCE_ITEM_AMOUNT_RATIO) != 0 || GetConfig(CONFIG_AHBOT_HORDE_ITEM_AMOUNT_RATIO) != 0
             || GetConfig(CONFIG_AHBOT_BUYER_ALLIANCE_ENABLED) || GetConfig(CONFIG_AHBOT_BUYER_HORDE_ENABLED))
             TC_LOG_WARN("ahbot", "AllowTwoSide.Interaction.Auction is enabled, AuctionHouseBot should be enabled only for Neutral faction!");

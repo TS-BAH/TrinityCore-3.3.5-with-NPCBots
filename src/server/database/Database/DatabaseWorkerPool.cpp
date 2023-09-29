@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -95,8 +95,8 @@ uint32 DatabaseWorkerPool<T>::Open()
 {
     WPFatal(_connectionInfo.get(), "Connection info was not set!");
 
-    TC_LOG_INFO("sql.driver", "Opening DatabasePool '{}'. "
-        "Asynchronous connections: {}, synchronous connections: {}.",
+    TC_LOG_INFO("sql.driver", "正在打开数据库池 '{}'. "
+        "异步连接数: {}, 同步连接数: {}.",
         GetDatabaseName(), _async_threads, _synch_threads);
 
     uint32 error = OpenConnections(IDX_ASYNC, _async_threads);
@@ -108,8 +108,8 @@ uint32 DatabaseWorkerPool<T>::Open()
 
     if (!error)
     {
-        TC_LOG_INFO("sql.driver", "DatabasePool '{}' opened successfully. "
-                    "{} total connections running.", GetDatabaseName(),
+        TC_LOG_INFO("sql.driver", "成功打开数据库池 '{}'. "
+                    "共有 {} 个连接正在运行.", GetDatabaseName(),
                     (_connections[IDX_SYNCH].size() + _connections[IDX_ASYNC].size()));
     }
 
@@ -119,13 +119,13 @@ uint32 DatabaseWorkerPool<T>::Open()
 template <class T>
 void DatabaseWorkerPool<T>::Close()
 {
-    TC_LOG_INFO("sql.driver", "Closing down DatabasePool '{}'.", GetDatabaseName());
+    TC_LOG_INFO("sql.driver", "关闭数据库池 '{}'.", GetDatabaseName());
 
     //! Closes the actualy MySQL connection.
     _connections[IDX_ASYNC].clear();
 
-    TC_LOG_INFO("sql.driver", "Asynchronous connections on DatabasePool '{}' terminated. "
-                "Proceeding with synchronous connections.",
+    TC_LOG_INFO("sql.driver", "在数据库池 '{}' 上的异步连接已终止. "
+                "继续使用同步连接.",
         GetDatabaseName());
 
     //! Shut down the synchronous connections
@@ -134,7 +134,7 @@ void DatabaseWorkerPool<T>::Close()
     //! meaning there can be no concurrent access at this point.
     _connections[IDX_SYNCH].clear();
 
-    TC_LOG_INFO("sql.driver", "All connections on DatabasePool '{}' closed.", GetDatabaseName());
+    TC_LOG_INFO("sql.driver", "所有在数据库池 '{}' 上的连接已关闭.", GetDatabaseName());
 }
 
 template <class T>

@@ -684,7 +684,7 @@ void BotDataMgr::LoadNpcBots(bool spawn)
     if (allBotsLoaded)
         return;
 
-    TC_LOG_INFO("server.loading", "Starting NpcBot system...");
+    TC_LOG_INFO("server.loading", "启动 NPC 机器人系统...");
 
     GenerateBotCustomSpells();
 
@@ -721,10 +721,10 @@ void BotDataMgr::LoadNpcBots(bool spawn)
 
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Bot appearance data loaded");
+        TC_LOG_INFO("server.loading", ">> 机器人外观数据已加载");
     }
     else
-        TC_LOG_INFO("server.loading", ">> Bots appearance data is not loaded. Table `creature_template_npcbot_appearance` is empty!");
+        TC_LOG_INFO("server.loading", ">> 未加载机器人外观数据. 表 `creature_template_npcbot_appearance` 为空!");
 
     //                                          1      2
     result = WorldDatabase.Query("SELECT entry, class, race FROM creature_template_npcbot_extras");
@@ -750,10 +750,10 @@ void BotDataMgr::LoadNpcBots(bool spawn)
 
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Bot race data loaded");
+        TC_LOG_INFO("server.loading", ">> 机器人种族数据已加载");
     }
     else
-        TC_LOG_INFO("server.loading", ">> Bots race data is not loaded. Table `creature_template_npcbot_extras` is empty!");
+        TC_LOG_INFO("server.loading", ">> 机器人种族数据未加载. 表 `creature_template_npcbot_extras` 为空!");
 
     //                                              1     2        3
     result = CharacterDatabase.Query("SELECT entry, slot, item_id, fake_id FROM characters_npcbot_transmog");
@@ -783,10 +783,10 @@ void BotDataMgr::LoadNpcBots(bool spawn)
 
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Bot transmog data loaded");
+        TC_LOG_INFO("server.loading", ">> 机器人幻化数据已加载");
     }
     else
-        TC_LOG_INFO("server.loading", ">> Bots transmog data is not loaded. Table `characters_npcbot_transmog` is empty!");
+        TC_LOG_INFO("server.loading", ">> 机器人幻化数据未加载. 表 `characters_npcbot_transmog` 为空!");
 
     //                                       0      1      2      3     4        5          6          7          8          9               10          11          12         13
     result = CharacterDatabase.Query("SELECT entry, owner, roles, spec, faction, equipMhEx, equipOhEx, equipRhEx, equipHead, equipShoulders, equipChest, equipWaist, equipLegs, equipFeet,"
@@ -838,7 +838,7 @@ void BotDataMgr::LoadNpcBots(bool spawn)
 
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} bot data entries", datacounter);
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个机器人数据条目", datacounter);
 
         if (spawn)
         {
@@ -900,18 +900,18 @@ void BotDataMgr::LoadNpcBots(bool spawn)
                 ++botcounter;
             }
 
-            TC_LOG_INFO("server.loading", ">> Spawned {} npcbot(s) within {} grid(s) in {} ms", botcounter, uint32(botgrids.size()), GetMSTimeDiffToNow(botoldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在 {} 个网格内生成了 {} 个 NPC 机器人, 用时 {} 毫秒", botcounter, uint32(botgrids.size()), GetMSTimeDiffToNow(botoldMSTime));
         }
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 npcbots. Table `characters_npcbot` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 NPC 机器人. 表 `characters_npcbot` 为空!");
 
     allBotsLoaded = true;
 }
 
 void BotDataMgr::LoadNpcBotGroupData()
 {
-    TC_LOG_INFO("server.loading", "Loading NPCBot group members...");
+    TC_LOG_INFO("server.loading", "加载 NPC 机器人团队成员...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -922,7 +922,7 @@ void BotDataMgr::LoadNpcBotGroupData()
     QueryResult result = CharacterDatabase.Query("SELECT guid, entry, memberFlags, subgroup, roles FROM characters_npcbot_group_member ORDER BY guid");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 NPCBot group members. DB table `characters_npcbot_group_member` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 NPC 机器人团队成员. 数据库表 `characters_npcbot_group_member` 为空!");
         return;
     }
 
@@ -951,12 +951,12 @@ void BotDataMgr::LoadNpcBotGroupData()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} NPCBot group members in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 NPC 机器人团队成员, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void BotDataMgr::LoadNpcBotGearStorage()
 {
-    TC_LOG_INFO("server.loading", "Loading NPCBot items storage...");
+    TC_LOG_INFO("server.loading", "加载 NPC 机器人物品存储...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -966,7 +966,7 @@ void BotDataMgr::LoadNpcBotGearStorage()
         " FROM  characters_npcbot_gear_storage gs JOIN item_instance ii ON gs.item_guid = ii.guid ORDER BY gs.guid, gs.item_guid");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 NPCBot stored gear items. DB table `characters_npcbot_gear_storage` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 NPC 机器人存储的装备物品. 数据库表 `characters_npcbot_gear_storage` 为空!");
         return;
     }
 
@@ -990,7 +990,7 @@ void BotDataMgr::LoadNpcBotGearStorage()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} NPCBot stored items for {} bot owners in {} ms", count, uint32(player_guids.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 NPC 机器人存储的物品, 共有 {} 位机器人所有者, 用时 {} 毫秒", count, uint32(player_guids.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void BotDataMgr::LoadWanderMap(bool reload)
@@ -1013,13 +1013,13 @@ void BotDataMgr::LoadWanderMap(bool reload)
 
     uint32 botoldMSTime = getMSTime();
 
-    TC_LOG_INFO("server.loading", "Setting up wander map...");
+    TC_LOG_INFO("server.loading", "设置漫游地图中...");
 
     //                                             0    1   2 3 4 5   6      7       8        9      10   11    12
     QueryResult wres = WorldDatabase.Query("SELECT id,mapid,x,y,z,o,zoneId,areaId,minlevel,maxlevel,flags,name,links FROM creature_template_npcbot_wander_nodes ORDER BY mapid,id");
     if (!wres)
     {
-        TC_LOG_FATAL("server.loading", "Failed to load wander points: table `creature_template_npcbot_wander_nodes` is empty!");
+        TC_LOG_FATAL("server.loading", "无法加载漫游点: 表 `creature_template_npcbot_wander_nodes` 为空!");
         ASSERT(false);
     }
 
@@ -1174,7 +1174,7 @@ void BotDataMgr::LoadWanderMap(bool reload)
         if (!kv.second)
         {
             if (sMapStore.LookupEntry(kv.first)->IsBattlegroundOrArena())
-                TC_LOG_INFO("server.loading", "No valid Neutral spawn node for at least level {} on non-continent map {}.", maxof_minclasslvl_ex, kv.first);
+                TC_LOG_INFO("server.loading", "在非大陆地图 {} 上, 至少需要等级 {} 的中立生成点.", kv.first, maxof_minclasslvl_ex);
             else
             {
                 TC_LOG_FATAL("server.loading", "No valid Neutral spawn node for at least level {} on map {}! Spawning wandering bots is impossible! Aborting.",
@@ -1187,7 +1187,7 @@ void BotDataMgr::LoadWanderMap(bool reload)
         ABORT();
 
     const uint8 TEAMS_COUNT = TEAM_NEUTRAL + 1;
-    char const* const team_strs[TEAMS_COUNT] = { "Alliance", "Horde", "Neutral" };
+    char const* const team_strs[TEAMS_COUNT] = { "联盟", "部落", "中立" };
     std::array<bool, DEFAULT_MAX_LEVEL> spawn_node_levels[TEAMS_COUNT]{ { false } };
     uint8 min_spawn_level = DEFAULT_MAX_LEVEL;
     uint8 max_spawn_level = 0;
@@ -1300,7 +1300,7 @@ void BotDataMgr::LoadWanderMap(bool reload)
                 TC_LOG_DEBUG("server.loading", "Node {} ('{}') has single connection!", tn->GetWPId(), tn->GetName());
                 tops.emplace(sc_chain.back());
                 std::ostringstream ss;
-                ss << "Node " << (sc_chain.size() == 2u ? "pair " : "chain ");
+                ss << "节点 " << (sc_chain.size() == 2u ? "pair " : "chain ");
                 for (uint32 i = 0u; i < sc_chain.size(); ++i)
                 {
                     ss << sc_chain[i]->GetWPId();
@@ -1313,7 +1313,7 @@ void BotDataMgr::LoadWanderMap(bool reload)
         }
     });
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} bot wander nodes ({} disabled) on {} maps (total {} tops) in {} ms",
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个机器人漫游节点 ({} 个已禁用), 分布在 {} 张地图上 (共 {} 个顶点), 用时 {} 毫秒",
         uint32(WanderNode::GetAllWPsCount()), disabled_nodes, uint32(WanderNode::GetWPMapsCount()), uint32(tops.size()), GetMSTimeDiffToNow(botoldMSTime));
 }
 
@@ -1511,7 +1511,7 @@ ItemPerBotClassMap const& BotDataMgr::GetWanderingBotsSortedGearMap()
 
 void BotDataMgr::CreateWanderingBotsSortedGear()
 {
-    TC_LOG_INFO("server.loading", "Sorting wandering bot's gear...");
+    TC_LOG_INFO("server.loading", "正在对漫游机器人的装备进行排序...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1526,10 +1526,10 @@ void BotDataMgr::CreateWanderingBotsSortedGear()
 
         } while (dires->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} disabled wandering bots gear items", uint32(disabled_item_ids.size()));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个已禁用的漫游机器人装备物品", uint32(disabled_item_ids.size()));
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 disabled wandering bots gear items. Table `creature_template_npcbot_disabled_items` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个已禁用的漫游机器人装备物品. 表 `creature_template_npcbot_disabled_items` 为空!");
 
     const std::map<uint32, uint8> InvTypeToBotSlot = {
         {INVTYPE_HEAD, BOT_SLOT_HEAD},
@@ -1983,7 +1983,7 @@ void BotDataMgr::CreateWanderingBotsSortedGear()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Sorted wandering bots gear in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 整理了流浪机器人的装备, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 }
 
 Item* BotDataMgr::GenerateWanderingBotItem(uint8 slot, uint8 botclass, uint8 level, std::function<bool(ItemTemplate const*)>&& check)

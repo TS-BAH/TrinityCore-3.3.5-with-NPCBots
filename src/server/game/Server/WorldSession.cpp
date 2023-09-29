@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -638,7 +638,7 @@ void WorldSession::LogoutPlayer(bool save)
         // e.g if he got disconnected during a transfer to another map
         // calls to GetMap in this case may cause crashes
         _player->CleanupsBeforeDelete();
-        TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Logout Character:[{}] {} Level: {}, XP: {}/{} ({} left)",
+        TC_LOG_INFO("entities.player.character", "账号: {} (IP: {})  注销角色:[{}] {} 等级: {}, XP: {}/{} (还需 {})",
             GetAccountId(), GetRemoteAddress(), _player->GetName(), _player->GetGUID().ToString(), _player->GetLevel(),
             _player->GetXP(), _player->GetXPForNextLevel(), std::max(0, (int32)_player->GetXPForNextLevel() - (int32)_player->GetXP()));
         if (Map* _map = _player->FindMap())
@@ -668,7 +668,7 @@ void WorldSession::KickPlayer(std::string const& reason)
 {
     if (m_Socket)
     {
-        TC_LOG_INFO("network.kick", "Account: {} Character: '{}' {} kicked with reason: {}", GetAccountId(), _player ? _player->GetName() : "<none>",
+        TC_LOG_INFO("network.kick", "帐号: {} 角色: '{}' {} 被踢出, 原因: {}", GetAccountId(), _player ? _player->GetName() : "<none>",
             _player ? _player->GetGUID().ToString() : "", reason);
 
         m_Socket->CloseSocket();

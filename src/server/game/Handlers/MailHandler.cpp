@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -81,8 +81,8 @@ void WorldSession::HandleSendMail(WorldPackets::Mail::SendMail& sendMail)
 
     if (!receiverGuid)
     {
-        TC_LOG_INFO("network", "Player {} is sending mail to {} (GUID: non-existing!) with subject {} "
-            "and body {} includes {} items, {} copper and {} COD copper with StationeryID = {}, PackageID = {}",
+        TC_LOG_INFO("network", "玩家 {} 正在发送邮件给 {} (GUID: 不存在!), 主题为 {}, "
+            "内容为 {}, 包括 {} 个物品, {} 寄送铜币, {} 寄送铜币, StationeryID = {}, PackageID = {}",
             GetPlayerInfo(), sendMail.Info.Target, sendMail.Info.Subject, sendMail.Info.Body,
             sendMail.Info.Attachments.size(), sendMail.Info.SendMoney, sendMail.Info.Cod, sendMail.Info.StationeryID, sendMail.Info.PackageID);
         player->SendMailResult(0, MAIL_SEND, MAIL_ERR_RECIPIENT_NOT_FOUND);
@@ -105,8 +105,8 @@ void WorldSession::HandleSendMail(WorldPackets::Mail::SendMail& sendMail)
         return;
     }
 
-    TC_LOG_INFO("network", "Player {} is sending mail to {} ({}) with subject {} and body {} "
-        "including {} items, {} copper and {} COD copper with StationeryID = {}, PackageID = {}",
+    TC_LOG_INFO("network", "玩家 {} 正在发送邮件给 {} ({}), 主题为 {}, 内容为 {}, "
+        "包括 {} 个物品, {} 寄送铜币, {} 寄付铜币, StationeryID = {}, PackageID = {}",
         GetPlayerInfo(), sendMail.Info.Target, receiverGuid.ToString(), sendMail.Info.Subject,
         sendMail.Info.Body, sendMail.Info.Attachments.size(), sendMail.Info.SendMoney, sendMail.Info.Cod, sendMail.Info.StationeryID, sendMail.Info.PackageID);
 

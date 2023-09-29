@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -69,20 +69,20 @@ void BattlefieldMgr::InitBattlefield()
 
             if (!bf->SetupBattlefield())
             {
-                TC_LOG_INFO("bg.battlefield", "Setting up battlefield with TypeId {} failed.", typeId);
+                TC_LOG_INFO("bg.battlefield", "使用 TypeID {} 设置战场失败.", typeId);
                 delete bf;
             }
             else
             {
                 _battlefieldSet.push_back(bf);
-                TC_LOG_INFO("bg.battlefield", "Setting up battlefield with TypeId {} succeeded.", typeId);
+                TC_LOG_INFO("bg.battlefield", "使用 TypeID {} 设置战场成功.", typeId);
             }
 
             ++count;
         } while (result->NextRow());
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} battlefields in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个战场, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void BattlefieldMgr::AddZone(uint32 zoneId, Battlefield* bf)

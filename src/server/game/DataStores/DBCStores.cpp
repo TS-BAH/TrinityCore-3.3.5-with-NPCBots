@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -668,7 +668,7 @@ void LoadDBCStores(const std::string& dataPath)
         exit(1);
     }
 
-    TC_LOG_INFO("server.loading", ">> Initialized {} data stores in {} ms", DBCFileCount, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 初始化了 {} 个数据存储, 用时 {} 毫秒", DBCFileCount, GetMSTimeDiffToNow(oldMSTime));
 
 }
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -102,7 +102,7 @@ void ArenaTeamMgr::LoadArenaTeams()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 arena teams. DB table `arena_team` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个竞技场战队. 数据库表 `arena_team` 为空!");
         return;
     }
 
@@ -132,7 +132,7 @@ void ArenaTeamMgr::LoadArenaTeams()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} arena teams in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个竞技场战队, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ArenaTeamMgr::DistributeArenaPoints()

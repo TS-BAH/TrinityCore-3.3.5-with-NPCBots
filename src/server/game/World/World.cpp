@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -109,7 +109,7 @@ TC_GAME_API int32 World::m_visibility_notify_periodInInstances  = DEFAULT_VISIBI
 TC_GAME_API int32 World::m_visibility_notify_periodInBG         = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
 TC_GAME_API int32 World::m_visibility_notify_periodInArenas     = DEFAULT_VISIBILITY_NOTIFY_PERIOD;
 
-/// World constructor
+/// World 构造函数
 World::World()
 {
     m_playerLimit = 0;
@@ -150,7 +150,7 @@ World::World()
     _warnShutdownTime = GameTime::GetGameTime();
 }
 
-/// World destructor
+/// World 析构函数
 World::~World()
 {
     ///- Empty the kicked session set
@@ -325,7 +325,7 @@ void World::AddSession_(WorldSession* s)
     ///- if player is in loading and want to load again, return
     if (!RemoveSession(s->GetAccountId()))
     {
-        s->KickPlayer("World::AddSession_ Couldn't remove the other session while on loading screen");
+        s->KickPlayer("World::AddSession_ 无法在加载屏幕上移除其他会话");
         delete s;                                           // session not added yet in session list, so not listed in queue
         return;
     }
@@ -363,7 +363,7 @@ void World::AddSession_(WorldSession* s)
     {
         AddQueuedPlayer(s);
         UpdateMaxSessionCounters();
-        TC_LOG_INFO("misc", "PlayerQueue: Account id {} is in Queue Position ({}).", s->GetAccountId(), ++QueueSize);
+        TC_LOG_INFO("misc", "PlayerQueue: 账号 ID {} 在队列中的位置为 ({}).", s->GetAccountId(), ++QueueSize);
         return;
     }
 
@@ -377,7 +377,7 @@ void World::AddSession_(WorldSession* s)
         float popu = (float)GetActiveSessionCount();              // updated number of users on the server
         popu /= pLimit;
         popu *= 2;
-        TC_LOG_INFO("misc", "Server Population ({}).", popu);
+        TC_LOG_INFO("misc", "服务器人数 ({}).", popu);
     }
 }
 
@@ -508,27 +508,27 @@ void World::LoadConfigSettings(bool reload)
     rate_values[RATE_HEALTH]      = sConfigMgr->GetFloatDefault("Rate.Health", 1.0f);
     if (rate_values[RATE_HEALTH] < 0)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Health ({}) must be > 0. Using 1 instead.", rate_values[RATE_HEALTH]);
+        TC_LOG_ERROR("server.loading", "Rate.Health ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_HEALTH]);
         rate_values[RATE_HEALTH] = 1;
     }
     rate_values[RATE_POWER_MANA]  = sConfigMgr->GetFloatDefault("Rate.Mana", 1.0f);
     if (rate_values[RATE_POWER_MANA] < 0)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Mana ({}) must be > 0. Using 1 instead.", rate_values[RATE_POWER_MANA]);
+        TC_LOG_ERROR("server.loading", "Rate.Mana ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_POWER_MANA]);
         rate_values[RATE_POWER_MANA] = 1;
     }
     rate_values[RATE_POWER_RAGE_INCOME] = sConfigMgr->GetFloatDefault("Rate.Rage.Income", 1.0f);
     rate_values[RATE_POWER_RAGE_LOSS]   = sConfigMgr->GetFloatDefault("Rate.Rage.Loss", 1.0f);
     if (rate_values[RATE_POWER_RAGE_LOSS] < 0)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Rage.Loss ({}) must be > 0. Using 1 instead.", rate_values[RATE_POWER_RAGE_LOSS]);
+        TC_LOG_ERROR("server.loading", "Rate.Rage.Loss ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_POWER_RAGE_LOSS]);
         rate_values[RATE_POWER_RAGE_LOSS] = 1;
     }
     rate_values[RATE_POWER_RUNICPOWER_INCOME] = sConfigMgr->GetFloatDefault("Rate.RunicPower.Income", 1.0f);
     rate_values[RATE_POWER_RUNICPOWER_LOSS]   = sConfigMgr->GetFloatDefault("Rate.RunicPower.Loss", 1.0f);
     if (rate_values[RATE_POWER_RUNICPOWER_LOSS] < 0)
     {
-        TC_LOG_ERROR("server.loading", "Rate.RunicPower.Loss ({}) must be > 0. Using 1 instead.", rate_values[RATE_POWER_RUNICPOWER_LOSS]);
+        TC_LOG_ERROR("server.loading", "Rate.RunicPower.Loss ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_POWER_RUNICPOWER_LOSS]);
         rate_values[RATE_POWER_RUNICPOWER_LOSS] = 1;
     }
     rate_values[RATE_POWER_FOCUS]  = sConfigMgr->GetFloatDefault("Rate.Focus", 1.0f);
@@ -557,7 +557,7 @@ void World::LoadConfigSettings(bool reload)
     rate_values[RATE_REPAIRCOST]  = sConfigMgr->GetFloatDefault("Rate.RepairCost", 1.0f);
     if (rate_values[RATE_REPAIRCOST] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "Rate.RepairCost ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_REPAIRCOST]);
+        TC_LOG_ERROR("server.loading", "Rate.RepairCost ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_REPAIRCOST]);
         rate_values[RATE_REPAIRCOST] = 0.0f;
     }
     rate_values[RATE_REPUTATION_GAIN]  = sConfigMgr->GetFloatDefault("Rate.Reputation.Gain", 1.0f);
@@ -593,13 +593,13 @@ void World::LoadConfigSettings(bool reload)
     rate_values[RATE_TALENT] = sConfigMgr->GetFloatDefault("Rate.Talent", 1.0f);
     if (rate_values[RATE_TALENT] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Talent ({}) must be > 0. Using 1 instead.", rate_values[RATE_TALENT]);
+        TC_LOG_ERROR("server.loading", "Rate.Talent ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_TALENT]);
         rate_values[RATE_TALENT] = 1.0f;
     }
     rate_values[RATE_MOVESPEED] = sConfigMgr->GetFloatDefault("Rate.MoveSpeed", 1.0f);
     if (rate_values[RATE_MOVESPEED] < 0)
     {
-        TC_LOG_ERROR("server.loading", "Rate.MoveSpeed ({}) must be > 0. Using 1 instead.", rate_values[RATE_MOVESPEED]);
+        TC_LOG_ERROR("server.loading", "Rate.MoveSpeed ({}) 必须大于 0. 使用 1 代替.", rate_values[RATE_MOVESPEED]);
         rate_values[RATE_MOVESPEED] = 1.0f;
     }
     for (uint8 i = 0; i < MAX_MOVE_TYPE; ++i) playerBaseMoveSpeed[i] = baseMoveSpeed[i] * rate_values[RATE_MOVESPEED];
@@ -608,12 +608,12 @@ void World::LoadConfigSettings(bool reload)
     rate_values[RATE_DURABILITY_LOSS_ON_DEATH]  = sConfigMgr->GetFloatDefault("DurabilityLoss.OnDeath", 10.0f);
     if (rate_values[RATE_DURABILITY_LOSS_ON_DEATH] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLoss.OnDeath ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_DURABILITY_LOSS_ON_DEATH]);
+        TC_LOG_ERROR("server.loading", "DurabilityLoss.OnDeath ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_DURABILITY_LOSS_ON_DEATH]);
         rate_values[RATE_DURABILITY_LOSS_ON_DEATH] = 0.0f;
     }
     if (rate_values[RATE_DURABILITY_LOSS_ON_DEATH] > 100.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLoss.OnDeath ({}) must be <= 100. Using 100.0 instead.", rate_values[RATE_DURABILITY_LOSS_ON_DEATH]);
+        TC_LOG_ERROR("server.loading", "DurabilityLoss.OnDeath ({}) 必须小于等于 100. 使用 100.0 代替.", rate_values[RATE_DURABILITY_LOSS_ON_DEATH]);
         rate_values[RATE_DURABILITY_LOSS_ON_DEATH] = 0.0f;
     }
     rate_values[RATE_DURABILITY_LOSS_ON_DEATH] = rate_values[RATE_DURABILITY_LOSS_ON_DEATH] / 100.0f;
@@ -621,37 +621,37 @@ void World::LoadConfigSettings(bool reload)
     rate_values[RATE_DURABILITY_LOSS_DAMAGE] = sConfigMgr->GetFloatDefault("DurabilityLossChance.Damage", 0.5f);
     if (rate_values[RATE_DURABILITY_LOSS_DAMAGE] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Damage ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_DURABILITY_LOSS_DAMAGE]);
+        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Damage ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_DURABILITY_LOSS_DAMAGE]);
         rate_values[RATE_DURABILITY_LOSS_DAMAGE] = 0.0f;
     }
     rate_values[RATE_DURABILITY_LOSS_ABSORB] = sConfigMgr->GetFloatDefault("DurabilityLossChance.Absorb", 0.5f);
     if (rate_values[RATE_DURABILITY_LOSS_ABSORB] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Absorb ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_DURABILITY_LOSS_ABSORB]);
+        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Absorb ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_DURABILITY_LOSS_ABSORB]);
         rate_values[RATE_DURABILITY_LOSS_ABSORB] = 0.0f;
     }
     rate_values[RATE_DURABILITY_LOSS_PARRY] = sConfigMgr->GetFloatDefault("DurabilityLossChance.Parry", 0.05f);
     if (rate_values[RATE_DURABILITY_LOSS_PARRY] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Parry ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_DURABILITY_LOSS_PARRY]);
+        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Parry ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_DURABILITY_LOSS_PARRY]);
         rate_values[RATE_DURABILITY_LOSS_PARRY] = 0.0f;
     }
     rate_values[RATE_DURABILITY_LOSS_BLOCK] = sConfigMgr->GetFloatDefault("DurabilityLossChance.Block", 0.05f);
     if (rate_values[RATE_DURABILITY_LOSS_BLOCK] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Block ({}) must be >=0. Using 0.0 instead.", rate_values[RATE_DURABILITY_LOSS_BLOCK]);
+        TC_LOG_ERROR("server.loading", "DurabilityLossChance.Block ({}) 必须大于等于 0. 使用 0.0 代替.", rate_values[RATE_DURABILITY_LOSS_BLOCK]);
         rate_values[RATE_DURABILITY_LOSS_BLOCK] = 0.0f;
     }
     rate_values[RATE_MONEY_QUEST] = sConfigMgr->GetFloatDefault("Rate.Quest.Money.Reward", 1.0f);
     if (rate_values[RATE_MONEY_QUEST] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Quest.Money.Reward ({}) must be >=0. Using 0 instead.", rate_values[RATE_MONEY_QUEST]);
+        TC_LOG_ERROR("server.loading", "Rate.Quest.Money.Reward ({}) 必须大于等于 0. 使用 0 代替.", rate_values[RATE_MONEY_QUEST]);
         rate_values[RATE_MONEY_QUEST] = 0.0f;
     }
     rate_values[RATE_MONEY_MAX_LEVEL_QUEST] = sConfigMgr->GetFloatDefault("Rate.Quest.Money.Max.Level.Reward", 1.0f);
     if (rate_values[RATE_MONEY_MAX_LEVEL_QUEST] < 0.0f)
     {
-        TC_LOG_ERROR("server.loading", "Rate.Quest.Money.Max.Level.Reward ({}) must be >=0. Using 0 instead.", rate_values[RATE_MONEY_MAX_LEVEL_QUEST]);
+        TC_LOG_ERROR("server.loading", "Rate.Quest.Money.Max.Level.Reward ({}) 必须大于等于 0. 使用 0 代替.", rate_values[RATE_MONEY_MAX_LEVEL_QUEST]);
         rate_values[RATE_MONEY_MAX_LEVEL_QUEST] = 0.0f;
     }
     ///- Read other configuration items from the config file
@@ -661,7 +661,7 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_COMPRESSION] = sConfigMgr->GetIntDefault("Compression", 1);
     if (m_int_configs[CONFIG_COMPRESSION] < 1 || m_int_configs[CONFIG_COMPRESSION] > 9)
     {
-        TC_LOG_ERROR("server.loading", "Compression level ({}) must be in range 1..9. Using default compression level (1).", m_int_configs[CONFIG_COMPRESSION]);
+        TC_LOG_ERROR("server.loading", "压缩级别 ({}) 必须在 1 到 9 的范围内. 使用默认压缩级别 (1).", m_int_configs[CONFIG_COMPRESSION]);
         m_int_configs[CONFIG_COMPRESSION] = 1;
     }
     m_bool_configs[CONFIG_ADDON_CHANNEL] = sConfigMgr->GetBoolDefault("AddonChannel", true);
@@ -671,7 +671,7 @@ void World::LoadConfigSettings(bool reload)
     m_int_configs[CONFIG_AUCTION_SEARCH_DELAY] = sConfigMgr->GetIntDefault("Auction.SearchDelay", 300);
     if (m_int_configs[CONFIG_AUCTION_SEARCH_DELAY] < 100 || m_int_configs[CONFIG_AUCTION_SEARCH_DELAY] > 10000)
     {
-        TC_LOG_ERROR("server.loading", "Auction.SearchDelay ({}) must be between 100 and 10000. Using default of 300ms", m_int_configs[CONFIG_AUCTION_SEARCH_DELAY]);
+        TC_LOG_ERROR("server.loading", "Auction.SearchDelay ({}) 必须在 100 到 10000 之间. 使用默认值 300 毫秒", m_int_configs[CONFIG_AUCTION_SEARCH_DELAY]);
         m_int_configs[CONFIG_AUCTION_SEARCH_DELAY] = 300;
     }
     m_int_configs[CONFIG_CHAT_CHANNEL_LEVEL_REQ] = sConfigMgr->GetIntDefault("ChatLevelReq.Channel", 1);
@@ -1063,7 +1063,7 @@ void World::LoadConfigSettings(bool reload)
         m_timers[WUPDATE_CLEANDB].Reset();
     }
     m_int_configs[CONFIG_LOGDB_CLEARTIME] = sConfigMgr->GetIntDefault("LogDB.Opt.ClearTime", 1209600); // 14 days default
-    TC_LOG_INFO("server.loading", "Will clear `logs` table of entries older than {} seconds every {} minutes.",
+    TC_LOG_INFO("server.loading", "将会每隔 {} 分钟清除 `logs` 表中超过 {} 秒的记录.",
         m_int_configs[CONFIG_LOGDB_CLEARTIME], m_int_configs[CONFIG_LOGDB_CLEARINTERVAL]);
 
     m_int_configs[CONFIG_SKILL_CHANCE_ORANGE] = sConfigMgr->GetIntDefault("SkillChance.Orange", 100);
@@ -1239,7 +1239,7 @@ void World::LoadConfigSettings(bool reload)
         else
             TC_LOG_ERROR("server.loading", "ClientCacheVersion can't be negative {}, ignored.", clientCacheId);
     }
-    TC_LOG_INFO("server.loading", "Client cache version set to: {}", m_int_configs[CONFIG_CLIENTCACHE_VERSION]);
+    TC_LOG_INFO("server.loading", "客户端缓存版本设置为: {}", m_int_configs[CONFIG_CLIENTCACHE_VERSION]);
 
     m_int_configs[CONFIG_GUILD_EVENT_LOG_COUNT] = sConfigMgr->GetIntDefault("Guild.EventLogRecordsCount", GUILD_EVENTLOG_MAX_RECORDS);
     if (m_int_configs[CONFIG_GUILD_EVENT_LOG_COUNT] > GUILD_EVENTLOG_MAX_RECORDS)
@@ -1396,11 +1396,11 @@ void World::LoadConfigSettings(bool reload)
     else
     {
         m_dataPath = dataPath;
-        TC_LOG_INFO("server.loading", "Using DataDir {}", m_dataPath);
+        TC_LOG_INFO("server.loading", "使用数据目录: {}", m_dataPath);
     }
 
     m_bool_configs[CONFIG_ENABLE_MMAPS] = sConfigMgr->GetBoolDefault("mmap.enablePathFinding", true);
-    TC_LOG_INFO("server.loading", "WORLD: MMap data directory is: {}mmaps", m_dataPath);
+    TC_LOG_INFO("server.loading", "WORLD: MMap 数据目录是: {}mmaps", m_dataPath);
 
     m_bool_configs[CONFIG_VMAP_INDOOR_CHECK] = sConfigMgr->GetBoolDefault("vmap.enableIndoorCheck", false);
     bool enableIndoor = sConfigMgr->GetBoolDefault("vmap.enableIndoorCheck", true);
@@ -1412,8 +1412,8 @@ void World::LoadConfigSettings(bool reload)
 
     VMAP::VMapFactory::createOrGetVMapManager()->setEnableLineOfSightCalc(enableLOS);
     VMAP::VMapFactory::createOrGetVMapManager()->setEnableHeightCalc(enableHeight);
-    TC_LOG_INFO("server.loading", "VMap support included. LineOfSight: {}, getHeight: {}, indoorCheck: {}", enableLOS, enableHeight, enableIndoor);
-    TC_LOG_INFO("server.loading", "VMap data directory is: {}vmaps", m_dataPath);
+    TC_LOG_INFO("server.loading", "VMap 支持已包括. LineOfSight: {}, getHeight: {}, indoorCheck: {}", enableLOS, enableHeight, enableIndoor);
+    TC_LOG_INFO("server.loading", "VMap 数据目录是: {}vmaps", m_dataPath);
 
     m_int_configs[CONFIG_MAX_WHO] = sConfigMgr->GetIntDefault("MaxWhoListReturns", 49);
     m_bool_configs[CONFIG_START_ALL_SPELLS] = sConfigMgr->GetBoolDefault("PlayerStart.AllSpells", false);
@@ -1593,13 +1593,13 @@ void World::SetInitialWorldSettings()
             !MapManager::ExistMapAndVMap(530, 10349.6f, -6357.29f) ||
             !MapManager::ExistMapAndVMap(530, -3961.64f, -13931.2f))))
     {
-        TC_LOG_FATAL("server.loading", "Unable to load critical files - server shutting down !!!");
+        TC_LOG_FATAL("server.loading", "无法加载关键文件 - 服务器正在关闭!!!");
         exit(1);
     }
 
 #ifdef ELUNA
     ///- Initialize Lua Engine
-    TC_LOG_INFO("server.loading", "Initialize Eluna Lua Engine...");
+    TC_LOG_INFO("server.loading", "初始化 Eluna Lua 引擎...");
     Eluna::Initialize();
 #endif
 
@@ -1611,7 +1611,7 @@ void World::SetInitialWorldSettings()
 
     ///- Loading strings. Getting no records means core load has to be canceled because no error message can be output.
 
-    TC_LOG_INFO("server.loading", "Loading Trinity strings...");
+    TC_LOG_INFO("server.loading", "加载 Trinity 字符串...");
     if (!sObjectMgr->LoadTrinityStrings())
         exit(1);                                            // Error message displayed in function already
 
@@ -1625,7 +1625,7 @@ void World::SetInitialWorldSettings()
     LoginDatabase.PExecute("UPDATE realmlist SET icon = {}, timezone = {} WHERE id = '{}'", server_type, realm_zone, realm.Id.Realm);      // One-time query
 
     ///- Load the DBC files
-    TC_LOG_INFO("server.loading", "Initialize data stores...");
+    TC_LOG_INFO("server.loading", "初始化数据存储...");
     LoadDBCStores(m_dataPath);
     DetectDBCLang();
 
@@ -1645,55 +1645,55 @@ void World::SetInitialWorldSettings()
     MMAP::MMapManager* mmmgr = MMAP::MMapFactory::createOrGetMMapManager();
     mmmgr->InitializeThreadUnsafe(mapIds);
 
-    TC_LOG_INFO("server.loading", "Initializing PlayerDump tables...");
+    TC_LOG_INFO("server.loading", "初始化 PlayerDump 表...");
     PlayerDump::InitializeTables();
 
     ///- Initialize static helper structures
     AIRegistry::Initialize();
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo store...");
+    TC_LOG_INFO("server.loading", "加载法术信息存储...");
     sSpellMgr->LoadSpellInfoStore();
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo corrections...");
+    TC_LOG_INFO("server.loading", "加载法术信息修正...");
     sSpellMgr->LoadSpellInfoCorrections();
 
-    TC_LOG_INFO("server.loading", "Loading SkillLineAbilityMultiMap Data...");
+    TC_LOG_INFO("server.loading", "加载技能线能力多重映射数据...");
     sSpellMgr->LoadSkillLineAbilityMap();
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo custom attributes...");
+    TC_LOG_INFO("server.loading", "加载法术信息自定义属性...");
     sSpellMgr->LoadSpellInfoCustomAttributes();
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo diminishing infos...");
+    TC_LOG_INFO("server.loading", "加载法术信息的减益信息...");
     sSpellMgr->LoadSpellInfoDiminishing();
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo immunity infos...");
+    TC_LOG_INFO("server.loading", "加载法术信息的免疫信息...");
     sSpellMgr->LoadSpellInfoImmunities();
 
-    TC_LOG_INFO("server.loading", "Loading Player Totem models...");
+    TC_LOG_INFO("server.loading", "加载玩家图腾模型...");
     sObjectMgr->LoadPlayerTotemModels();
 
-    TC_LOG_INFO("server.loading", "Loading GameObject models...");
+    TC_LOG_INFO("server.loading", "加载游戏对象模型...");
     LoadGameObjectModelList(m_dataPath);
 
-    TC_LOG_INFO("server.loading", "Loading Script Names...");
+    TC_LOG_INFO("server.loading", "加载脚本名称...");
     sObjectMgr->LoadScriptNames();
 
-    TC_LOG_INFO("server.loading", "Loading Instance Template...");
+    TC_LOG_INFO("server.loading", "加载副本模板...");
     sObjectMgr->LoadInstanceTemplate();
 
     // Must be called before `respawn` data
-    TC_LOG_INFO("server.loading", "Loading instances...");
+    TC_LOG_INFO("server.loading", "加载副本...");
     sInstanceSaveMgr->LoadInstances();
 
     // Load before guilds and arena teams
-    TC_LOG_INFO("server.loading", "Loading character cache store...");
+    TC_LOG_INFO("server.loading", "加载角色缓存存储...");
     sCharacterCache->LoadCharacterCacheStorage();
 
-    TC_LOG_INFO("server.loading", "Loading Broadcast texts...");
+    TC_LOG_INFO("server.loading", "加载公告板文本...");
     sObjectMgr->LoadBroadcastTexts();
     sObjectMgr->LoadBroadcastTextLocales();
 
-    TC_LOG_INFO("server.loading", "Loading Localization strings...");
+    TC_LOG_INFO("server.loading", "加载本地化字符串...");
     uint32 oldMSTime = getMSTime();
     sObjectMgr->LoadCreatureLocales();
     sObjectMgr->LoadGameObjectLocales();
@@ -1709,368 +1709,368 @@ void World::SetInitialWorldSettings()
     sObjectMgr->LoadQuestGreetingLocales();
 
     sObjectMgr->SetDBCLocaleIndex(GetDefaultDbcLocale());        // Get once for all the locale index of DBC language (console/broadcasts)
-    TC_LOG_INFO("server.loading", ">> Localization strings loaded in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 本地化字符串加载完成, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 
-    TC_LOG_INFO("server.loading", "Loading Account Roles and Permissions...");
+    TC_LOG_INFO("server.loading", "加载账户角色和权限...");
     sAccountMgr->LoadRBAC();
 
-    TC_LOG_INFO("server.loading", "Loading Page Texts...");
+    TC_LOG_INFO("server.loading", "加载页面文本...");
     sObjectMgr->LoadPageTexts();
 
-    TC_LOG_INFO("server.loading", "Loading Game Object Templates...");         // must be after LoadPageTexts
+    TC_LOG_INFO("server.loading", "加载游戏对象模板...");         // must be after LoadPageTexts
     sObjectMgr->LoadGameObjectTemplate();
 
-    TC_LOG_INFO("server.loading", "Loading Game Object template addons...");
+    TC_LOG_INFO("server.loading", "加载游戏对象模板附加定义...");
     sObjectMgr->LoadGameObjectTemplateAddons();
 
-    TC_LOG_INFO("server.loading", "Loading Transport templates...");
+    TC_LOG_INFO("server.loading", "加载运输工具模板...");
     sTransportMgr->LoadTransportTemplates();
 
-    TC_LOG_INFO("server.loading", "Loading Transport animations and rotations...");
+    TC_LOG_INFO("server.loading", "加载运输工具的动画和旋转信息...");
     sTransportMgr->LoadTransportAnimationAndRotation();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Rank Data...");
+    TC_LOG_INFO("server.loading", "加载法术等级数据...");
     sSpellMgr->LoadSpellRanks();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Required Data...");
+    TC_LOG_INFO("server.loading", "加载法术所需数据...");
     sSpellMgr->LoadSpellRequired();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Group types...");
+    TC_LOG_INFO("server.loading", "加载法术组类型...");
     sSpellMgr->LoadSpellGroups();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Learn Skills...");
+    TC_LOG_INFO("server.loading", "加载法术学习技能...");
     sSpellMgr->LoadSpellLearnSkills();                           // must be after LoadSpellRanks
 
-    TC_LOG_INFO("server.loading", "Loading SpellInfo SpellSpecific and AuraState...");
+    TC_LOG_INFO("server.loading", "加载法术信息的特定法术和光环状态...");
     sSpellMgr->LoadSpellInfoSpellSpecificAndAuraState();         // must be after LoadSpellRanks
 
-    TC_LOG_INFO("server.loading", "Loading Spell Learn Spells...");
+    TC_LOG_INFO("server.loading", "加载法术学习法术...");
     sSpellMgr->LoadSpellLearnSpells();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Proc conditions and data...");
+    TC_LOG_INFO("server.loading", "加载法术触发条件和数据...");
     sSpellMgr->LoadSpellProcs();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Bonus Data...");
+    TC_LOG_INFO("server.loading", "加载法术加成数据...");
     sSpellMgr->LoadSpellBonuses();
 
-    TC_LOG_INFO("server.loading", "Loading Aggro Spells Definitions...");
+    TC_LOG_INFO("server.loading", "加载仇恨法术定义...");
     sSpellMgr->LoadSpellThreats();
 
-    TC_LOG_INFO("server.loading", "Loading Spell Group Stack Rules...");
+    TC_LOG_INFO("server.loading", "加载法术组堆叠规则...");
     sSpellMgr->LoadSpellGroupStackRules();
 
-    TC_LOG_INFO("server.loading", "Loading NPC Texts...");
+    TC_LOG_INFO("server.loading", "加载 NPC 文本...");
     sObjectMgr->LoadGossipText();
 
-    TC_LOG_INFO("server.loading", "Loading Enchant Spells Proc datas...");
+    TC_LOG_INFO("server.loading", "加载附魔法术的触发数据...");
     sSpellMgr->LoadSpellEnchantProcData();
 
-    TC_LOG_INFO("server.loading", "Loading Item Random Enchantments Table...");
+    TC_LOG_INFO("server.loading", "加载物品随机附魔表...");
     LoadRandomEnchantmentsTable();
 
-    TC_LOG_INFO("server.loading", "Loading Disables");                         // must be before loading quests and items
+    TC_LOG_INFO("server.loading", "加载禁用项");                         // must be before loading quests and items
     DisableMgr::LoadDisables();
 
-    TC_LOG_INFO("server.loading", "Loading Items...");                         // must be after LoadRandomEnchantmentsTable and LoadPageTexts
+    TC_LOG_INFO("server.loading", "加载物品...");                         // must be after LoadRandomEnchantmentsTable and LoadPageTexts
     sObjectMgr->LoadItemTemplates();
 
-    TC_LOG_INFO("server.loading", "Loading Item set names...");                // must be after LoadItemPrototypes
+    TC_LOG_INFO("server.loading", "加载套装名称...");                // must be after LoadItemPrototypes
     sObjectMgr->LoadItemSetNames();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Model Based Info Data...");
+    TC_LOG_INFO("server.loading", "加载基于生物模型的信息数据...");
     sObjectMgr->LoadCreatureModelInfo();
 
-    TC_LOG_INFO("server.loading", "Loading Creature templates...");
+    TC_LOG_INFO("server.loading", "加载生物模板...");
     sObjectMgr->LoadCreatureTemplates();
 
-    TC_LOG_INFO("server.loading", "Loading Equipment templates...");           // must be after LoadCreatureTemplates
+    TC_LOG_INFO("server.loading", "加载装备模板...");           // must be after LoadCreatureTemplates
     sObjectMgr->LoadEquipmentTemplates();
 
-    TC_LOG_INFO("server.loading", "Loading Creature template addons...");
+    TC_LOG_INFO("server.loading", "加载生物模板附加定义...");
     sObjectMgr->LoadCreatureTemplateAddons();
 
-    TC_LOG_INFO("server.loading", "Loading Reputation Reward Rates...");
+    TC_LOG_INFO("server.loading", "加载声望奖励倍率...");
     sObjectMgr->LoadReputationRewardRate();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Reputation OnKill Data...");
+    TC_LOG_INFO("server.loading", "加载杀死生物时的声望数据...");
     sObjectMgr->LoadReputationOnKill();
 
-    TC_LOG_INFO("server.loading", "Loading Reputation Spillover Data...");
+    TC_LOG_INFO("server.loading", "加载声望溢出数据...");
     sObjectMgr->LoadReputationSpilloverTemplate();
 
-    TC_LOG_INFO("server.loading", "Loading Points Of Interest Data...");
+    TC_LOG_INFO("server.loading", "加载兴趣点数据...");
     sObjectMgr->LoadPointsOfInterest();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Base Stats...");
+    TC_LOG_INFO("server.loading", "加载生物基本属性...");
     sObjectMgr->LoadCreatureClassLevelStats();
 
-    TC_LOG_INFO("server.loading", "Loading Spawn Group Templates...");
+    TC_LOG_INFO("server.loading", "加载刷新群组模板...");
     sObjectMgr->LoadSpawnGroupTemplates();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Data...");
+    TC_LOG_INFO("server.loading", "加载生物数据...");
     sObjectMgr->LoadCreatures();
 
-    TC_LOG_INFO("server.loading", "Loading Temporary Summon Data...");
+    TC_LOG_INFO("server.loading", "加载临时召唤数据...");
     sObjectMgr->LoadTempSummons();                               // must be after LoadCreatureTemplates() and LoadGameObjectTemplates()
 
-    TC_LOG_INFO("server.loading", "Loading pet levelup spells...");
+    TC_LOG_INFO("server.loading", "加载宠物升级法术...");
     sSpellMgr->LoadPetLevelupSpellMap();
 
-    TC_LOG_INFO("server.loading", "Loading pet default spells additional to levelup spells...");
+    TC_LOG_INFO("server.loading", "加载宠物默认法术, 除了升级法术之外的其他法术...");
     sSpellMgr->LoadPetDefaultSpells();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Addon Data...");
+    TC_LOG_INFO("server.loading", "加载生物附加数据...");
     sObjectMgr->LoadCreatureAddons();                            // must be after LoadCreatureTemplates() and LoadCreatures()
 
-    TC_LOG_INFO("server.loading", "Loading Creature Movement Overrides...");
+    TC_LOG_INFO("server.loading", "加载生物移动覆盖数据...");
     sObjectMgr->LoadCreatureMovementOverrides();                 // must be after LoadCreatures()
 
-    TC_LOG_INFO("server.loading", "Loading Gameobject Data...");
+    TC_LOG_INFO("server.loading", "加载游戏对象数据...");
     sObjectMgr->LoadGameObjects();
 
-    TC_LOG_INFO("server.loading", "Loading Spawn Group Data...");
+    TC_LOG_INFO("server.loading", "加载刷新组数据...");
     sObjectMgr->LoadSpawnGroups();
 
-    TC_LOG_INFO("server.loading", "Loading instance spawn groups...");
+    TC_LOG_INFO("server.loading", "加载副本刷新组...");
     sObjectMgr->LoadInstanceSpawnGroups();
 
-    TC_LOG_INFO("server.loading", "Loading GameObject Addon Data...");
+    TC_LOG_INFO("server.loading", "加载游戏对象附加数据...");
     sObjectMgr->LoadGameObjectAddons();                          // must be after LoadGameObjects()
 
-    TC_LOG_INFO("server.loading", "Loading GameObject faction and flags overrides...");
+    TC_LOG_INFO("server.loading", "加载游戏对象阵营和标志覆盖数据...");
     sObjectMgr->LoadGameObjectOverrides();                       // must be after LoadGameObjects()
 
-    TC_LOG_INFO("server.loading", "Loading GameObject Quest Items...");
+    TC_LOG_INFO("server.loading", "加载游戏对象任务物品...");
     sObjectMgr->LoadGameObjectQuestItems();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Quest Items...");
+    TC_LOG_INFO("server.loading", "加载生物任务物品掉落...");
     sObjectMgr->LoadCreatureQuestItems();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Linked Respawn...");
+    TC_LOG_INFO("server.loading", "加载生物链接重生...");
     sObjectMgr->LoadLinkedRespawn();                             // must be after LoadCreatures(), LoadGameObjects()
 
-    TC_LOG_INFO("server.loading", "Loading Weather Data...");
+    TC_LOG_INFO("server.loading", "加载天气数据...");
     WeatherMgr::LoadWeatherData();
 
-    TC_LOG_INFO("server.loading", "Loading Quests...");
+    TC_LOG_INFO("server.loading", "加载任务...");
     sObjectMgr->LoadQuests();                                    // must be loaded after DBCs, creature_template, item_template, gameobject tables
 
-    TC_LOG_INFO("server.loading", "Checking Quest Disables");
+    TC_LOG_INFO("server.loading", "正在检查任务禁用项");
     DisableMgr::CheckQuestDisables();                           // must be after loading quests
 
-    TC_LOG_INFO("server.loading", "Loading Quest POI");
+    TC_LOG_INFO("server.loading", "加载任务兴趣点");
     sObjectMgr->LoadQuestPOI();
 
-    TC_LOG_INFO("server.loading", "Loading Quests Starters and Enders...");
+    TC_LOG_INFO("server.loading", "加载任务的开始和完成...");
     sObjectMgr->LoadQuestStartersAndEnders();                    // must be after quest load
 
-    TC_LOG_INFO("server.loading", "Loading Quests Greetings...");
+    TC_LOG_INFO("server.loading", "加载任务问候语...");
     sObjectMgr->LoadQuestGreetings();                           // must be loaded after creature_template, gameobject_template tables
 
-    TC_LOG_INFO("server.loading", "Loading Objects Pooling Data...");
+    TC_LOG_INFO("server.loading", "加载对象池数据...");
     sPoolMgr->LoadFromDB();
-    TC_LOG_INFO("server.loading", "Loading Quest Pooling Data...");
+    TC_LOG_INFO("server.loading", "加载任务池数据...");
     sQuestPoolMgr->LoadFromDB();                                // must be after quest templates
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Data...");               // must be after loading pools fully
+    TC_LOG_INFO("server.loading", "加载游戏事件数据...");               // must be after loading pools fully
     sGameEventMgr->LoadHolidayDates();                           // Must be after loading DBC
     sGameEventMgr->LoadFromDB();                                 // Must be after loading holiday dates
 
-    TC_LOG_INFO("server.loading", "Loading UNIT_NPC_FLAG_SPELLCLICK Data..."); // must be after LoadQuests
+    TC_LOG_INFO("server.loading", "加载可点击法术数据 (UNIT_NPC_FLAG_SPELLCLICK)..."); // must be after LoadQuests
     sObjectMgr->LoadNPCSpellClickSpells();
 
-    TC_LOG_INFO("server.loading", "Loading Vehicle Templates...");
+    TC_LOG_INFO("server.loading", "加载载具模板...");
     sObjectMgr->LoadVehicleTemplate();                          // must be after LoadCreatureTemplates()
 
-    TC_LOG_INFO("server.loading", "Loading Vehicle Template Accessories...");
+    TC_LOG_INFO("server.loading", "加载载具模板驾驶员...");
     sObjectMgr->LoadVehicleTemplateAccessories();                // must be after LoadCreatureTemplates() and LoadNPCSpellClickSpells()
 
-    TC_LOG_INFO("server.loading", "Loading Vehicle Accessories...");
+    TC_LOG_INFO("server.loading", "加载载具驾驶员...");
     sObjectMgr->LoadVehicleAccessories();                       // must be after LoadCreatureTemplates() and LoadNPCSpellClickSpells()
 
-    TC_LOG_INFO("server.loading", "Loading Vehicle Seat Addon Data...");
+    TC_LOG_INFO("server.loading", "加载载具座位附加数据...");
     sObjectMgr->LoadVehicleSeatAddon();                         // must be after loading DBC
 
-    TC_LOG_INFO("server.loading", "Loading SpellArea Data...");                // must be after quest load
+    TC_LOG_INFO("server.loading", "加载区域法术(光环)数据...");                // must be after quest load
     sSpellMgr->LoadSpellAreas();
 
-    TC_LOG_INFO("server.loading", "Loading Area Trigger Teleports definitions...");
+    TC_LOG_INFO("server.loading", "加载区域触发传送定义...");
     sObjectMgr->LoadAreaTriggerTeleports();
 
-    TC_LOG_INFO("server.loading", "Loading Access Requirements...");
+    TC_LOG_INFO("server.loading", "加载访问要求...");
     sObjectMgr->LoadAccessRequirements();                        // must be after item template load
 
-    TC_LOG_INFO("server.loading", "Loading Quest Area Triggers...");
+    TC_LOG_INFO("server.loading", "加载任务区域触发器...");
     sObjectMgr->LoadQuestAreaTriggers();                         // must be after LoadQuests
 
-    TC_LOG_INFO("server.loading", "Loading Tavern Area Triggers...");
+    TC_LOG_INFO("server.loading", "加载旅馆区域触发器...");
     sObjectMgr->LoadTavernAreaTriggers();
 
-    TC_LOG_INFO("server.loading", "Loading AreaTrigger script names...");
+    TC_LOG_INFO("server.loading", "加载区域触发器脚本名称...");
     sObjectMgr->LoadAreaTriggerScripts();
 
-    TC_LOG_INFO("server.loading", "Loading LFG entrance positions..."); // Must be after areatriggers
+    TC_LOG_INFO("server.loading", "加载随机地下城入口位置..."); // Must be after areatriggers
     sLFGMgr->LoadLFGDungeons();
 
-    TC_LOG_INFO("server.loading", "Loading Dungeon boss data...");
+    TC_LOG_INFO("server.loading", "加载地下城首领数据...");
     sObjectMgr->LoadInstanceEncounters();
 
-    TC_LOG_INFO("server.loading", "Loading LFG rewards...");
+    TC_LOG_INFO("server.loading", "加载随机地下城奖励...");
     sLFGMgr->LoadRewards();
 
-    TC_LOG_INFO("server.loading", "Loading Graveyard-zone links...");
+    TC_LOG_INFO("server.loading", "加载墓地区域链接...");
     sObjectMgr->LoadGraveyardZones();
 
-    TC_LOG_INFO("server.loading", "Loading spell pet auras...");
+    TC_LOG_INFO("server.loading", "加载法术宠物光环...");
     sSpellMgr->LoadSpellPetAuras();
 
-    TC_LOG_INFO("server.loading", "Loading Spell target coordinates...");
+    TC_LOG_INFO("server.loading", "加载法术目标坐标...");
     sSpellMgr->LoadSpellTargetPositions();
 
-    TC_LOG_INFO("server.loading", "Loading enchant custom attributes...");
+    TC_LOG_INFO("server.loading", "加载自定义附魔属性...");
     sSpellMgr->LoadEnchantCustomAttr();
 
-    TC_LOG_INFO("server.loading", "Loading linked spells...");
+    TC_LOG_INFO("server.loading", "加载链接法术...");
     sSpellMgr->LoadSpellLinked();
 
-    TC_LOG_INFO("server.loading", "Loading Player Create Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建数据...");
     sObjectMgr->LoadPlayerInfo();
 
-    TC_LOG_INFO("server.loading", "Loading Exploration BaseXP Data...");
+    TC_LOG_INFO("server.loading", "加载探索地图基础经验数据...");
     sObjectMgr->LoadExplorationBaseXP();
 
-    TC_LOG_INFO("server.loading", "Loading Pet Name Parts...");
+    TC_LOG_INFO("server.loading", "加载宠物名称部分...");
     sObjectMgr->LoadPetNames();
 
     CharacterDatabaseCleaner::CleanDatabase();
 
-    TC_LOG_INFO("server.loading", "Loading the max pet number...");
+    TC_LOG_INFO("server.loading", "加载最大宠物数量...");
     sObjectMgr->LoadPetNumber();
 
-    TC_LOG_INFO("server.loading", "Loading pet level stats...");
+    TC_LOG_INFO("server.loading", "加载宠物等级属性...");
     sObjectMgr->LoadPetLevelInfo();
 
-    TC_LOG_INFO("server.loading", "Loading Player level dependent mail rewards...");
+    TC_LOG_INFO("server.loading", "加载与玩家等级相关的邮件奖励...");
     sObjectMgr->LoadMailLevelRewards();
 
     // Loot tables
     LoadLootTables();
 
-    TC_LOG_INFO("server.loading", "Loading Skill Discovery Table...");
+    TC_LOG_INFO("server.loading", "加载专业发现表...");
     LoadSkillDiscoveryTable();
 
-    TC_LOG_INFO("server.loading", "Loading Skill Extra Item Table...");
+    TC_LOG_INFO("server.loading", "加载专业额外物品表...");
     LoadSkillExtraItemTable();
 
-    TC_LOG_INFO("server.loading", "Loading Skill Perfection Data Table...");
+    TC_LOG_INFO("server.loading", "加载专业完美度数据表...");
     LoadSkillPerfectItemTable();
 
-    TC_LOG_INFO("server.loading", "Loading Skill Fishing base level requirements...");
+    TC_LOG_INFO("server.loading", "加载钓鱼专业基本等级要求...");
     sObjectMgr->LoadFishingBaseSkillLevel();
 
-    TC_LOG_INFO("server.loading", "Loading Achievements...");
+    TC_LOG_INFO("server.loading", "加载成就数据...");
     sAchievementMgr->LoadAchievementReferenceList();
-    TC_LOG_INFO("server.loading", "Loading Achievement Criteria Lists...");
+    TC_LOG_INFO("server.loading", "加载成就条件列表...");
     sAchievementMgr->LoadAchievementCriteriaList();
-    TC_LOG_INFO("server.loading", "Loading Achievement Criteria Data...");
+    TC_LOG_INFO("server.loading", "加载成就条件数据...");
     sAchievementMgr->LoadAchievementCriteriaData();
-    TC_LOG_INFO("server.loading", "Loading Achievement Rewards...");
+    TC_LOG_INFO("server.loading", "加载成就奖励...");
     sAchievementMgr->LoadRewards();
-    TC_LOG_INFO("server.loading", "Loading Achievement Reward Locales...");
+    TC_LOG_INFO("server.loading", "加载成就奖励本地化数据...");
     sAchievementMgr->LoadRewardLocales();
-    TC_LOG_INFO("server.loading", "Loading Completed Achievements...");
+    TC_LOG_INFO("server.loading", "加载已完成的成就数据...");
     sAchievementMgr->LoadCompletedAchievements();
 
     ///- Load dynamic data tables from the database
-    TC_LOG_INFO("server.loading", "Loading Item Auctions...");
+    TC_LOG_INFO("server.loading", "加载物品拍卖...");
     sAuctionMgr->LoadAuctionItems();
 
-    TC_LOG_INFO("server.loading", "Loading Auctions...");
+    TC_LOG_INFO("server.loading", "加载拍卖行...");
     sAuctionMgr->LoadAuctions();
 
-    TC_LOG_INFO("server.loading", "Loading Guilds...");
+    TC_LOG_INFO("server.loading", "加载公会...");
     sGuildMgr->LoadGuilds();
 
-    TC_LOG_INFO("server.loading", "Loading ArenaTeams...");
+    TC_LOG_INFO("server.loading", "加载竞技场战队...");
     sArenaTeamMgr->LoadArenaTeams();
 
-    TC_LOG_INFO("server.loading", "Loading Groups...");
+    TC_LOG_INFO("server.loading", "加载队伍...");
     sGroupMgr->LoadGroups();
 
-    TC_LOG_INFO("server.loading", "Loading ReservedNames...");
+    TC_LOG_INFO("server.loading", "加载保留名称...");
     sObjectMgr->LoadReservedPlayersNames();
 
-    TC_LOG_INFO("server.loading", "Loading GameObjects for quests...");
+    TC_LOG_INFO("server.loading", "加载与任务相关的游戏对象...");
     sObjectMgr->LoadGameObjectForQuests();
 
-    TC_LOG_INFO("server.loading", "Loading BattleMasters...");
+    TC_LOG_INFO("server.loading", "加载战场军官...");
     sBattlegroundMgr->LoadBattleMastersEntry();                 // must be after load CreatureTemplate
 
-    TC_LOG_INFO("server.loading", "Loading GameTeleports...");
+    TC_LOG_INFO("server.loading", "加载游戏传送...");
     sObjectMgr->LoadGameTele();
 
-    TC_LOG_INFO("server.loading", "Loading Trainers...");       // must be after LoadCreatureTemplates
+    TC_LOG_INFO("server.loading", "加载训练师...");       // must be after LoadCreatureTemplates
     sObjectMgr->LoadTrainers();
 
-    TC_LOG_INFO("server.loading", "Loading Creature default trainers...");
+    TC_LOG_INFO("server.loading", "加载默认生物训练师...");
     sObjectMgr->LoadCreatureDefaultTrainers();
 
-    TC_LOG_INFO("server.loading", "Loading Gossip menu...");
+    TC_LOG_INFO("server.loading", "加载对话菜单...");
     sObjectMgr->LoadGossipMenu();
 
-    TC_LOG_INFO("server.loading", "Loading Gossip menu options...");
+    TC_LOG_INFO("server.loading", "加载对话菜单选项...");
     sObjectMgr->LoadGossipMenuItems();                           // must be after LoadTrainers
 
-    TC_LOG_INFO("server.loading", "Loading Vendors...");
+    TC_LOG_INFO("server.loading", "加载供应商...");
     sObjectMgr->LoadVendors();                                   // must be after load CreatureTemplate and ItemTemplate
 
-    TC_LOG_INFO("server.loading", "Loading Waypoints...");
+    TC_LOG_INFO("server.loading", "加载路径点...");
     sWaypointMgr->Load();
 
-    TC_LOG_INFO("server.loading", "Loading SmartAI Waypoints...");
+    TC_LOG_INFO("server.loading", "加载 SmartAI 路径点...");
     sSmartWaypointMgr->LoadFromDB();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Formations...");
+    TC_LOG_INFO("server.loading", "加载生物编队...");
     sFormationMgr->LoadCreatureFormations();
 
-    TC_LOG_INFO("server.loading", "Loading World States...");              // must be loaded before battleground, outdoor PvP and conditions
+    TC_LOG_INFO("server.loading", "加载世界状态...");              // must be loaded before battleground, outdoor PvP and conditions
     LoadWorldStates();
 
-    TC_LOG_INFO("server.loading", "Loading Conditions...");
+    TC_LOG_INFO("server.loading", "加载条件...");
     sConditionMgr->LoadConditions();
 
-    TC_LOG_INFO("server.loading", "Loading faction change achievement pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营变更成就对...");
     sObjectMgr->LoadFactionChangeAchievements();
 
-    TC_LOG_INFO("server.loading", "Loading faction change spell pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营变更法术对...");
     sObjectMgr->LoadFactionChangeSpells();
 
-    TC_LOG_INFO("server.loading", "Loading faction change quest pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营变更任务对...");
     sObjectMgr->LoadFactionChangeQuests();
 
-    TC_LOG_INFO("server.loading", "Loading faction change item pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营变更物品对...");
     sObjectMgr->LoadFactionChangeItems();
 
-    TC_LOG_INFO("server.loading", "Loading faction change reputation pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营变更声望对...");
     sObjectMgr->LoadFactionChangeReputations();
 
-    TC_LOG_INFO("server.loading", "Loading faction change title pairs...");
+    TC_LOG_INFO("server.loading", "加载阵营转换头衔对...");
     sObjectMgr->LoadFactionChangeTitles();
 
-    TC_LOG_INFO("server.loading", "Loading GM tickets...");
+    TC_LOG_INFO("server.loading", "加载 GM 工单...");
     sTicketMgr->LoadTickets();
 
-    TC_LOG_INFO("server.loading", "Loading GM surveys...");
+    TC_LOG_INFO("server.loading", "加载 GM 调查...");
     sTicketMgr->LoadSurveys();
 
-    TC_LOG_INFO("server.loading", "Loading client addons...");
+    TC_LOG_INFO("server.loading", "加载客户端插件...");
     AddonMgr::LoadFromDB();
 
     ///- Handle outdated emails (delete/return)
-    TC_LOG_INFO("server.loading", "Returning old mails...");
+    TC_LOG_INFO("server.loading", "退回旧邮件...");
     sObjectMgr->ReturnOrDeleteOldMails(false);
 
-    TC_LOG_INFO("server.loading", "Loading Autobroadcasts...");
+    TC_LOG_INFO("server.loading", "加载自动广播...");
     LoadAutobroadcasts();
 
     ///- Load and initialize scripts
@@ -2078,45 +2078,45 @@ void World::SetInitialWorldSettings()
     sObjectMgr->LoadEventScripts();                              // must be after load Creature/Gameobject(Template/Data)
     sObjectMgr->LoadWaypointScripts();
 
-    TC_LOG_INFO("server.loading", "Loading spell script names...");
+    TC_LOG_INFO("server.loading", "加载法术脚本名称...");
     sObjectMgr->LoadSpellScriptNames();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Texts...");
+    TC_LOG_INFO("server.loading", "加载生物对话...");
     sCreatureTextMgr->LoadCreatureTexts();
 
-    TC_LOG_INFO("server.loading", "Loading Creature Text Locales...");
+    TC_LOG_INFO("server.loading", "加载生物对话本地化...");
     sCreatureTextMgr->LoadCreatureTextLocales();
 
-    TC_LOG_INFO("server.loading", "Initializing Scripts...");
+    TC_LOG_INFO("server.loading", "初始化脚本...");
     sScriptMgr->Initialize();
     sScriptMgr->OnConfigLoad(false);                                // must be done after the ScriptMgr has been properly initialized
 
-    TC_LOG_INFO("server.loading", "Validating spell scripts...");
+    TC_LOG_INFO("server.loading", "验证法术脚本...");
     sObjectMgr->ValidateSpellScripts();
 
-    TC_LOG_INFO("server.loading", "Loading SmartAI scripts...");
+    TC_LOG_INFO("server.loading", "加载 SmartAI 脚本...");
     sSmartScriptMgr->LoadSmartAIFromDB();
 
-    TC_LOG_INFO("server.loading", "Loading Calendar data...");
+    TC_LOG_INFO("server.loading", "加载日历数据...");
     sCalendarMgr->LoadFromDB();
 
-    TC_LOG_INFO("server.loading", "Loading Petitions...");
+    TC_LOG_INFO("server.loading", "加载请愿书...");
     sPetitionMgr->LoadPetitions();
 
-    TC_LOG_INFO("server.loading", "Loading Signatures...");
+    TC_LOG_INFO("server.loading", "加载签名...");
     sPetitionMgr->LoadSignatures();
 
-    TC_LOG_INFO("server.loading", "Loading Item loot...");
+    TC_LOG_INFO("server.loading", "加载物品掉落...");
     sLootItemStorage->LoadStorageFromDB();
 
-    TC_LOG_INFO("server.loading", "Initialize query data...");
+    TC_LOG_INFO("server.loading", "初始化查询数据...");
     sObjectMgr->InitializeQueriesData(QUERY_DATA_ALL);
 
-    TC_LOG_INFO("server.loading", "Initialize commands...");
+    TC_LOG_INFO("server.loading", "初始化命令...");
     Trinity::ChatCommands::LoadCommandMap();
 
     ///- Initialize game time and timers
-    TC_LOG_INFO("server.loading", "Initialize game time and timers");
+    TC_LOG_INFO("server.loading", "初始化游戏时间和计时器");
     GameTime::UpdateGameTimers();
 
     LoginDatabase.PExecute("INSERT INTO uptime (realmid, starttime, uptime, revision) VALUES({}, {}, 0, '{}')",
@@ -2155,70 +2155,70 @@ void World::SetInitialWorldSettings()
     mail_timer = ((((localTm.tm_hour + (24 - CleanOldMailsTime)) % 24)* HOUR * IN_MILLISECONDS) / m_timers[WUPDATE_AUCTIONS].GetInterval());
                                                             //1440
     mail_timer_expires = ((DAY * IN_MILLISECONDS) / (m_timers[WUPDATE_AUCTIONS].GetInterval()));
-    TC_LOG_INFO("server.loading", "Mail timer set to: {}, mail return is called every {} minutes", uint64(mail_timer), uint64(mail_timer_expires));
+    TC_LOG_INFO("server.loading", "邮件定时器设置为: {}, 邮件回收每隔 {} 分钟调用一次", uint64(mail_timer), uint64(mail_timer_expires));
 
     ///- Initialize MapManager
-    TC_LOG_INFO("server.loading", "Starting Map System");
+    TC_LOG_INFO("server.loading", "启动地图系统");
     sMapMgr->Initialize();
 
-    TC_LOG_INFO("server.loading", "Starting Game Event system...");
+    TC_LOG_INFO("server.loading", "启动游戏事件系统...");
     uint32 nextGameEvent = sGameEventMgr->StartSystem();
     m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);    //depend on next event
 
     // Delete all characters which have been deleted X days before
     Player::DeleteOldCharacters();
 
-    TC_LOG_INFO("server.loading", "Initialize AuctionHouseBot...");
+    TC_LOG_INFO("server.loading", "初始化拍卖行机器人...");
     sAuctionBot->Initialize();
 
-    TC_LOG_INFO("server.loading", "Initializing chat channels...");
+    TC_LOG_INFO("server.loading", "初始化聊天频道...");
     ChannelMgr::LoadFromDB();
 
-    TC_LOG_INFO("server.loading", "Initializing Opcodes...");
+    TC_LOG_INFO("server.loading", "初始化操作码...");
     opcodeTable.Initialize();
 
-    TC_LOG_INFO("server.loading", "Starting Arena Season...");
+    TC_LOG_INFO("server.loading", "开始竞技场赛季...");
     sGameEventMgr->StartArenaSeason();
 
     sTicketMgr->Initialize();
 
     ///- Initialize Battlegrounds
-    TC_LOG_INFO("server.loading", "Starting Battleground System");
+    TC_LOG_INFO("server.loading", "启动团队战场系统");
     sBattlegroundMgr->LoadBattlegroundTemplates();
     sBattlegroundMgr->InitAutomaticArenaPointDistribution();
 
     ///- Initialize outdoor pvp
-    TC_LOG_INFO("server.loading", "Starting Outdoor PvP System");
+    TC_LOG_INFO("server.loading", "启动户外 PvP 系统");
     sOutdoorPvPMgr->InitOutdoorPvP();
 
     ///- Initialize Battlefield
-    TC_LOG_INFO("server.loading", "Starting Battlefield System");
+    TC_LOG_INFO("server.loading", "启动战场系统");
     sBattlefieldMgr->InitBattlefield();
 
-    TC_LOG_INFO("server.loading", "Loading Transports...");
+    TC_LOG_INFO("server.loading", "加载运输工具...");
     sTransportMgr->SpawnContinentTransports();
 
     ///- Initialize Warden
-    TC_LOG_INFO("server.loading", "Loading Warden Checks...");
+    TC_LOG_INFO("server.loading", "加载典狱长检查...");
     sWardenCheckMgr->LoadWardenChecks();
 
-    TC_LOG_INFO("server.loading", "Loading Warden Action Overrides...");
+    TC_LOG_INFO("server.loading", "加载典狱长行为覆盖...");
     sWardenCheckMgr->LoadWardenOverrides();
 
-    TC_LOG_INFO("server.loading", "Deleting expired bans...");
+    TC_LOG_INFO("server.loading", "删除过期的封禁记录...");
     LoginDatabase.Execute("DELETE FROM ip_banned WHERE unbandate <= UNIX_TIMESTAMP() AND unbandate<>bandate");      // One-time query
 
-    TC_LOG_INFO("server.loading", "Initializing quest reset times...");
+    TC_LOG_INFO("server.loading", "初始化任务重置时间...");
     InitQuestResetTimes();
     CheckQuestResetTimes();
 
-    TC_LOG_INFO("server.loading", "Calculate random battleground reset time...");
+    TC_LOG_INFO("server.loading", "计算随机战场重置时间...");
     InitRandomBGResetTime();
 
-    TC_LOG_INFO("server.loading", "Calculate deletion of old calendar events time...");
+    TC_LOG_INFO("server.loading", "计算删除旧日历事件的时间...");
     InitCalendarOldEventsDeletionTime();
 
-    TC_LOG_INFO("server.loading", "Calculate guild limitation(s) reset time...");
+    TC_LOG_INFO("server.loading", "计算公会限制的重置时间...");
     InitGuildResetTime();
 
 #ifdef ELUNA
@@ -2235,7 +2235,7 @@ void World::SetInitialWorldSettings()
         {
             if (!map->Instanceable())
             {
-                TC_LOG_INFO("server.loading", "Pre-loading base map data for map {}", map->GetId());
+                TC_LOG_INFO("server.loading", "预加载地图 {} 的基础地图数据", map->GetId());
                 map->LoadAllCells();
             }
         });
@@ -2243,9 +2243,9 @@ void World::SetInitialWorldSettings()
 
     uint32 startupDuration = GetMSTimeDiffToNow(startupBegin);
 
-    TC_LOG_INFO("server.worldserver", "World initialized in {} minutes {} seconds", (startupDuration / 60000), ((startupDuration % 60000) / 1000));
+    TC_LOG_INFO("server.worldserver", "世界初始化完成, 用时 {} 分钟 {} 秒", (startupDuration / 60000), ((startupDuration % 60000) / 1000));
 
-    TC_METRIC_EVENT("events", "World initialized", "World initialized in " + std::to_string(startupDuration / 60000) + " minutes " + std::to_string((startupDuration % 60000) / 1000) + " seconds");
+    TC_METRIC_EVENT("events", "World initialized", "世界初始化完成 " + std::to_string(startupDuration / 60000) + " 分钟 " + std::to_string((startupDuration % 60000) / 1000) + " 秒");
 }
 
 void World::DetectDBCLang()
@@ -2254,7 +2254,7 @@ void World::DetectDBCLang()
 
     if (m_lang_confid != 255 && m_lang_confid >= TOTAL_LOCALES)
     {
-        TC_LOG_ERROR("server.loading", "Incorrect DBC.Locale! Must be >= 0 and < {} (set to 0)", TOTAL_LOCALES);
+        TC_LOG_ERROR("server.loading", "错误的 DBC.Locale! 必须 >= 0 并且 < {} (已设置为 0)", TOTAL_LOCALES);
         m_lang_confid = LOCALE_enUS;
     }
 
@@ -2282,13 +2282,13 @@ void World::DetectDBCLang()
 
     if (default_locale >= TOTAL_LOCALES)
     {
-        TC_LOG_ERROR("server.loading", "Unable to determine your DBC Locale! (corrupt DBC?)");
+        TC_LOG_ERROR("server.loading", "无法确定你的 DBC 区域设置! (损坏的 DBC?)");
         exit(1);
     }
 
     m_defaultDbcLocale = LocaleConstant(default_locale);
 
-    TC_LOG_INFO("server.loading", "Using {} DBC Locale as default. All available DBC locales: {}", localeNames[m_defaultDbcLocale], availableLocalsStr.empty() ? "<none>" : availableLocalsStr);
+    TC_LOG_INFO("server.loading", "使用默认的 {} DBC 区域设置. 所有可用的 DBC 区域设置: {}", localeNames[m_defaultDbcLocale], availableLocalsStr.empty() ? "<无>" : availableLocalsStr);
 }
 
 void World::LoadAutobroadcasts()
@@ -2305,7 +2305,7 @@ void World::LoadAutobroadcasts()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 autobroadcasts definitions. DB table `autobroadcast` is empty for this realm!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条自动广播定义. 数据库表 `autobroadcast` 在本服务器上为空!");
         return;
     }
 
@@ -2322,7 +2322,7 @@ void World::LoadAutobroadcasts()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} autobroadcast definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条自动广播定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 /// Update the World !
@@ -2347,7 +2347,7 @@ void World::Update(uint32 diff)
     ///- Update Who List Storage
     if (m_timers[WUPDATE_WHO_LIST].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update who list"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新在线玩家列表"));
         m_timers[WUPDATE_WHO_LIST].Reset();
         sWhoListStorageMgr->Update();
     }
@@ -2358,7 +2358,7 @@ void World::Update(uint32 diff)
 
         if (sWorld->getBoolConfig(CONFIG_PRESERVE_CUSTOM_CHANNELS))
         {
-            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Save custom channels"));
+            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "保存自定义频道"));
             ChannelMgr* mgr1 = ASSERT_NOTNULL(ChannelMgr::forTeam(ALLIANCE));
             mgr1->SaveToDB();
             ChannelMgr* mgr2 = ASSERT_NOTNULL(ChannelMgr::forTeam(HORDE));
@@ -2368,32 +2368,32 @@ void World::Update(uint32 diff)
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Check quest reset times"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "检查任务重置时间"));
         CheckQuestResetTimes();
     }
 
     if (currentGameTime > m_NextRandomBGReset)
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Reset random BG"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "重置随机战场"));
         ResetRandomBG();
     }
 
     if (currentGameTime > m_NextCalendarOldEventsDeletionTime)
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Delete old calendar events"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "删除旧的日历事件"));
         CalendarDeleteOldEvents();
     }
 
     if (currentGameTime > m_NextGuildReset)
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Reset guild cap"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "重置公会上限"));
         ResetGuildCap();
     }
 
     /// <ul><li> Handle auctions when the timer has passed
     if (m_timers[WUPDATE_AUCTIONS].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update expired auctions"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新已过期的拍卖品"));
         m_timers[WUPDATE_AUCTIONS].Reset();
 
         ///- Update mails (return old mails with item, or delete them)
@@ -2410,7 +2410,7 @@ void World::Update(uint32 diff)
 
     if (m_timers[WUPDATE_AUCTIONS_PENDING].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update pending auctions"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新待处理的拍卖品"));
         m_timers[WUPDATE_AUCTIONS_PENDING].Reset();
 
         sAuctionMgr->UpdatePendingAuctions();
@@ -2419,7 +2419,7 @@ void World::Update(uint32 diff)
     /// <li> Handle AHBot operations
     if (m_timers[WUPDATE_AHBOT].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update AHBot"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新拍卖行机器人"));
         sAuctionBot->Update();
         m_timers[WUPDATE_AHBOT].Reset();
     }
@@ -2427,21 +2427,21 @@ void World::Update(uint32 diff)
     /// <li> Handle file changes
     if (m_timers[WUPDATE_CHECK_FILECHANGES].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update HotSwap"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新热交换 (HotSwap)"));
         sScriptReloadMgr->Update();
         m_timers[WUPDATE_CHECK_FILECHANGES].Reset();
     }
 
     {
         /// <li> Handle session updates when the timer has passed
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update sessions"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新会话"));
         UpdateSessions(diff);
     }
 
     /// <li> Update uptime table
     if (m_timers[WUPDATE_UPTIME].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update uptime"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新正常运行时间"));
         uint32 tmpDiff = GameTime::GetUptime();
         uint32 maxOnlinePlayers = GetMaxPlayerCount();
 
@@ -2462,7 +2462,7 @@ void World::Update(uint32 diff)
     {
         if (m_timers[WUPDATE_CLEANDB].Passed())
         {
-            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Clean logs table"));
+            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "清理日志数据表"));
             m_timers[WUPDATE_CLEANDB].Reset();
 
             LoginDatabasePreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_OLD_LOGS);
@@ -2478,7 +2478,7 @@ void World::Update(uint32 diff)
     /// <li> Handle all other objects
     ///- Update objects when the timer has passed (maps, transport, creatures, ...)
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update maps"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新地图数据"));
         sMapMgr->Update(diff);
     }
 
@@ -2486,47 +2486,47 @@ void World::Update(uint32 diff)
     {
         if (m_timers[WUPDATE_AUTOBROADCAST].Passed())
         {
-            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Send autobroadcast"));
+            TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "发送自动广播"));
             m_timers[WUPDATE_AUTOBROADCAST].Reset();
             SendAutoBroadcast();
         }
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update battlegrounds"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新团队战场"));
         sBattlegroundMgr->Update(diff);
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update outdoor pvp"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新户外 PvP"));
         sOutdoorPvPMgr->Update(diff);
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update battlefields"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新战场"));
         sBattlefieldMgr->Update(diff);
     }
 
     ///- Delete all characters which have been deleted X days before
     if (m_timers[WUPDATE_DELETECHARS].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Delete old characters"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "删除旧角色"));
         m_timers[WUPDATE_DELETECHARS].Reset();
         Player::DeleteOldCharacters();
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update groups"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新组队"));
         sGroupMgr->Update(diff);
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update LFG"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新竞技场"));
         sLFGMgr->Update(diff);
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Process query callbacks"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "处理查询回调函数"));
         // execute callbacks from sql queries that were queued recently
         ProcessQueryCallbacks();
     }
@@ -2534,7 +2534,7 @@ void World::Update(uint32 diff)
     ///- Erase corpses once every 20 minutes
     if (m_timers[WUPDATE_CORPSES].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Remove old corpses"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "移除旧尸体"));
         m_timers[WUPDATE_CORPSES].Reset();
         sMapMgr->DoForAllMaps([](Map* map)
         {
@@ -2545,7 +2545,7 @@ void World::Update(uint32 diff)
     ///- Process Game events when necessary
     if (m_timers[WUPDATE_EVENTS].Passed())
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update game events"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新游戏事件"));
         m_timers[WUPDATE_EVENTS].Reset();                   // to give time for Update() to be processed
         uint32 nextGameEvent = sGameEventMgr->Update();
         m_timers[WUPDATE_EVENTS].SetInterval(nextGameEvent);
@@ -2564,7 +2564,7 @@ void World::Update(uint32 diff)
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update instance reset times"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新副本重置时间"));
         // update the instance reset times
         sInstanceSaveMgr->Update();
     }
@@ -2580,18 +2580,18 @@ void World::Update(uint32 diff)
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Process cli commands"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "处理命令行指令"));
         // And last, but not least handle the issued cli commands
         ProcessCliCommands();
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update world scripts"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新世界脚本"));
         sScriptMgr->OnWorldUpdate(diff);
     }
 
     {
-        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "Update metrics"));
+        TC_METRIC_TIMER("world_update_time", TC_METRIC_TAG("type", "更新指标数据"));
         // Stats logger update
         sMetric->Update();
         TC_METRIC_VALUE("update_time_diff", diff);
@@ -2886,7 +2886,7 @@ BanReturn World::BanAccount(BanMode mode, std::string const& nameOrIP, uint32 du
 
         if (WorldSession* sess = FindSession(account))
             if (std::string(sess->GetPlayerName()) != author)
-                sess->KickPlayer("World::BanAccount Banning account");
+                sess->KickPlayer("World::BanAccount 封禁账号");
     } while (resultAccounts->NextRow());
 
     LoginDatabase.CommitTransaction(trans);
@@ -2958,7 +2958,7 @@ BanReturn World::BanCharacter(std::string const& name, std::string const& durati
     CharacterDatabase.CommitTransaction(trans);
 
     if (banned)
-        banned->GetSession()->KickPlayer("World::BanCharacter Banning character");
+        banned->GetSession()->KickPlayer("World::BanCharacter 封禁角色");
 
     return BAN_SUCCESS;
 }
@@ -3108,8 +3108,8 @@ void World::UpdateSessions(uint32 diff)
 {
     {
         TC_METRIC_DETAILED_NO_THRESHOLD_TIMER("world_update_time",
-            TC_METRIC_TAG("type", "Add sessions"),
-            TC_METRIC_TAG("parent_type", "Update sessions"));
+            TC_METRIC_TAG("type", "添加会话"),
+            TC_METRIC_TAG("parent_type", "更新会话"));
         ///- Add new sessions
         WorldSession* sess = nullptr;
         while (addSessQueue.next(sess))
@@ -3149,7 +3149,7 @@ void World::ProcessCliCommands()
     CliCommandHolder* command = nullptr;
     while (cliCmdQueue.next(command))
     {
-        TC_LOG_INFO("misc", "CLI command under processing...");
+        TC_LOG_INFO("misc", "正在处理 CLI 命令...");
         zprint = command->m_print;
         callbackArg = command->m_callbackArg;
         CliHandler handler(callbackArg, zprint);
@@ -3277,7 +3277,7 @@ void World::ResetDailyQuests()
     m_NextDailyQuestReset = next;
     sWorld->setWorldState(WS_DAILY_QUEST_RESET_TIME, uint64(next));
 
-    TC_LOG_INFO("misc", "Daily quests for all characters have been reset.");
+    TC_LOG_INFO("misc", "所有角色的每日任务已重置.");
 }
 
 static time_t GetNextWeeklyResetTime(time_t t)
@@ -3313,7 +3313,7 @@ void World::ResetWeeklyQuests()
     m_NextWeeklyQuestReset = next;
     sWorld->setWorldState(WS_WEEKLY_QUEST_RESET_TIME, uint64(next));
 
-    TC_LOG_INFO("misc", "Weekly quests for all characters have been reset.");
+    TC_LOG_INFO("misc", "所有角色的每周任务已重置.");
 }
 
 static time_t GetNextMonthlyResetTime(time_t t)
@@ -3349,7 +3349,7 @@ void World::ResetMonthlyQuests()
     m_NextMonthlyQuestReset = next;
     sWorld->setWorldState(WS_MONTHLY_QUEST_RESET_TIME, uint64(next));
 
-    TC_LOG_INFO("misc", "Monthly quests for all characters have been reset.");
+    TC_LOG_INFO("misc", "所有角色的每月任务已重置.");
 }
 
 void World::CheckQuestResetTimes()
@@ -3438,7 +3438,7 @@ void World::InitGuildResetTime()
 
 void World::ResetEventSeasonalQuests(uint16 event_id)
 {
-    TC_LOG_INFO("misc", "Seasonal quests reset for all characters.");
+    TC_LOG_INFO("misc", "所有角色的季节性任务已重置.");
 
     CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_RESET_CHARACTER_QUESTSTATUS_SEASONAL_BY_EVENT);
     stmt->setUInt16(0, event_id);
@@ -3451,7 +3451,7 @@ void World::ResetEventSeasonalQuests(uint16 event_id)
 
 void World::ResetRandomBG()
 {
-    TC_LOG_INFO("misc", "Random BG status reset for all characters.");
+    TC_LOG_INFO("misc", "所有角色的随机战场状态已重置.");
 
     CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_BATTLEGROUND_RANDOM_ALL);
     CharacterDatabase.Execute(stmt);
@@ -3466,7 +3466,7 @@ void World::ResetRandomBG()
 
 void World::CalendarDeleteOldEvents()
 {
-    TC_LOG_INFO("misc", "Calendar deletion of old events.");
+    TC_LOG_INFO("misc", "删除过期日历事件.");
 
     m_NextCalendarOldEventsDeletionTime = time_t(m_NextCalendarOldEventsDeletionTime + DAY);
     sWorld->setWorldState(WS_DAILY_CALENDAR_DELETION_OLD_EVENTS_TIME, uint64(m_NextCalendarOldEventsDeletionTime));
@@ -3475,7 +3475,7 @@ void World::CalendarDeleteOldEvents()
 
 void World::ResetGuildCap()
 {
-    TC_LOG_INFO("misc", "Guild Daily Cap reset.");
+    TC_LOG_INFO("misc", "公会每日上限已重置.");
 
     m_NextGuildReset = time_t(m_NextGuildReset + DAY);
     sWorld->setWorldState(WS_GUILD_DAILY_RESET_TIME, uint64(m_NextGuildReset));
@@ -3501,7 +3501,7 @@ void World::LoadDBVersion()
     }
 
     if (m_DBVersion.empty())
-        m_DBVersion = "Unknown world database.";
+        m_DBVersion = "未知的世界数据库.";
 }
 
 void World::UpdateAreaDependentAuras()
@@ -3523,7 +3523,7 @@ void World::LoadWorldStates()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 world states. DB table `worldstates` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个世界状态. 数据库表 `worldstates` 为空!");
 
         return;
     }
@@ -3538,7 +3538,7 @@ void World::LoadWorldStates()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} world states in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个世界状态, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
 }
 

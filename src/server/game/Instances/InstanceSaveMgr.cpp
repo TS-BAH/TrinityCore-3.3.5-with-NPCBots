@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -267,33 +267,33 @@ void InstanceSaveManager::LoadInstances()
 {
     uint32 oldMSTime = getMSTime();
 
-    // Delete expired instances (Instance related spawns are removed in the following cleanup queries)
+    // 删除过期的副本 (副本相关的生成将在以下清理查询中删除)
     CharacterDatabase.DirectExecute("DELETE i FROM instance i LEFT JOIN instance_reset ir ON mapid = map AND i.difficulty = ir.difficulty "
                                     "WHERE (i.resettime > 0 AND i.resettime < UNIX_TIMESTAMP()) OR (ir.resettime IS NOT NULL AND ir.resettime < UNIX_TIMESTAMP())");
 
-    // Delete invalid character_instance and group_instance references
+    // 删除无效的 character_instance 和 group_instance 引用
     CharacterDatabase.DirectExecute("DELETE ci.* FROM character_instance AS ci LEFT JOIN characters AS c ON ci.guid = c.guid WHERE c.guid IS NULL");
     CharacterDatabase.DirectExecute("DELETE gi.* FROM group_instance     AS gi LEFT JOIN `groups`   AS g ON gi.guid = g.guid WHERE g.guid IS NULL");
 
-    // Delete invalid instance references
+    // 删除无效的副本引用
     CharacterDatabase.DirectExecute("DELETE i.* FROM instance AS i LEFT JOIN character_instance AS ci ON i.id = ci.instance LEFT JOIN group_instance AS gi ON i.id = gi.instance WHERE ci.guid IS NULL AND gi.guid IS NULL");
 
-    // Delete invalid references to instance
+    // 删除无效的副本引用
     CharacterDatabase.DirectExecute("DELETE FROM respawn WHERE instanceId > 0 AND instanceId NOT IN (SELECT id FROM instance)");
     CharacterDatabase.DirectExecute("DELETE tmp.* FROM character_instance AS tmp LEFT JOIN instance ON tmp.instance = instance.id WHERE tmp.instance > 0 AND instance.id IS NULL");
     CharacterDatabase.DirectExecute("DELETE tmp.* FROM group_instance     AS tmp LEFT JOIN instance ON tmp.instance = instance.id WHERE tmp.instance > 0 AND instance.id IS NULL");
 
-    // Clean invalid references to instance
+    // 清理无效的副本引用
     CharacterDatabase.DirectExecute("UPDATE corpse SET instanceId = 0 WHERE instanceId > 0 AND instanceId NOT IN (SELECT id FROM instance)");
     CharacterDatabase.DirectExecute("UPDATE characters AS tmp LEFT JOIN instance ON tmp.instance_id = instance.id SET tmp.instance_id = 0 WHERE tmp.instance_id > 0 AND instance.id IS NULL");
 
-    // Initialize instance id storage (Needs to be done after the trash has been clean out)
+    // 初始化副本ID存储 (需要在垃圾清理完成后进行)
     sMapMgr->InitInstanceIds();
 
-    // Load reset times and clean expired instances
+    // 加载重置时间并清除过期的副本
     sInstanceSaveMgr->LoadResetTimes();
 
-    TC_LOG_INFO("server.loading", ">> Loaded instances in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载副本, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 
 }
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -270,31 +270,31 @@ enum UnitState : uint32
 TC_GAME_API extern float baseMoveSpeed[MAX_MOVE_TYPE];
 TC_GAME_API extern float playerBaseMoveSpeed[MAX_MOVE_TYPE];
 
-enum class MovementChangeType : uint8
+enum class MovementChangeType : uint8   // 移动变化类型
 {
-    INVALID,
+    INVALID,                                        // 无效
 
-    ROOT,
-    WATER_WALK,
-    SET_HOVER,
-    SET_CAN_FLY,
-    SET_CAN_TRANSITION_BETWEEN_SWIM_AND_FLY,
-    FEATHER_FALL,
-    GRAVITY_DISABLE,
+    ROOT,                                           // 定身
+    WATER_WALK,                                     // 水上行走
+    SET_HOVER,                                      // 设置悬浮
+    SET_CAN_FLY,                                    // 设置可以飞行
+    SET_CAN_TRANSITION_BETWEEN_SWIM_AND_FLY,        // 设置可以在游泳和飞行之间切换
+    FEATHER_FALL,                                   // 缓降
+    GRAVITY_DISABLE,                                // 禁用重力
 
-    SPEED_CHANGE_WALK,
-    SPEED_CHANGE_RUN,
-    SPEED_CHANGE_RUN_BACK,
-    SPEED_CHANGE_SWIM,
-    SPEED_CHANGE_SWIM_BACK,
-    RATE_CHANGE_TURN,
-    SPEED_CHANGE_FLIGHT_SPEED,
-    SPEED_CHANGE_FLIGHT_BACK_SPEED,
-    RATE_CHANGE_PITCH,
+    SPEED_CHANGE_WALK,                              // 步行速度变化
+    SPEED_CHANGE_RUN,                               // 奔跑速度变化
+    SPEED_CHANGE_RUN_BACK,                          // 倒退奔跑速度变化
+    SPEED_CHANGE_SWIM,                              // 游泳速度变化
+    SPEED_CHANGE_SWIM_BACK,                         // 倒退游泳速度变化
+    RATE_CHANGE_TURN,                               // 转身速度变化
+    SPEED_CHANGE_FLIGHT_SPEED,                      // 飞行速度变化
+    SPEED_CHANGE_FLIGHT_BACK_SPEED,                 // 倒退飞行速度变化
+    RATE_CHANGE_PITCH,                              // 俯仰速度变化
 
-    SET_COLLISION_HGT,
-    TELEPORT,
-    KNOCK_BACK
+    SET_COLLISION_HGT,                              // 设置碰撞高度
+    TELEPORT,                                       // 传送
+    KNOCK_BACK                                      // 击退
 };
 
 struct PlayerMovementPendingChange

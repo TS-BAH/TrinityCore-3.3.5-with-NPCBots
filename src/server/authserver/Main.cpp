@@ -124,14 +124,14 @@ int main(int argc, char** argv)
         },
         []()
         {
-            TC_LOG_INFO("server.authserver", "Using configuration file {}.", sConfigMgr->GetFilename());
-            TC_LOG_INFO("server.authserver", "Using SSL version: {} (library: {})", OPENSSL_VERSION_TEXT, OpenSSL_version(OPENSSL_VERSION));
-            TC_LOG_INFO("server.authserver", "Using Boost version: {}.{}.{}", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
+            TC_LOG_INFO("server.authserver", "使用配置文件 {}.", sConfigMgr->GetFilename());
+            TC_LOG_INFO("server.authserver", "使用 SSL 版本: {} (库: {})", OPENSSL_VERSION_TEXT, OpenSSL_version(OPENSSL_VERSION));
+            TC_LOG_INFO("server.authserver", "使用 Boost 版本: {}.{}.{}", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
         }
     );
 
     for (std::string const& key : overriddenKeys)
-        TC_LOG_INFO("server.authserver", "Configuration field '{}' was overridden with environment variable.", key);
+        TC_LOG_INFO("server.authserver", "配置字段 '{}' 已被环境变量覆盖.", key);
 
     OpenSSLCrypto::threadsSetup(boost::dll::program_location().remove_filename());
 
@@ -142,7 +142,7 @@ int main(int argc, char** argv)
     if (!pidFile.empty())
     {
         if (uint32 pid = CreatePIDFile(pidFile))
-            TC_LOG_INFO("server.authserver", "Daemon PID: {}\n", pid);
+            TC_LOG_INFO("server.authserver", "守护进程 PID: {}\n", pid);
         else
         {
             TC_LOG_ERROR("server.authserver", "Cannot create PID file {}.\n", pidFile);
@@ -232,7 +232,7 @@ int main(int argc, char** argv)
     banExpiryCheckTimer->cancel();
     dbPingTimer->cancel();
 
-    TC_LOG_INFO("server.authserver", "Halting process...");
+    TC_LOG_INFO("server.authserver", "停止进程...");
 
     signals.cancel();
 
@@ -254,7 +254,7 @@ bool StartDB()
     if (!loader.Load())
         return false;
 
-    TC_LOG_INFO("server.authserver", "Started auth database connection pool.");
+    TC_LOG_INFO("server.authserver", "已启动身份验证数据库连接池.");
     sLog->SetRealmId(0); // Enables DB appenders when realm is set.
     return true;
 }
@@ -279,7 +279,7 @@ void KeepDatabaseAliveHandler(std::weak_ptr<Trinity::Asio::DeadlineTimer> dbPing
     {
         if (std::shared_ptr<Trinity::Asio::DeadlineTimer> dbPingTimer = dbPingTimerRef.lock())
         {
-            TC_LOG_INFO("server.authserver", "Ping MySQL to keep connection alive");
+            TC_LOG_INFO("server.authserver", "Ping MySQL 以保持连接活动");
             LoginDatabase.KeepAlive();
 
             dbPingTimer->expires_from_now(boost::posix_time::minutes(dbPingInterval));

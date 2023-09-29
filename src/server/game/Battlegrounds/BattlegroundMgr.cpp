@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -526,7 +526,7 @@ void BattlegroundMgr::LoadBattlegroundTemplates()
     QueryResult result = WorldDatabase.Query("SELECT ID, MinPlayersPerTeam, MaxPlayersPerTeam, MinLvl, MaxLvl, AllianceStartLoc, AllianceStartO, HordeStartLoc, HordeStartO, StartMaxDist, Weight, ScriptName FROM battleground_template");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 battlegrounds. DB table `battleground_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个战场. 数据库表 `battleground_template` 为空.");
         return;
     }
 
@@ -612,7 +612,7 @@ void BattlegroundMgr::LoadBattlegroundTemplates()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} battlegrounds in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个战场, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void BattlegroundMgr::InitAutomaticArenaPointDistribution()
@@ -879,7 +879,7 @@ void BattlegroundMgr::LoadBattleMastersEntry()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 battlemaster entries. DB table `battlemaster_entry` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个战场军官条目. 数据库表 `battlemaster_entry` 为空!");
         return;
     }
 
@@ -916,7 +916,7 @@ void BattlegroundMgr::LoadBattleMastersEntry()
 
     CheckBattleMasters();
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} battlemaster entries in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个战场军官条目, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void BattlegroundMgr::CheckBattleMasters()

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -94,7 +94,7 @@ void CreatureTextMgr::LoadCreatureTexts()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 ceature texts. DB table `creature_text` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物文本. 数据库表 `creature_text` 为空.");
 
         return;
     }
@@ -171,7 +171,7 @@ void CreatureTextMgr::LoadCreatureTexts()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature texts for {} creatures in {} ms", textCount, mTextMap.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物文本, 适用于 {} 只生物, 用时 {} 毫秒", textCount, mTextMap.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void CreatureTextMgr::LoadCreatureTextLocales()
@@ -203,7 +203,7 @@ void CreatureTextMgr::LoadCreatureTextLocales()
         ObjectMgr::AddLocaleString(fields[4].GetString(), locale, data.Text);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature localized texts in {} ms", uint32(mLocaleTextMap.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物本地化文本, 用时 {} 毫秒", uint32(mLocaleTextMap.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 CreatureTextMgr::SendChat(Creature* source, uint8 textGroup, WorldObject const* whisperTarget /*= nullptr*/, ChatMsg msgType /*= CHAT_MSG_ADDON*/, Language language /*= LANG_ADDON*/, CreatureTextRange range /*= TEXT_RANGE_NORMAL*/, uint32 sound /*= 0*/, Team team /*= TEAM_OTHER*/, bool gmOnly /*= false*/, Player* srcPlr /*= nullptr*/)

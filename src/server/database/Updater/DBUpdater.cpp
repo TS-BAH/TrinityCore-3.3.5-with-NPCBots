@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -160,7 +160,7 @@ BaseLocation DBUpdater<T>::GetBaseLocationType()
 template<class T>
 bool DBUpdater<T>::Create(DatabaseWorkerPool<T>& pool)
 {
-    TC_LOG_INFO("sql.updates", "Database \"{}\" does not exist, do you want to create it? [yes (default) / no]: ",
+    TC_LOG_INFO("sql.updates", "数据库 \"{}\" 不存在, 你想要创建它吗? [yes (默认) / no]: ",
         pool.GetConnectionInfo()->database);
 
     std::string answer;
@@ -168,7 +168,7 @@ bool DBUpdater<T>::Create(DatabaseWorkerPool<T>& pool)
     if (!answer.empty() && !(answer.substr(0, 1) == "y"))
         return false;
 
-    TC_LOG_INFO("sql.updates", "Creating database \"{}\"...", pool.GetConnectionInfo()->database);
+    TC_LOG_INFO("sql.updates", "创建数据库 \"{}\"...", pool.GetConnectionInfo()->database);
 
     // Path of temp file
     static Path const temp("create_table.sql");
@@ -197,7 +197,7 @@ bool DBUpdater<T>::Create(DatabaseWorkerPool<T>& pool)
         return false;
     }
 
-    TC_LOG_INFO("sql.updates", "Done.");
+    TC_LOG_INFO("sql.updates", "完成.");
     boost::filesystem::remove(temp);
     return true;
 }
@@ -208,7 +208,7 @@ bool DBUpdater<T>::Update(DatabaseWorkerPool<T>& pool)
     if (!DBUpdaterUtil::CheckExecutable())
         return false;
 
-    TC_LOG_INFO("sql.updates", "Updating {} database...", DBUpdater<T>::GetTableName());
+    TC_LOG_INFO("sql.updates", "正在更新 {} 数据库...", DBUpdater<T>::GetTableName());
 
     Path const sourceDirectory(BuiltInConfig::GetSourceDirectory());
 
@@ -240,9 +240,9 @@ bool DBUpdater<T>::Update(DatabaseWorkerPool<T>& pool)
         result.recent, result.archived);
 
     if (!result.updated)
-        TC_LOG_INFO("sql.updates", ">> {} database is up-to-date! {}", DBUpdater<T>::GetTableName(), info);
+        TC_LOG_INFO("sql.updates", ">> {} 数据库已经是最新的! {}", DBUpdater<T>::GetTableName(), info);
     else
-        TC_LOG_INFO("sql.updates", ">> Applied {} {}. {}", result.updated, result.updated == 1 ? "query" : "queries", info);
+        TC_LOG_INFO("sql.updates", ">> 已应用 {} {}. {}", result.updated, result.updated == 1 ? "查询 (query)" : "查询 (queries)", info);
 
     return true;
 }
@@ -259,12 +259,12 @@ bool DBUpdater<T>::Populate(DatabaseWorkerPool<T>& pool)
     if (!DBUpdaterUtil::CheckExecutable())
         return false;
 
-    TC_LOG_INFO("sql.updates", "Database {} is empty, auto populating it...", DBUpdater<T>::GetTableName());
+    TC_LOG_INFO("sql.updates", "数据库 {} 为空, 正在自动填充它...", DBUpdater<T>::GetTableName());
 
     std::string const p = DBUpdater<T>::GetBaseFile();
     if (p.empty())
     {
-        TC_LOG_INFO("sql.updates", ">> No base file provided, skipped!");
+        TC_LOG_INFO("sql.updates", ">> 未提供基础文件, 已跳过!");
         return true;
     }
 
@@ -293,7 +293,7 @@ bool DBUpdater<T>::Populate(DatabaseWorkerPool<T>& pool)
     }
 
     // Update database
-    TC_LOG_INFO("sql.updates", ">> Applying \'{}\'...", base.generic_string());
+    TC_LOG_INFO("sql.updates", ">> 正在应用 \'{}\'...", base.generic_string());
     try
     {
         ApplyFile(pool, base);
@@ -303,7 +303,7 @@ bool DBUpdater<T>::Populate(DatabaseWorkerPool<T>& pool)
         return false;
     }
 
-    TC_LOG_INFO("sql.updates", ">> Done!");
+    TC_LOG_INFO("sql.updates", ">> 完成!");
     return true;
 }
 

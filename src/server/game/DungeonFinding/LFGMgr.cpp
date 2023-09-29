@@ -136,7 +136,7 @@ void LFGMgr::LoadRewards()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 lfg dungeon rewards. DB table `lfg_dungeon_rewards` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个随机地下城奖励. 数据库表 `lfg_dungeon_rewards` 为空!");
         return;
     }
 
@@ -180,7 +180,7 @@ void LFGMgr::LoadRewards()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} lfg dungeon rewards in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个随机地下城奖励, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 LFGDungeonData const* LFGMgr::GetLFGDungeon(uint32 id)
@@ -222,7 +222,7 @@ void LFGMgr::LoadLFGDungeons(bool reload /* = false */)
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 lfg entrance positions. DB table `lfg_dungeon_template` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个随机地下城入口位置. 数据库表 `lfg_dungeon_template` 为空!");
         return;
     }
 
@@ -249,7 +249,7 @@ void LFGMgr::LoadLFGDungeons(bool reload /* = false */)
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} lfg entrance positions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个随机地下城入口位置, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
     // Fill all other teleport coords from areatriggers
     for (LFGDungeonContainer::iterator itr = LfgDungeonStore.begin(); itr != LfgDungeonStore.end(); ++itr)
@@ -491,7 +491,7 @@ void LFGMgr::JoinLfg(Player* player, uint8 roles, LfgDungeonSet& dungeons, const
 
                             if (plrg->GetGUID() != grp->GetLeaderGUID())
                                 if (Player* leader = ObjectAccessor::FindPlayer(grp->GetLeaderGUID()))
-                                    (ChatHandler(leader->GetSession())).PSendSysMessage("There is a npcbot in your group (owner: %s). 在地下城查找器中使用 NPC 机器人受到限制. 请联系管理员.",
+                                    (ChatHandler(leader->GetSession())).PSendSysMessage("你的团队中有一个 NPC 机器人 (所有者: %s). 在地下城查找器中使用 NPC 机器人受到限制. 请联系管理员.",
                                         plrg->GetName().c_str());
 
                             joinData.result = LFG_JOIN_PARTY_NOT_MEET_REQS;

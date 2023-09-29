@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -59,10 +59,10 @@ void LoadFromDB()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} known addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个已知插件, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 known addons. DB table `addons` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个已知插件. 数据库表 `addons` 为空!");
 
     oldMSTime = getMSTime();
     result = CharacterDatabase.Query("SELECT id, name, version, UNIX_TIMESTAMP(timestamp) FROM banned_addons ORDER BY timestamp");
@@ -91,7 +91,7 @@ void LoadFromDB()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} banned addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个禁用插件, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 }
 

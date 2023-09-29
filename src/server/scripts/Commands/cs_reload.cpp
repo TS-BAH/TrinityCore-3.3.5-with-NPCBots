@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -230,9 +230,9 @@ public:
 
     static bool HandleReloadAllLootCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables...");
+        TC_LOG_INFO("misc", "重新加载战利品表...");
         LoadLootTables();
-        handler->SendGlobalGMSysMessage("DB tables `*_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `*_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
@@ -254,9 +254,9 @@ public:
         HandleReloadQuestPOICommand(handler, "a");
         HandleReloadQuestTemplateCommand(handler, "a");
 
-        TC_LOG_INFO("misc", "Re-Loading Quests Relations...");
+        TC_LOG_INFO("misc", "重新加载任务关联数据...");
         sObjectMgr->LoadQuestStartersAndEnders();
-        handler->SendGlobalGMSysMessage("DB tables `*_queststarter` and `*_questender` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `*_queststarter` and `*_questender` 已重新加载.");
         return true;
     }
 
@@ -264,15 +264,15 @@ public:
     {
         if (sMapMgr->IsScriptScheduled())
         {
-            handler->PSendSysMessage("DB scripts used currently, please attempt reload later.");
+            handler->PSendSysMessage("当前正在使用数据库脚本, 请稍后尝试重新加载.");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
-        TC_LOG_INFO("misc", "Re-Loading Scripts...");
+        TC_LOG_INFO("misc", "重新加载脚本...");
         HandleReloadEventScriptsCommand(handler, "a");
         HandleReloadSpellScriptsCommand(handler, "a");
-        handler->SendGlobalGMSysMessage("DB tables `*_scripts` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `*_scripts` 已重新加载.");
         HandleReloadWpScriptsCommand(handler, "a");
         HandleReloadWpCommand(handler, "a");
         return true;
@@ -332,91 +332,91 @@ public:
 
     static bool HandleReloadConfigCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading config settings...");
+        TC_LOG_INFO("misc", "重新加载配置设置...");
         sWorld->LoadConfigSettings(true);
         sMapMgr->InitializeVisibilityDistanceInfo();
-        handler->SendGlobalGMSysMessage("World config settings reloaded.");
+        handler->SendGlobalGMSysMessage("世界配置设置已重新加载.");
         return true;
     }
 
     static bool HandleReloadAccessRequirementCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Access Requirement definitions...");
+        TC_LOG_INFO("misc", "重新加载进入副本或区域条件...");
         sObjectMgr->LoadAccessRequirements();
-        handler->SendGlobalGMSysMessage("DB table `access_requirement` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `access_requirement` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAchievementCriteriaDataCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Additional Achievement Criteria Data...");
+        TC_LOG_INFO("misc", "重新加载额外成就条件数据...");
         sAchievementMgr->LoadAchievementCriteriaData();
-        handler->SendGlobalGMSysMessage("DB table `achievement_criteria_data` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `achievement_criteria_data` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAchievementRewardCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Achievement Reward Data...");
+        TC_LOG_INFO("misc", "重新加载成就奖励数据...");
         sAchievementMgr->LoadRewards();
-        handler->SendGlobalGMSysMessage("DB table `achievement_reward` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `achievement_reward` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAreaTriggerTavernCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Tavern Area Triggers...");
+        TC_LOG_INFO("misc", "重新加载酒馆区域触发器...");
         sObjectMgr->LoadTavernAreaTriggers();
-        handler->SendGlobalGMSysMessage("DB table `areatrigger_tavern` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `areatrigger_tavern` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAreaTriggerTeleportCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Area Trigger Teleports definitions...");
+        TC_LOG_INFO("misc", "重新加载区域触发器传送点定义...");
         sObjectMgr->LoadAreaTriggerTeleports();
-        handler->SendGlobalGMSysMessage("DB table `areatrigger_teleport` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `areatrigger_teleport` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAutobroadcastCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Autobroadcasts...");
+        TC_LOG_INFO("misc", "重新加载自动广播...");
         sWorld->LoadAutobroadcasts();
-        handler->SendGlobalGMSysMessage("DB table `autobroadcast` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `autobroadcast` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadBattlegroundTemplate(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Battleground Templates...");
+        TC_LOG_INFO("misc", "重新加载战场模板...");
         sBattlegroundMgr->LoadBattlegroundTemplates();
-        handler->SendGlobalGMSysMessage("DB table `battleground_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `battleground_template` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadBroadcastTextCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Broadcast texts...");
+        TC_LOG_INFO("misc", "重新加载广播文本...");
         sObjectMgr->LoadBroadcastTexts();
         sObjectMgr->LoadBroadcastTextLocales();
-        handler->SendGlobalGMSysMessage("DB table `broadcast_text` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `broadcast_text` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadOnKillReputationCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading creature award reputation definitions...");
+        TC_LOG_INFO("misc", "重新加载生物奖励声望定义...");
         sObjectMgr->LoadReputationOnKill();
-        handler->SendGlobalGMSysMessage("DB table `creature_onkill_reputation` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_onkill_reputation` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadCreatureSummonGroupsCommand(ChatHandler* handler)
     {
-        TC_LOG_INFO("misc", "Reloading creature summon groups...");
+        TC_LOG_INFO("misc", "重新加载生物召唤组...");
         sObjectMgr->LoadTempSummons();
-        handler->SendGlobalGMSysMessage("DB table `creature_summon_groups` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_summon_groups` 已重新加载.");
         return true;
     }
 
@@ -446,7 +446,7 @@ public:
                 continue;
             }
 
-            TC_LOG_INFO("misc", "Reloading creature template entry {}", entry);
+            TC_LOG_INFO("misc", "重新加载生物模板 entry {}", entry);
 
             Field* fields = result->Fetch();
             sObjectMgr->LoadCreatureTemplate(fields);
@@ -454,112 +454,112 @@ public:
         }
 
         sObjectMgr->InitializeQueriesData(QUERY_DATA_CREATURES);
-        handler->SendGlobalGMSysMessage("Creature template reloaded.");
+        handler->SendGlobalGMSysMessage("生物模板已重新加载.");
         return true;
     }
 
     static bool HandleReloadCreatureQuestStarterCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading Quests Relations... (`creature_queststarter`)");
+        TC_LOG_INFO("misc", "加载任务关联... (`creature_queststarter`)");
         sObjectMgr->LoadCreatureQuestStarters();
-        handler->SendGlobalGMSysMessage("DB table `creature_queststarter` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_queststarter` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLinkedRespawnCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading Linked Respawns... (`creature_linked_respawn`)");
+        TC_LOG_INFO("misc", "加载关联重生... (`creature_linked_respawn`)");
         sObjectMgr->LoadLinkedRespawn();
-        handler->SendGlobalGMSysMessage("DB table `creature_linked_respawn` (creature linked respawns) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_linked_respawn` (与生物关联的重生) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadCreatureQuestEnderCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading Quests Relations... (`creature_questender`)");
+        TC_LOG_INFO("misc", "加载任务关系... (`creature_questender`)");
         sObjectMgr->LoadCreatureQuestEnders();
-        handler->SendGlobalGMSysMessage("DB table `creature_questender` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_questender` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadGossipMenuCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `gossip_menu` Table!");
+        TC_LOG_INFO("misc", "重新加载 `gossip_menu` 表!");
         sObjectMgr->LoadGossipMenu();
-        handler->SendGlobalGMSysMessage("DB table `gossip_menu` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gossip_menu` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadGossipMenuOptionCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `gossip_menu_option` Table!");
+        TC_LOG_INFO("misc", "重新加载 `gossip_menu_option` 表!");
         sObjectMgr->LoadGossipMenuItems();
-        handler->SendGlobalGMSysMessage("DB table `gossip_menu_option` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gossip_menu_option` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadGOQuestStarterCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading Quests Relations... (`gameobject_queststarter`)");
+        TC_LOG_INFO("misc", "加载任务关系... (`gameobject_queststarter`)");
         sObjectMgr->LoadGameobjectQuestStarters();
-        handler->SendGlobalGMSysMessage("DB table `gameobject_queststarter` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gameobject_queststarter` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadGOQuestEnderCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading Quests Relations... (`gameobject_questender`)");
+        TC_LOG_INFO("misc", "加载任务关系... (`gameobject_questender`)");
         sObjectMgr->LoadGameobjectQuestEnders();
-        handler->SendGlobalGMSysMessage("DB table `gameobject_questender` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gameobject_questender` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadQuestAreaTriggersCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Area Triggers...");
+        TC_LOG_INFO("misc", "重新加载任务区域触发器...");
         sObjectMgr->LoadQuestAreaTriggers();
-        handler->SendGlobalGMSysMessage("DB table `areatrigger_involvedrelation` (quest area triggers) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `areatrigger_involvedrelation` (任务区域触发器) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadQuestGreetingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Greeting ...");
+        TC_LOG_INFO("misc", "重新加载任务问候...");
         sObjectMgr->LoadQuestGreetings();
-        handler->SendGlobalGMSysMessage("DB table `quest_greeting` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_greeting` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesQuestGreetingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Greeting locales...");
+        TC_LOG_INFO("misc", "重新加载任务问候本地化数据...");
         sObjectMgr->LoadQuestGreetingLocales();
-        handler->SendGlobalGMSysMessage("DB table `quest_greeting_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_greeting_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadQuestTemplateCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Templates...");
+        TC_LOG_INFO("misc", "重新加载任务模板...");
         sObjectMgr->LoadQuests();
         sObjectMgr->InitializeQueriesData(QUERY_DATA_QUESTS);
-        handler->SendGlobalGMSysMessage("DB table `quest_template` (quest definitions) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_template` (任务定义) 已重新加载.");
 
         /// dependent also from `gameobject` but this table not reloaded anyway
-        TC_LOG_INFO("misc", "Re-Loading GameObjects for quests...");
+        TC_LOG_INFO("misc", "重新加载用于任务的游戏对象...");
         sObjectMgr->LoadGameObjectForQuests();
-        handler->SendGlobalGMSysMessage("Data GameObjects for quests reloaded.");
+        handler->SendGlobalGMSysMessage("任务的游戏对象数据已重新加载.");
         return true;
     }
 
     static bool HandleReloadLootTemplatesCreatureCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`creature_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`creature_loot_template`)");
         LoadLootTemplates_Creature();
         LootTemplates_Creature.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `creature_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
@@ -568,338 +568,338 @@ public:
     {
         TC_LOG_INFO("misc", "Re-Loading Creature movement overrides...");
         sObjectMgr->LoadCreatureMovementOverrides();
-        handler->SendGlobalGMSysMessage("DB table `creature_movement_override` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_movement_override` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLootTemplatesDisenchantCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`disenchant_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`disenchant_loot_template`)");
         LoadLootTemplates_Disenchant();
         LootTemplates_Disenchant.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `disenchant_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `disenchant_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesFishingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`fishing_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`fishing_loot_template`)");
         LoadLootTemplates_Fishing();
         LootTemplates_Fishing.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `fishing_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `fishing_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesGameobjectCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`gameobject_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`gameobject_loot_template`)");
         LoadLootTemplates_Gameobject();
         LootTemplates_Gameobject.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `gameobject_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gameobject_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesItemCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`item_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`item_loot_template`)");
         LoadLootTemplates_Item();
         LootTemplates_Item.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `item_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `item_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesMillingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`milling_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`milling_loot_template`)");
         LoadLootTemplates_Milling();
         LootTemplates_Milling.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `milling_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `milling_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesPickpocketingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`pickpocketing_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`pickpocketing_loot_template`)");
         LoadLootTemplates_Pickpocketing();
         LootTemplates_Pickpocketing.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `pickpocketing_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `pickpocketing_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesProspectingCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`prospecting_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`prospecting_loot_template`)");
         LoadLootTemplates_Prospecting();
         LootTemplates_Prospecting.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `prospecting_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `prospecting_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesMailCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`mail_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`mail_loot_template`)");
         LoadLootTemplates_Mail();
         LootTemplates_Mail.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `mail_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `mail_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesReferenceCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`reference_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`reference_loot_template`)");
         LoadLootTemplates_Reference();
-        handler->SendGlobalGMSysMessage("DB table `reference_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `reference_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesSkinningCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`skinning_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`skinning_loot_template`)");
         LoadLootTemplates_Skinning();
         LootTemplates_Skinning.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `skinning_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `skinning_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadLootTemplatesSpellCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Loot Tables... (`spell_loot_template`)");
+        TC_LOG_INFO("misc", "重新加载战利品表... (`spell_loot_template`)");
         LoadLootTemplates_Spell();
         LootTemplates_Spell.CheckLootRefs();
-        handler->SendGlobalGMSysMessage("DB table `spell_loot_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_loot_template` 已重新加载.");
         sConditionMgr->LoadConditions(true);
         return true;
     }
 
     static bool HandleReloadTrinityStringCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading trinity_string Table!");
+        TC_LOG_INFO("misc", "重新加载 trinity_string 表!");
         sObjectMgr->LoadTrinityStrings();
-        handler->SendGlobalGMSysMessage("DB table `trinity_string` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `trinity_string` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadTrainerCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `trainer` Table!");
+        TC_LOG_INFO("misc", "重新加载 `trainer` 表!");
         sObjectMgr->LoadTrainers();
         sObjectMgr->LoadCreatureDefaultTrainers();
-        handler->SendGlobalGMSysMessage("DB table `trainer` reloaded.");
-        handler->SendGlobalGMSysMessage("DB table `trainer_locale` reloaded.");
-        handler->SendGlobalGMSysMessage("DB table `trainer_spell` reloaded.");
-        handler->SendGlobalGMSysMessage("DB table `creature_default_trainer` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `trainer` 已重新加载.");
+        handler->SendGlobalGMSysMessage("数据库表 `trainer_locale` 已重新加载.");
+        handler->SendGlobalGMSysMessage("数据库表 `trainer_spell` 已重新加载.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_default_trainer` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadNpcVendorCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `npc_vendor` Table!");
+        TC_LOG_INFO("misc", "重新加载 `npc_vendor` 表!");
         sObjectMgr->LoadVendors();
-        handler->SendGlobalGMSysMessage("DB table `npc_vendor` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `npc_vendor` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadPointsOfInterestCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `points_of_interest` Table!");
+        TC_LOG_INFO("misc", "重新加载 `points_of_interest` 表!");
         sObjectMgr->LoadPointsOfInterest();
-        handler->SendGlobalGMSysMessage("DB table `points_of_interest` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `points_of_interest` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadQuestPOICommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest POI ..." );
+        TC_LOG_INFO("misc", "重新加载任务兴趣点...");
         sObjectMgr->LoadQuestPOI();
         sObjectMgr->InitializeQueriesData(QUERY_DATA_POIS);
-        handler->SendGlobalGMSysMessage("DB Table `quest_poi` and `quest_poi_points` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_poi` and `quest_poi_points` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellClickSpellsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `npc_spellclick_spells` Table!");
+        TC_LOG_INFO("misc", "重新加载 `npc_spellclick_spells` 表!");
         sObjectMgr->LoadNPCSpellClickSpells();
-        handler->SendGlobalGMSysMessage("DB table `npc_spellclick_spells` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `npc_spellclick_spells` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadReservedNameCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Loading ReservedNames... (`reserved_name`)");
+        TC_LOG_INFO("misc", "加载保留名称... (`reserved_name`)");
         sObjectMgr->LoadReservedPlayersNames();
-        handler->SendGlobalGMSysMessage("DB table `reserved_name` (player reserved names) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `reserved_name` (玩家保留名) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadReputationRewardRateCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `reputation_reward_rate` Table!" );
+        TC_LOG_INFO("misc", "重新加载 `reputation_reward_rate` 重新加载!" );
         sObjectMgr->LoadReputationRewardRate();
-        handler->SendGlobalSysMessage("DB table `reputation_reward_rate` reloaded.");
+        handler->SendGlobalSysMessage("数据库表 `reputation_reward_rate` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadReputationSpilloverTemplateCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading `reputation_spillover_template` Table!" );
+        TC_LOG_INFO("misc", "重新加载 `reputation_spillover_template` 重新加载!" );
         sObjectMgr->LoadReputationSpilloverTemplate();
-        handler->SendGlobalSysMessage("DB table `reputation_spillover_template` reloaded.");
+        handler->SendGlobalSysMessage("数据库表 `reputation_spillover_template` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSkillDiscoveryTemplateCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Skill Discovery Table...");
+        TC_LOG_INFO("misc", "重新加载专业技能发现表...");
         LoadSkillDiscoveryTable();
-        handler->SendGlobalGMSysMessage("DB table `skill_discovery_template` (recipes discovered at crafting) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `skill_discovery_template` (制作时发现的配方) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSkillPerfectItemTemplateCommand(ChatHandler* handler, char const* /*args*/)
     { // latched onto HandleReloadSkillExtraItemTemplateCommand as it's part of that table group (and i don't want to chance all the command IDs)
-        TC_LOG_INFO("misc", "Re-Loading Skill Perfection Data Table...");
+        TC_LOG_INFO("misc", "重新加载法术完美定义数据表...");
         LoadSkillPerfectItemTable();
-        handler->SendGlobalGMSysMessage("DB table `skill_perfect_item_template` (perfect item procs when crafting) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `skill_perfect_item_template` (制作时完美的物品机率) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSkillExtraItemTemplateCommand(ChatHandler* handler, char const* args)
     {
-        TC_LOG_INFO("misc", "Re-Loading Skill Extra Item Table...");
+        TC_LOG_INFO("misc", "重新加载专业技能额外物品数据表...");
         LoadSkillExtraItemTable();
-        handler->SendGlobalGMSysMessage("DB table `skill_extra_item_template` (extra item creation when crafting) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `skill_extra_item_template` (制作时的额外物品创造) 已重新加载.");
 
         return HandleReloadSkillPerfectItemTemplateCommand(handler, args);
     }
 
     static bool HandleReloadSkillFishingBaseLevelCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Skill Fishing base level requirements...");
+        TC_LOG_INFO("misc", "重新加载钓鱼的基本等级要求...");
         sObjectMgr->LoadFishingBaseSkillLevel();
-        handler->SendGlobalGMSysMessage("DB table `skill_fishing_base_level` (fishing base level for zone/subzone) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `skill_fishing_base_level` (区域/子区域的钓鱼基本等级) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellAreaCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading SpellArea Data...");
+        TC_LOG_INFO("misc", "重新加载法术区域数据...");
         sSpellMgr->LoadSpellAreas();
-        handler->SendGlobalGMSysMessage("DB table `spell_area` (spell dependences from area/quest/auras state) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_area` (法术依赖于区域/任务/光环状态) reloaded.");
         return true;
     }
 
     static bool HandleReloadSpellRequiredCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Required Data... ");
+        TC_LOG_INFO("misc", "重新加载法术需求数据...");
         sSpellMgr->LoadSpellRequired();
-        handler->SendGlobalGMSysMessage("DB table `spell_required` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_required` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellGroupsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Groups...");
+        TC_LOG_INFO("misc", "重新加载法术组...");
         sSpellMgr->LoadSpellGroups();
-        handler->SendGlobalGMSysMessage("DB table `spell_group` (spell groups) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_group` (法术组) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellLearnSpellCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Learn Spells...");
+        TC_LOG_INFO("misc", "重新加载法术学习法术...");
         sSpellMgr->LoadSpellLearnSpells();
-        handler->SendGlobalGMSysMessage("DB table `spell_learn_spell` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_learn_spell` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellLinkedSpellCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Linked Spells...");
+        TC_LOG_INFO("misc", "重新加载法术链接法术...");
         sSpellMgr->LoadSpellLinked();
-        handler->SendGlobalGMSysMessage("DB table `spell_linked_spell` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_linked_spell` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellProcsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Proc conditions and data...");
+        TC_LOG_INFO("misc", "重新加载法术触发条件和数据...");
         sSpellMgr->LoadSpellProcs();
-        handler->SendGlobalGMSysMessage("DB table `spell_proc` (spell proc conditions and data) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_proc` (法术触发条件和数据) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellBonusesCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Bonus Data...");
+        TC_LOG_INFO("misc", "重新加载法术加成数据...");
         sSpellMgr->LoadSpellBonuses();
-        handler->SendGlobalGMSysMessage("DB table `spell_bonus_data` (spell damage/healing coefficients) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_bonus_data` (法术伤害/治疗系数) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellTargetPositionCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell target coordinates...");
+        TC_LOG_INFO("misc", "重新加载法术目标坐标...");
         sSpellMgr->LoadSpellTargetPositions();
-        handler->SendGlobalGMSysMessage("DB table `spell_target_position` (destination coordinates for spell targets) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_target_position` (法术目标的目的地坐标) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellThreatsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Aggro Spells Definitions...");
+        TC_LOG_INFO("misc", "重新加载仇恨法术定义...");
         sSpellMgr->LoadSpellThreats();
-        handler->SendGlobalGMSysMessage("DB table `spell_threat` (spell aggro definitions) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_threat` (法术仇恨定义) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellGroupStackRulesCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell Group Stack Rules...");
+        TC_LOG_INFO("misc", "重新加载法术组堆叠规则...");
         sSpellMgr->LoadSpellGroupStackRules();
-        handler->SendGlobalGMSysMessage("DB table `spell_group_stack_rules` (spell stacking definitions) reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_group_stack_rules` (法术堆叠规则定义) 已重新加载.");
         return true;
     }
 
     static bool HandleReloadSpellPetAurasCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Spell pet auras...");
+        TC_LOG_INFO("misc", "重新加载法术宠物光环...");
         sSpellMgr->LoadSpellPetAuras();
-        handler->SendGlobalGMSysMessage("DB table `spell_pet_auras` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `spell_pet_auras` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadPageTextsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Page Text...");
+        TC_LOG_INFO("misc", "重新加载页面文本...");
         sObjectMgr->LoadPageTexts();
-        handler->SendGlobalGMSysMessage("DB table `page_text` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `page_text` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadItemEnchantementsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Item Random Enchantments Table...");
+        TC_LOG_INFO("misc", "重新加载物品随机附魔表...");
         LoadRandomEnchantmentsTable();
-        handler->SendGlobalGMSysMessage("DB table `item_enchantment_template` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `item_enchantment_template` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadItemSetNamesCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Item set names...");
+        TC_LOG_INFO("misc", "重新加载物品套装名称...");
         sObjectMgr->LoadItemSetNames();
-        handler->SendGlobalGMSysMessage("DB table `item_set_names` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `item_set_names` 已重新加载.");
         return true;
     }
 
@@ -907,18 +907,18 @@ public:
     {
         if (sMapMgr->IsScriptScheduled())
         {
-            handler->SendSysMessage("DB scripts used currently, please attempt reload later.");
+            handler->SendSysMessage("当前正在使用数据库脚本, 请稍后尝试重新加载.");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (*args != 'a')
-            TC_LOG_INFO("misc", "Re-Loading Scripts from `event_scripts`...");
+            TC_LOG_INFO("misc", "重新加载 `event_scripts` 的脚本...");
 
         sObjectMgr->LoadEventScripts();
 
         if (*args != 'a')
-            handler->SendGlobalGMSysMessage("DB table `event_scripts` reloaded.");
+            handler->SendGlobalGMSysMessage("数据库表 `event_scripts` 已重新加载.");
 
         return true;
     }
@@ -927,18 +927,18 @@ public:
     {
         if (sMapMgr->IsScriptScheduled())
         {
-            handler->SendSysMessage("DB scripts used currently, please attempt reload later.");
+            handler->SendSysMessage("当前正在使用数据库脚本, 请稍后尝试重新加载.");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (*args != 'a')
-            TC_LOG_INFO("misc", "Re-Loading Scripts from `waypoint_scripts`...");
+            TC_LOG_INFO("misc", "重新加载 `waypoint_scripts` 的脚本...");
 
         sObjectMgr->LoadWaypointScripts();
 
         if (*args != 'a')
-            handler->SendGlobalGMSysMessage("DB table `waypoint_scripts` reloaded.");
+            handler->SendGlobalGMSysMessage("数据库表 `waypoint_scripts` 已重新加载.");
 
         return true;
     }
@@ -946,12 +946,12 @@ public:
     static bool HandleReloadWpCommand(ChatHandler* handler, char const* args)
     {
         if (*args != 'a')
-            TC_LOG_INFO("misc", "Re-Loading Waypoints data from 'waypoints_data'");
+            TC_LOG_INFO("misc", "重新加载 'waypoints_data' 的路径点数据");
 
         sWaypointMgr->Load();
 
         if (*args != 'a')
-            handler->SendGlobalGMSysMessage("DB Table 'waypoint_data' reloaded.");
+            handler->SendGlobalGMSysMessage("数据库表 'waypoint_data' 已重新加载.");
 
         return true;
     }
@@ -960,238 +960,238 @@ public:
     {
         if (sMapMgr->IsScriptScheduled())
         {
-            handler->SendSysMessage("DB scripts used currently, please attempt reload later.");
+            handler->SendSysMessage("当前正在使用数据库脚本, 请稍后尝试重新加载.");
             handler->SetSentErrorMessage(true);
             return false;
         }
 
         if (*args != 'a')
-            TC_LOG_INFO("misc", "Re-Loading Scripts from `spell_scripts`...");
+            TC_LOG_INFO("misc", "重新加载 `spell_scripts` 的脚本...");
 
         sObjectMgr->LoadSpellScripts();
 
         if (*args != 'a')
-            handler->SendGlobalGMSysMessage("DB table `spell_scripts` reloaded.");
+            handler->SendGlobalGMSysMessage("数据库表 `spell_scripts` 已重新加载.");
 
         return true;
     }
 
     static bool HandleReloadGameGraveyardZoneCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Graveyard-zone links...");
+        TC_LOG_INFO("misc", "重新加载墓地-区域链接...");
 
         sObjectMgr->LoadGraveyardZones();
 
-        handler->SendGlobalGMSysMessage("DB table `game_graveyard_zone` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `game_graveyard_zone` 已重新加载.");
 
         return true;
     }
 
     static bool HandleReloadGameTeleCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Game Tele coordinates...");
+        TC_LOG_INFO("misc", "重新加载游戏传送坐标...");
 
         sObjectMgr->LoadGameTele();
 
-        handler->SendGlobalGMSysMessage("DB table `game_tele` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `game_tele` 已重新加载.");
 
         return true;
     }
 
     static bool HandleReloadDisablesCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading disables table...");
+        TC_LOG_INFO("misc", "重新加载禁用表...");
         DisableMgr::LoadDisables();
-        TC_LOG_INFO("misc", "Checking quest disables...");
+        TC_LOG_INFO("misc", "检查任务禁用...");
         DisableMgr::CheckQuestDisables();
-        handler->SendGlobalGMSysMessage("DB table `disables` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `disables` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesAchievementRewardCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Achievement Reward Data Locale...");
+        TC_LOG_INFO("misc", "重新加载成就奖励数据的地化数据...");
         sAchievementMgr->LoadRewardLocales();
-        handler->SendGlobalGMSysMessage("DB table `achievement_reward_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `achievement_reward_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLfgRewardsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading lfg dungeon rewards...");
+        TC_LOG_INFO("misc", "重新加载随机地下城的奖励数据...");
         sLFGMgr->LoadRewards();
-        handler->SendGlobalGMSysMessage("DB table `lfg_dungeon_rewards` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `lfg_dungeon_rewards` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesCreatureCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Creature Template Locale...");
+        TC_LOG_INFO("misc", "重新加载生物模板本地化数据...");
         sObjectMgr->LoadCreatureLocales();
-        handler->SendGlobalGMSysMessage("DB table `creature_template_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_template_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesCreatureTextCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Creature Texts Locale...");
+        TC_LOG_INFO("misc", "重新加载生物文本本地化数据...");
         sCreatureTextMgr->LoadCreatureTextLocales();
-        handler->SendGlobalGMSysMessage("DB table `creature_text_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `creature_text_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesGameobjectCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Gameobject Template Locale... ");
+        TC_LOG_INFO("misc", "重新加载游戏对象模板本地化数据...");
         sObjectMgr->LoadGameObjectLocales();
-        handler->SendGlobalGMSysMessage("DB table `gameobject_template_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gameobject_template_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesGossipMenuOptionCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Gossip Menu Option Locale... ");
+        TC_LOG_INFO("misc", "重新加载对话菜单选项本地化数据...");
         sObjectMgr->LoadGossipMenuItemsLocales();
-        handler->SendGlobalGMSysMessage("DB table `gossip_menu_option_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `gossip_menu_option_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesItemCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Item Template Locale... ");
+        TC_LOG_INFO("misc", "重新加载物品模板本地化数据...");
         sObjectMgr->LoadItemLocales();
-        handler->SendGlobalGMSysMessage("DB table `item_template_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `item_template_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesItemSetNameCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Item set name Locale... ");
+        TC_LOG_INFO("misc", "重新加载物品套装名称本地化数据...");
         sObjectMgr->LoadItemSetNameLocales();
-        handler->SendGlobalGMSysMessage("DB table `item_set_name_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `item_set_name_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesNpcTextCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading NPC Text Locale... ");
+        TC_LOG_INFO("misc", "重新加载 NPC 文本本地化数据...");
         sObjectMgr->LoadNpcTextLocales();
-        handler->SendGlobalGMSysMessage("DB table `npc_text_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `npc_text_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesPageTextCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Page Text Locale... ");
+        TC_LOG_INFO("misc", "重新加载页面文本本地化数据...");
         sObjectMgr->LoadPageTextLocales();
-        handler->SendGlobalGMSysMessage("DB table `page_text_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `page_text_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesPointsOfInterestCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Points Of Interest Locale... ");
+        TC_LOG_INFO("misc", "重新加载兴趣点本地化数据...");
         sObjectMgr->LoadPointOfInterestLocales();
-        handler->SendGlobalGMSysMessage("DB table `points_of_interest_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `points_of_interest_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesQuestCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Template Locale... ");
+        TC_LOG_INFO("misc", "重新加载任务模板本地化数据...");
         sObjectMgr->LoadQuestLocales();
-        handler->SendGlobalGMSysMessage("DB table `quest_template_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_template_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesQuestOfferRewardCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Offer Reward Locale... ");
+        TC_LOG_INFO("misc", "重新加载任务奖励本地化数据...");
         sObjectMgr->LoadQuestOfferRewardLocale();
-        handler->SendGlobalGMSysMessage("DB table `quest_offer_reward_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_offer_reward_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadLocalesQuestRequestItemsCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Quest Request Item Locale... ");
+        TC_LOG_INFO("misc", "重新加载任务请求物品本地化数据...");
         sObjectMgr->LoadQuestRequestItemsLocale();
-        handler->SendGlobalGMSysMessage("DB table `quest_request_item_locale` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `quest_request_item_locale` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadMailLevelRewardCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Player level dependent mail rewards...");
+        TC_LOG_INFO("misc", "重新加载玩家等级相关的邮件奖励...");
         sObjectMgr->LoadMailLevelRewards();
-        handler->SendGlobalGMSysMessage("DB table `mail_level_reward` reloaded.");
+        handler->SendGlobalGMSysMessage("数据库表 `mail_level_reward` 已重新加载.");
         return true;
     }
 
     static bool HandleReloadAuctionsCommand(ChatHandler* handler, char const* /*args*/)
     {
         ///- Reload dynamic data tables from the database
-        TC_LOG_INFO("misc", "Re-Loading Auctions...");
+        TC_LOG_INFO("misc", "重新加载拍卖行...");
         sAuctionMgr->LoadAuctionItems();
         sAuctionMgr->LoadAuctions();
-        handler->SendGlobalGMSysMessage("Auctions reloaded.");
+        handler->SendGlobalGMSysMessage("拍卖行已重新加载.");
         return true;
     }
 
     static bool HandleReloadConditions(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Conditions...");
+        TC_LOG_INFO("misc", "重新加载条件...");
         sConditionMgr->LoadConditions(true);
-        handler->SendGlobalGMSysMessage("Conditions reloaded.");
+        handler->SendGlobalGMSysMessage("条件已重新加载.");
         return true;
     }
 
     static bool HandleReloadCreatureText(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Creature Texts...");
+        TC_LOG_INFO("misc", "重新加载生物文本...");
         sCreatureTextMgr->LoadCreatureTexts();
-        handler->SendGlobalGMSysMessage("Creature Texts reloaded.");
+        handler->SendGlobalGMSysMessage("生物文本已重新加载.");
         return true;
     }
 
     static bool HandleReloadSmartScripts(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Re-Loading Smart Scripts...");
+        TC_LOG_INFO("misc", "重新加载智能脚本...");
         sSmartScriptMgr->LoadSmartAIFromDB();
-        handler->SendGlobalGMSysMessage("Smart Scripts reloaded.");
+        handler->SendGlobalGMSysMessage("智能脚本已重新加载.");
         return true;
     }
 
     static bool HandleReloadVehicleTemplateCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Reloading vehicle_template table...");
+        TC_LOG_INFO("misc", "重新加载 vehicle_template 表...");
         sObjectMgr->LoadVehicleTemplate();
-        handler->SendGlobalGMSysMessage("Vehicle templates reloaded.");
+        handler->SendGlobalGMSysMessage("载具模板已重新加载.");
         return true;
     }
 
     static bool HandleReloadVehicleAccessoryCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Reloading vehicle_accessory table...");
+        TC_LOG_INFO("misc", "重新加载 `vehicle_accessory` 表...");
         sObjectMgr->LoadVehicleAccessories();
-        handler->SendGlobalGMSysMessage("Vehicle accessories reloaded.");
+        handler->SendGlobalGMSysMessage("载具驾驶员已重新加载.");
         return true;
     }
 
     static bool HandleReloadVehicleTemplateAccessoryCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Reloading vehicle_template_accessory table...");
+        TC_LOG_INFO("misc", "重新加载 `vehicle_template_accessory` 表...");
         sObjectMgr->LoadVehicleTemplateAccessories();
-        handler->SendGlobalGMSysMessage("Vehicle template accessories reloaded.");
+        handler->SendGlobalGMSysMessage("载具模板驾驶员已重新加载.");
         return true;
     }
 
     static bool HandleReloadRBACCommand(ChatHandler* handler, char const* /*args*/)
     {
-        TC_LOG_INFO("misc", "Reloading RBAC tables...");
+        TC_LOG_INFO("misc", "重新加载 `RBAC` 表...");
         sAccountMgr->LoadRBAC();
         sWorld->ReloadRBAC();
-        handler->SendGlobalGMSysMessage("RBAC data reloaded.");
+        handler->SendGlobalGMSysMessage("RBAC 数据已重新加载.");
         return true;
     }
 };

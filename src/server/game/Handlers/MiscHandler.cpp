@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1452,7 +1452,7 @@ void WorldSession::HandleInstanceLockResponse(WorldPacket& recvPacket)
 
     if (!_player->HasPendingBind())
     {
-        TC_LOG_INFO("network", "InstanceLockResponse: Player {} {} tried to bind himself/teleport to graveyard without a pending bind!",
+        TC_LOG_INFO("network", "InstanceLockResponse: 玩家 {} {} 试图在没有等待绑定的情况下绑定自己/传送到墓地!",
             _player->GetName(), _player->GetGUID().ToString());
         return;
     }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -239,7 +239,7 @@ void GameEventMgr::LoadFromDB()
         if (!result)
         {
             mGameEvent.clear();
-            TC_LOG_INFO("server.loading", ">> Loaded 0 game events. DB table `game_event` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏事件. 数据库表 `game_event` 为空.");
             return;
         }
 
@@ -298,11 +298,11 @@ void GameEventMgr::LoadFromDB()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏事件, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Saves Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件保存数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -310,7 +310,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = CharacterDatabase.Query("SELECT eventEntry, state, next_start FROM game_event_save");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 game event saves in game events. DB table `game_event_save` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个保存数据. 数据库表 `game_event_save` 为空.");
         else
         {
             uint32 count = 0;
@@ -341,19 +341,19 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} game event saves in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个保存数据, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Prerequisite Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件前提条件数据...");
     {
         uint32 oldMSTime = getMSTime();
 
         //                                                   0             1
         QueryResult result = WorldDatabase.Query("SELECT eventEntry, prerequisite_event FROM game_event_prerequisite");
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 game event prerequisites in game events. DB table `game_event_prerequisite` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个前提条件. 数据库表 `game_event_prerequisite` 为空.");
         else
         {
             uint32 count = 0;
@@ -389,12 +389,12 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} game event prerequisites in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个前提条件, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Creature Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件生物数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -402,7 +402,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT guid, eventEntry FROM game_event_creature");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 creatures in game events. DB table `game_event_creature` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个生物. 数据库表 `game_event_creature` 为空.");
         else
         {
             uint32 count = 0;
@@ -439,12 +439,12 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} creatures in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个生物, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event GO Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件游戏对象数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -452,7 +452,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT guid, eventEntry FROM game_event_gameobject");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 gameobjects in game events. DB table `game_event_gameobject` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个游戏对象. 数据库表 `game_event_gameobject` 为空.");
         else
         {
             uint32 count = 0;
@@ -489,11 +489,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} gameobjects in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个游戏对象, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Model/Equipment Change Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件模型/装备更改数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -502,7 +502,7 @@ void GameEventMgr::LoadFromDB()
                                                  "FROM creature JOIN game_event_model_equip ON creature.guid = game_event_model_equip.guid");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 model/equipment changes in game events. DB table `game_event_model_equip` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个模型/装备更改. 数据库表 `game_event_model_equip` 为空.");
         else
         {
             uint32 count = 0;
@@ -544,11 +544,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} model/equipment changes in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个模型/装备更改, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Quest Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件任务数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -556,7 +556,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT id, quest, eventEntry FROM game_event_creature_quest");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 quests additions in game events. DB table `game_event_creature_quest` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个任务附加项. 数据库表 `game_event_creature_quest` 为空.");
         else
         {
             uint32 count = 0;
@@ -581,11 +581,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} quests additions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个任务附加项, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event GO Quest Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件游戏对象任务数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -593,7 +593,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT id, quest, eventEntry FROM game_event_gameobject_quest");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 go quests additions in game events. DB table `game_event_gameobject_quest` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个游戏对象任务的附加数据. 数据库表 `game_event_gameobject_quest` 为空.");
         else
         {
             uint32 count = 0;
@@ -618,11 +618,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} quests additions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个任务的附加数据, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Quest Condition Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件任务条件数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -630,7 +630,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT quest, eventEntry, condition_id, num FROM game_event_quest_condition");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 quest event conditions in game events. DB table `game_event_quest_condition` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个任务事件条件. 数据库表 `game_event_quest_condition` 为空.");
         else
         {
             uint32 count = 0;
@@ -657,11 +657,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} quest event conditions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个任务事件条件, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Condition Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件条件数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -669,7 +669,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT eventEntry, condition_id, req_num, max_world_state_field, done_world_state_field FROM game_event_condition");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 conditions in game events. DB table `game_event_condition` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个条件. 数据库表 `game_event_condition` 为空.");
         else
         {
             uint32 count = 0;
@@ -695,11 +695,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} conditions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个条件, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Condition Save Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件条件保存数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -707,7 +707,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = CharacterDatabase.Query("SELECT eventEntry, condition_id, done FROM game_event_condition_save");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 condition saves in game events. DB table `game_event_condition_save` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个条件保存数据. 数据库表 `game_event_condition_save` 为空.");
         else
         {
             uint32 count = 0;
@@ -739,11 +739,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} condition saves in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个条件保存数据, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event NPCflag Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件 NPC 标志数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -751,7 +751,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT guid, eventEntry, npcflag FROM game_event_npcflag");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 npcflags in game events. DB table `game_event_npcflag` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个 NPC 标志. 数据库表 `game_event_npcflag` 为空.");
         else
         {
             uint32 count = 0;
@@ -775,11 +775,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} npcflags in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个 NPC 标志, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Seasonal Quest Relations...");
+    TC_LOG_INFO("server.loading", "加载游戏事件季节性任务关系...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -787,7 +787,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT questId, eventEntry FROM game_event_seasonal_questrelation");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 seasonal quests additions in game events. DB table `game_event_seasonal_questrelation` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个季节性任务关系. DB table `game_event_seasonal_questrelation` is empty.");
         else
         {
             uint32 count = 0;
@@ -816,11 +816,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} quests additions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个任务附加信息, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Vendor Additions Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件商人附加数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -828,7 +828,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT eventEntry, guid, item, maxcount, incrtime, ExtendedCost FROM game_event_npc_vendor ORDER BY guid, slot ASC");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 vendor additions in game events. DB table `game_event_npc_vendor` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个商人附加项. 数据库表 `game_event_npc_vendor` 为空.");
         else
         {
             uint32 count = 0;
@@ -878,11 +878,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} vendor additions in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个商人附加项, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Battleground Holiday Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件战场节日数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -890,7 +890,7 @@ void GameEventMgr::LoadFromDB()
         QueryResult result = WorldDatabase.Query("SELECT EventEntry, BattlegroundID FROM game_event_battleground_holiday");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 battleground holidays in game events. DB table `game_event_battleground_holiday` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 0 个战场节日. 数据库表 `game_event_battleground_holiday` 为空.");
         else
         {
             uint32 count = 0;
@@ -912,11 +912,11 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} battleground holidays in game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在游戏事件中加载了 {} 个战场节日, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    TC_LOG_INFO("server.loading", "Loading Game Event Pool Data...");
+    TC_LOG_INFO("server.loading", "加载游戏事件池数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -925,7 +925,7 @@ void GameEventMgr::LoadFromDB()
                                                  " JOIN game_event_pool ON pool_template.entry = game_event_pool.pool_entry");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 pools for game events. DB table `game_event_pool` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏事件池. 数据库表 `game_event_pool` 为空.");
         else
         {
             uint32 count = 0;
@@ -957,7 +957,7 @@ void GameEventMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} pools for game events in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏事件池, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 }
@@ -970,7 +970,7 @@ void GameEventMgr::LoadHolidayDates()
     QueryResult result = WorldDatabase.Query("SELECT id, date_id, date_value, holiday_duration FROM holiday_dates");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 holiday dates. DB table `holiday_dates` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个节日日期. 数据库表 `holiday_dates` 为空.");
         return;
     }
 
@@ -1006,7 +1006,7 @@ void GameEventMgr::LoadHolidayDates()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} holiday dates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个节日日期, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 GameEventMgr::GetNPCFlag(Creature* cr)
@@ -1080,7 +1080,7 @@ void GameEventMgr::StartArenaSeason()
     }
 
     StartEvent(eventId, true);
-    TC_LOG_INFO("gameevent", "Arena Season {} started...", season);
+    TC_LOG_INFO("gameevent", "竞技场赛季 {} 已开始...", season);
 
 }
 
@@ -1152,13 +1152,13 @@ uint32 GameEventMgr::Update()                               // return the next e
             nextEventDelay = 0;
     for (std::set<uint16>::iterator itr = deactivate.begin(); itr != deactivate.end(); ++itr)
         StopEvent(*itr);
-    TC_LOG_INFO("gameevent", "Next game event check in {} seconds.", nextEventDelay + 1);
+    TC_LOG_INFO("gameevent", "下一个游戏事件检查在 {} 秒后.", nextEventDelay + 1);
     return (nextEventDelay + 1) * IN_MILLISECONDS;           // Add 1 second to be sure event has started/stopped at next call
 }
 
 void GameEventMgr::UnApplyEvent(uint16 event_id)
 {
-    TC_LOG_INFO("gameevent", "GameEvent {} \"{}\" removed.", event_id, mGameEvent[event_id].description);
+    TC_LOG_INFO("gameevent", "游戏事件 {} \"{}\" 已移除.", event_id, mGameEvent[event_id].description);
     //! Run SAI scripts with SMART_EVENT_GAME_EVENT_END
     RunSmartAIScripts(event_id, false);
     // un-spawn positive event tagged objects
@@ -1185,7 +1185,7 @@ void GameEventMgr::ApplyNewEvent(uint16 event_id)
     if (announce == 1 || (announce == 2 && sWorld->getBoolConfig(CONFIG_EVENT_ANNOUNCE)))
         sWorld->SendWorldText(LANG_EVENTMESSAGE, mGameEvent[event_id].description.c_str());
 
-    TC_LOG_INFO("gameevent", "GameEvent {} \"{}\" started.", event_id, mGameEvent[event_id].description);
+    TC_LOG_INFO("gameevent", "游戏事件 {} \"{}\" 已开始.", event_id, mGameEvent[event_id].description);
 
     // spawn positive event tagget objects
     GameEventSpawn(event_id);

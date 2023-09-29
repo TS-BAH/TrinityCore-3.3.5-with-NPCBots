@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -44,7 +44,7 @@ void TCSoapThread(const std::string& host, uint16 port)
         exit(-1);
     }
 
-    TC_LOG_INFO("network.soap", "Bound to http://{}:{}", host, port);
+    TC_LOG_INFO("network.soap", "绑定到 http://{}:{}", host, port);
 
     while (!World::IsStopped())
     {
@@ -80,33 +80,33 @@ int ns1__executeCommand(soap* soap, char* command, char** result)
     // security check
     if (!soap->userid || !soap->passwd)
     {
-        TC_LOG_INFO("network.soap", "Client didn't provide login information");
+        TC_LOG_INFO("network.soap", "客户端未提供登录信息");
         return 401;
     }
 
     uint32 accountId = AccountMgr::GetId(soap->userid);
     if (!accountId)
     {
-        TC_LOG_INFO("network.soap", "Client used invalid username '{}'", soap->userid);
+        TC_LOG_INFO("network.soap", "客户端使用了无效的用户名 '{}'", soap->userid);
         return 401;
     }
 
     if (!AccountMgr::CheckPassword(accountId, soap->passwd))
     {
-        TC_LOG_INFO("network.soap", "Invalid password for account '{}'", soap->userid);
+        TC_LOG_INFO("network.soap", "账号 '{}' 的密码无效", soap->userid);
         return 401;
     }
 
     if (AccountMgr::GetSecurity(accountId, realm.Id.Realm) < SEC_ADMINISTRATOR)
     {
-        TC_LOG_INFO("network.soap", "{}'s gmlevel is too low", soap->userid);
+        TC_LOG_INFO("network.soap", "{} 的 GM 等级太低", soap->userid);
         return 403;
     }
 
     if (!command || !*command)
-        return soap_sender_fault(soap, "Command can not be empty", "The supplied command was an empty string");
+        return soap_sender_fault(soap, "命令不能为空", "提供的命令是一个空字符串");
 
-    TC_LOG_INFO("network.soap", "Received command '{}'", command);
+    TC_LOG_INFO("network.soap", "接收到命令 '{}'", command);
     SOAPCommand connection;
 
     // commands are executed in the world thread. We have to wait for them to be completed

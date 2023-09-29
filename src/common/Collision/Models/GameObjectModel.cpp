@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -92,7 +92,7 @@ void LoadGameObjectModelList(std::string const& dataPath)
     }
 
     fclose(model_list_file);
-    TC_LOG_INFO("server.loading", ">> Loaded {} GameObject models in {} ms", uint32(model_list.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象模型, 用时 {} 毫秒", uint32(model_list.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 GameObjectModel::~GameObjectModel()

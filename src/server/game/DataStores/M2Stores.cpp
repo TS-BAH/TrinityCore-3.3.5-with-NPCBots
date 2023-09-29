@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -174,7 +174,7 @@ bool readCamera(M2Camera const* cam, uint32 buffSize, M2Header const* header, Ci
 void LoadM2Cameras(std::string const& dataPath)
 {
     sFlyByCameraStore.clear();
-    TC_LOG_INFO("server.loading", ">> Loading Cinematic Camera files");
+    TC_LOG_INFO("server.loading", ">> 加载电影摄影机文件");
 
     uint32 oldMSTime = getMSTime();
     for (CinematicCameraEntry const* dbcentry : sCinematicCameraStore)
@@ -248,7 +248,7 @@ void LoadM2Cameras(std::string const& dataPath)
             TC_LOG_ERROR("server.loading", "Camera file {} is damaged. Camera references position beyond file end", filename.string());
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} cinematic waypoint sets in {} ms", (uint32)sFlyByCameraStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个电影航点集, 用时 {} 毫秒", (uint32)sFlyByCameraStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 std::vector<FlyByCamera> const* GetFlyByCameras(uint32 cinematicCameraId)

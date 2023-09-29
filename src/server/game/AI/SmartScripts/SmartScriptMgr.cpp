@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -59,7 +59,7 @@ void SmartWaypointMgr::LoadFromDB()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 SmartAI Waypoint Paths. DB table `waypoints` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 SmartAI 航点路径. 数据库表 `waypoints` 为空.");
 
         return;
     }
@@ -102,7 +102,7 @@ void SmartWaypointMgr::LoadFromDB()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} SmartAI waypoint paths (total {} waypoints) in {} ms", count, total, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 SmartAI 航点路径 (总共 {} 个航点), 用时 {} 毫秒", count, total, GetMSTimeDiffToNow(oldMSTime));
 }
 
 WaypointPath const* SmartWaypointMgr::GetPath(uint32 id)
@@ -133,7 +133,7 @@ void SmartAIMgr::LoadSmartAIFromDB()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 SmartAI scripts. DB table `smartai_scripts` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 SmartAI 脚本. 数据库表 `smartai_scripts` 为空.");
         return;
     }
 
@@ -386,7 +386,7 @@ void SmartAIMgr::LoadSmartAIFromDB()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} SmartAI scripts in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 SmartAI 脚本, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
     UnLoadHelperStores();
 }
@@ -2229,7 +2229,7 @@ void SmartAIMgr::LoadHelperStores()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded SmartAIMgr Helpers in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载 SmartAI 管理助手, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 }
 
 void SmartAIMgr::UnLoadHelperStores()

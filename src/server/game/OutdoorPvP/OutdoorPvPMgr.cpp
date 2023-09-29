@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -54,7 +54,7 @@ void OutdoorPvPMgr::InitOutdoorPvP()
     QueryResult result = WorldDatabase.Query("SELECT TypeId, ScriptName FROM outdoorpvp_template");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 outdoor PvP definitions. DB table `outdoorpvp_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个户外 PvP 定义. 数据库表 `outdoorpvp_template` 为空.");
         return;
     }
 
@@ -109,7 +109,7 @@ void OutdoorPvPMgr::InitOutdoorPvP()
         m_OutdoorPvPSet.push_back(pvp);
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} outdoor PvP definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个户外 PvP 定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void OutdoorPvPMgr::AddZone(uint32 zoneid, OutdoorPvP* handle)

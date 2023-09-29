@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -47,7 +47,7 @@ void WorldSession::HandleQuestgiverStatusQueryOpcode(WorldPacket& recvData)
     Object* questGiver = ObjectAccessor::GetObjectByTypeMask(*_player, guid, TYPEMASK_UNIT | TYPEMASK_GAMEOBJECT);
     if (!questGiver)
     {
-        TC_LOG_INFO("network", "Error in CMSG_QUESTGIVER_STATUS_QUERY, called for non-existing questgiver ({})", guid.ToString());
+        TC_LOG_INFO("network", "CMSG_QUESTGIVER_STATUS_QUERY 出错, 调用了不存在的任务提供者 ({})", guid.ToString());
         return;
     }
 
@@ -448,7 +448,7 @@ void WorldSession::HandleQuestLogRemoveQuest(WorldPacket& recvData)
             sEluna->OnQuestAbandon(_player, questId);
 #endif
 
-            TC_LOG_INFO("network", "Player {} abandoned quest {}", _player->GetGUID().ToString(), questId);
+            TC_LOG_INFO("network", "玩家 {} 放弃了任务 {}", _player->GetGUID().ToString(), questId);
 
             if (sWorld->getBoolConfig(CONFIG_QUEST_ENABLE_QUEST_TRACKER)) // check if Quest Tracker is enabled
             {

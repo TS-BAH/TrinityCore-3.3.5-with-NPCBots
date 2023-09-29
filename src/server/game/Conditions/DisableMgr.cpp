@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -66,7 +66,7 @@ void LoadDisables()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 disables. DB table `disables` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个禁用项. 数据库表 `disables` 为空!");
         return;
     }
 
@@ -208,28 +208,28 @@ void LoadDisables()
                 {
                     case MAP_COMMON:
                         if (flags & VMAP::VMAP_DISABLE_AREAFLAG)
-                            TC_LOG_INFO("misc", "Areaflag disabled for world map {}.", entry);
+                            TC_LOG_INFO("misc", "世界地图 {} 的区域标志已禁用.", entry);
                         if (flags & VMAP::VMAP_DISABLE_LIQUIDSTATUS)
-                            TC_LOG_INFO("misc", "Liquid status disabled for world map {}.", entry);
+                            TC_LOG_INFO("misc", "世界地图 {} 的液体状态已禁用.", entry);
                         break;
                     case MAP_INSTANCE:
                     case MAP_RAID:
                         if (flags & VMAP::VMAP_DISABLE_HEIGHT)
-                            TC_LOG_INFO("misc", "Height disabled for instance map {}.", entry);
+                            TC_LOG_INFO("misc", "副本地图 {} 的高度已禁用.", entry);
                         if (flags & VMAP::VMAP_DISABLE_LOS)
-                            TC_LOG_INFO("misc", "LoS disabled for instance map {}.", entry);
+                            TC_LOG_INFO("misc", "副本地图 {} 的视线遮挡已禁用.", entry);
                         break;
                     case MAP_BATTLEGROUND:
                         if (flags & VMAP::VMAP_DISABLE_HEIGHT)
-                            TC_LOG_INFO("misc", "Height disabled for battleground map {}.", entry);
+                            TC_LOG_INFO("misc", "战场地图 {} 的高度已禁用.", entry);
                         if (flags & VMAP::VMAP_DISABLE_LOS)
-                            TC_LOG_INFO("misc", "LoS disabled for battleground map {}.", entry);
+                            TC_LOG_INFO("misc", "战场地图 {} 的视线遮挡已禁用.", entry);
                         break;
                     case MAP_ARENA:
                         if (flags & VMAP::VMAP_DISABLE_HEIGHT)
-                            TC_LOG_INFO("misc", "Height disabled for arena map {}.", entry);
+                            TC_LOG_INFO("misc", "竞技场地图 {} 的高度已禁用.", entry);
                         if (flags & VMAP::VMAP_DISABLE_LOS)
-                            TC_LOG_INFO("misc", "LoS disabled for arena map {}.", entry);
+                            TC_LOG_INFO("misc", "竞技场地图 {} 的视线遮挡已禁用.", entry);
                         break;
                     default:
                         break;
@@ -247,17 +247,17 @@ void LoadDisables()
                 switch (mapEntry->InstanceType)
                 {
                     case MAP_COMMON:
-                        TC_LOG_INFO("misc", "Pathfinding disabled for world map {}.", entry);
+                        TC_LOG_INFO("misc", "世界地图 {} 的路径查找已禁用.", entry);
                         break;
                     case MAP_INSTANCE:
                     case MAP_RAID:
-                        TC_LOG_INFO("misc", "Pathfinding disabled for instance map {}.", entry);
+                        TC_LOG_INFO("misc", "副本地图 {} 的路径查找已禁用.", entry);
                         break;
                     case MAP_BATTLEGROUND:
-                        TC_LOG_INFO("misc", "Pathfinding disabled for battleground map {}.", entry);
+                        TC_LOG_INFO("misc", "战场地图 {} 的路径查找已禁用.", entry);
                         break;
                     case MAP_ARENA:
-                        TC_LOG_INFO("misc", "Pathfinding disabled for arena map {}.", entry);
+                        TC_LOG_INFO("misc", "竞技场地图 {} 的路径查找已禁用.", entry);
                         break;
                     default:
                         break;
@@ -273,7 +273,7 @@ void LoadDisables()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} disables in {} ms", total_count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个禁用项, 用时 {} 毫秒", total_count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void CheckQuestDisables()
@@ -283,7 +283,7 @@ void CheckQuestDisables()
     uint32 count = m_DisableMap[DISABLE_TYPE_QUEST].size();
     if (!count)
     {
-        TC_LOG_INFO("server.loading", ">> Checked 0 quest disables.");
+        TC_LOG_INFO("server.loading", ">> 检查了 0 个任务禁用项.");
         return;
     }
 
@@ -302,7 +302,7 @@ void CheckQuestDisables()
         ++itr;
     }
 
-    TC_LOG_INFO("server.loading", ">> Checked {} quest disables in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 检查了 {} 个任务禁用项, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool IsDisabledFor(DisableType type, uint32 entry, WorldObject const* ref, uint8 flags /*= 0*/)

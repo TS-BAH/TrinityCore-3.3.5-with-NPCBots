@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1037,13 +1037,13 @@ ScriptMgr* ScriptMgr::instance()
 void ScriptMgr::Initialize()
 {
     ASSERT(sSpellMgr->GetSpellInfo(SPELL_HOTSWAP_VISUAL_SPELL_EFFECT)
-           && "Reload hotswap spell effect for creatures isn't valid!");
+           && "重新加载生物的法术效果不合法!");
 
     uint32 oldMSTime = getMSTime();
 
     LoadDatabase();
 
-    TC_LOG_INFO("server.loading", "Loading C++ scripts");
+    TC_LOG_INFO("server.loading", "加载 C++ 脚本");
 
     FillSpellSummary();
 
@@ -1062,7 +1062,7 @@ void ScriptMgr::Initialize()
 
     // Load all static linked scripts through the script loader function.
     ASSERT(_script_loader_callback,
-           "Script loader callback wasn't registered!");
+           "脚本加载器回调未注册!");
     _script_loader_callback();
 
     // Initialize all dynamic scripts
@@ -1088,10 +1088,10 @@ void ScriptMgr::Initialize()
         if (scriptName.empty())
             continue;
 
-        TC_LOG_ERROR("sql.sql", "Script '{}' is referenced by the database, but does not exist in the core!", scriptName);
+        TC_LOG_ERROR("sql.sql", "数据库引用了脚本 '{}', 但在核心中不存在!", scriptName);
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} C++ scripts in {} ms",
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 C++ 脚本，用时 {} 毫秒",
         GetScriptCount(), GetMSTimeDiffToNow(oldMSTime));
 }
 

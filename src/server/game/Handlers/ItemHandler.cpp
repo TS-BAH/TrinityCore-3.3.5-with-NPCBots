@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -315,7 +315,7 @@ void WorldSession::HandleDestroyItemOpcode(WorldPacket& recvData)
 // Only _static_ data send in this packet !!!
 void WorldSession::HandleItemQuerySingleOpcode(WorldPackets::Query::QueryItemSingle& query)
 {
-    TC_LOG_INFO("network", "STORAGE: Item Query = {}", query.ItemID);
+    TC_LOG_INFO("network", "STORAGE: 物品查询 = {}", query.ItemID);
 
     if (ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(query.ItemID))
     {
@@ -354,12 +354,12 @@ void WorldSession::HandleReadItem(WorldPacket& recvData)
         if (msg == EQUIP_ERR_OK)
         {
             data.Initialize (SMSG_READ_ITEM_OK, 8);
-            TC_LOG_INFO("network", "STORAGE: Item page sent");
+            TC_LOG_INFO("network", "STORAGE: 物品页面已发送");
         }
         else
         {
             data.Initialize(SMSG_READ_ITEM_FAILED, 8);
-            TC_LOG_INFO("network", "STORAGE: Unable to read item");
+            TC_LOG_INFO("network", "STORAGE: 无法读取物品");
             _player->SendEquipError(msg, pItem, nullptr);
         }
         data << pItem->GetGUID();

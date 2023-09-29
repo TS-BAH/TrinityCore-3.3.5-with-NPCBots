@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -156,14 +156,14 @@ uint32 MySQLConnection::Open()
     {
         if (!m_reconnecting)
         {
-            TC_LOG_INFO("sql.sql", "MySQL client library: {}", mysql_get_client_info());
-            TC_LOG_INFO("sql.sql", "MySQL server ver: {} ", mysql_get_server_info(m_Mysql));
+            TC_LOG_INFO("sql.sql", "MySQL 客户端库: {}", mysql_get_client_info());
+            TC_LOG_INFO("sql.sql", "MySQL 服务器版本: {}", mysql_get_server_info(m_Mysql));
             // MySQL version above 5.1 IS required in both client and server and there is no known issue with different versions above 5.1
             // if (mysql_get_server_version(m_Mysql) != mysql_get_client_version())
             //     TC_LOG_INFO("sql.sql", "[WARNING] MySQL client/server version mismatch; may conflict with behaviour of prepared statements.");
         }
 
-        TC_LOG_INFO("sql.sql", "Connected to MySQL database at {}", m_connectionInfo.host);
+        TC_LOG_INFO("sql.sql", "已连接到位于 {} 的 MySQL 数据库", m_connectionInfo.host);
         mysql_autocommit(m_Mysql, 1);
 
         // set connection properties to UTF8 to properly handle locales for different
@@ -547,7 +547,7 @@ bool MySQLConnection::_HandleMySQLErrno(uint32 errNo, uint8 attempts /*= 5*/)
         }
         case CR_CONN_HOST_ERROR:
         {
-            TC_LOG_INFO("sql.sql", "Attempting to reconnect to the MySQL server...");
+            TC_LOG_INFO("sql.sql", "尝试重新连接到 MySQL 服务器...");
 
             m_reconnecting = true;
 
@@ -562,9 +562,9 @@ bool MySQLConnection::_HandleMySQLErrno(uint32 errNo, uint8 attempts /*= 5*/)
                     ABORT();
                 }
 
-                TC_LOG_INFO("sql.sql", "Successfully reconnected to {} @{}:{} ({}).",
+                TC_LOG_INFO("sql.sql", "成功重新连接到 {} @{}:{} ({}).",
                     m_connectionInfo.database, m_connectionInfo.host, m_connectionInfo.port_or_socket,
-                        (m_connectionFlags & CONNECTION_ASYNC) ? "asynchronous" : "synchronous");
+                        (m_connectionFlags & CONNECTION_ASYNC) ? "异步" : "同步");
 
                 m_reconnecting = false;
                 return true;

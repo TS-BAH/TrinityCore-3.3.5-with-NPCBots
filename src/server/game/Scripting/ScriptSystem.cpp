@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -46,14 +46,14 @@ void SystemMgr::LoadScriptWaypoints()
     if (result)
         entryCount = result->GetRowCount();
 
-    TC_LOG_INFO("server.loading", "Loading Script Waypoints for {} creature(s)...", entryCount);
+    TC_LOG_INFO("server.loading", "加载 {} 只生物的脚本航点...", entryCount);
 
     //                                     0       1         2           3           4           5
     result = WorldDatabase.Query("SELECT entry, pointid, location_x, location_y, location_z, waittime FROM script_waypoint ORDER BY pointid");
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Script Waypoints. DB table `script_waypoint` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个脚本航点. 数据库表 `script_waypoint` 为空.");
         return;
     }
     uint32 count = 0;
@@ -85,7 +85,7 @@ void SystemMgr::LoadScriptWaypoints()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Script Waypoint nodes in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个脚本航点, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void SystemMgr::LoadScriptSplineChains()
@@ -100,7 +100,7 @@ void SystemMgr::LoadScriptSplineChains()
     QueryResult resultWP = WorldDatabase.Query("SELECT entry, chainId, splineId, wpId, x, y, z FROM script_spline_chain_waypoints ORDER BY entry asc, chainId asc, splineId asc, wpId asc");
     if (!resultMeta || !resultWP)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded spline chain data for 0 chains, consisting of 0 splines with 0 waypoints. DB tables `script_spline_chain_meta` and `script_spline_chain_waypoints` are empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个链的样条数据, 包括 0 个样条和 0 个航点. 数据库表 `script_spline_chain_meta` 或 `script_spline_chain_waypoints` 为空.");
     }
     else
     {
@@ -158,7 +158,7 @@ void SystemMgr::LoadScriptSplineChains()
             ++wpCount;
         } while (resultWP->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded spline chain data for {} chains, consisting of {} splines with {} waypoints in {} ms", chainCount, splineCount, wpCount, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个链的样条数据, 包括 {} 个样条和 {} 个航点, 用时 {} 毫秒", chainCount, splineCount, wpCount, GetMSTimeDiffToNow(oldMSTime));
     }
 }
 

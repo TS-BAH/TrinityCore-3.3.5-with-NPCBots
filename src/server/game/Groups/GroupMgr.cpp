@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -148,7 +148,7 @@ void GroupMgr::LoadGroups()
             ", g.icon7, g.icon8, g.groupType, g.difficulty, g.raidDifficulty, g.masterLooterGuid, g.guid, lfg.dungeon, lfg.state FROM `groups` g LEFT JOIN lfg_data lfg ON lfg.guid = g.guid ORDER BY g.guid ASC");
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 group definitions. DB table `groups` is empty!");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个团队定义. 数据库表 `groups` 为空!");
             return;
         }
 
@@ -173,10 +173,10 @@ void GroupMgr::LoadGroups()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} group definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个团队定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 
-    TC_LOG_INFO("server.loading", "Loading Group members...");
+    TC_LOG_INFO("server.loading", "加载团队成员...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -190,7 +190,7 @@ void GroupMgr::LoadGroups()
         QueryResult result = CharacterDatabase.Query("SELECT guid, memberGuid, memberFlags, subgroup, roles FROM group_member ORDER BY guid");
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 group members. DB table `group_member` is empty!");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个团队成员. 数据库表 `group_member` 为空!");
             return;
         }
 
@@ -210,10 +210,10 @@ void GroupMgr::LoadGroups()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} group members in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个团队成员, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 
-    TC_LOG_INFO("server.loading", "Loading Group instance saves...");
+    TC_LOG_INFO("server.loading", "加载团队副本保存数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -225,7 +225,7 @@ void GroupMgr::LoadGroups()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 group-instance saves. DB table `group_instance` is empty!");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个团队副本保存. 数据库表 `group_instance` 为空!");
             return;
         }
 
@@ -257,6 +257,6 @@ void GroupMgr::LoadGroups()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} group-instance saves in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个团队副本保存, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 }

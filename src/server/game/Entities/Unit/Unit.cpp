@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -13899,7 +13899,7 @@ void Unit::CheckPendingMovementAcks()
 
         GameClient* controller = GetGameClientMovingMe();
         controller->GetWorldSession()->KickPlayer("Took too long to ack a movement change");
-        TC_LOG_INFO("cheat", "Unit::CheckPendingMovementAcks: Player GUID: {} took too long to acknowledge a movement change. He was therefore kicked.", controller->GetBasePlayer()->GetGUID().ToString());
+        TC_LOG_INFO("cheat", "Unit::CheckPendingMovementAcks: 玩家 GUID: {} 花费了太长时间来确认移动变化. 因此, 他被踢出了游戏.", controller->GetBasePlayer()->GetGUID().ToString());
     }
 }
 

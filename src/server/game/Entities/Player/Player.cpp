@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -4567,7 +4567,7 @@ void Player::DeleteOldCharacters()
  */
 void Player::DeleteOldCharacters(uint32 keepDays)
 {
-    TC_LOG_INFO("entities.player", "Player::DeleteOldCharacters: Deleting all characters which have been deleted {} days before...", keepDays);
+    TC_LOG_INFO("entities.player", "Player::DeleteOldCharacters: 删除所有在 {} 天前已被删除的角色...", keepDays);
 
     CharacterDatabasePreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHAR_OLD_CHARS);
     stmt->setUInt32(0, static_cast<uint32>(GameTime::GetGameTime() - static_cast<time_t>(keepDays) * DAY));

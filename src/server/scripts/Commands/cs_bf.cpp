@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -61,7 +61,7 @@ public:
         bf->StartBattle();
 
         if (battleId == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command start used)");
+            handler->SendGlobalGMSysMessage("冬拥湖 (使用命令启动)");
 
         return true;
     }
@@ -76,7 +76,7 @@ public:
         bf->EndBattle(true);
 
         if (battleId == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command stop used)");
+            handler->SendGlobalGMSysMessage("冬拥湖 (使用命令停止)");
 
         return true;
     }
@@ -92,13 +92,13 @@ public:
         {
             bf->ToggleBattlefield(false);
             if (battleId == 1)
-                handler->SendGlobalGMSysMessage("Wintergrasp is disabled");
+                handler->SendGlobalGMSysMessage("冬拥湖已禁用");
         }
         else
         {
             bf->ToggleBattlefield(true);
             if (battleId == 1)
-                handler->SendGlobalGMSysMessage("Wintergrasp is enabled");
+                handler->SendGlobalGMSysMessage("冬拥湖已启用");
         }
 
         return true;
@@ -113,7 +113,7 @@ public:
 
         bf->EndBattle(false);
         if (battleId == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command switch used)");
+            handler->SendGlobalGMSysMessage("冬拥湖 (使用命令切换)");
 
         return true;
     }
@@ -128,7 +128,7 @@ public:
         bf->SetTimer(time * IN_MILLISECONDS);
         bf->SendInitWorldStatesToAll();
         if (battleId == 1)
-            handler->SendGlobalGMSysMessage("Wintergrasp (Command timer used)");
+            handler->SendGlobalGMSysMessage("冬拥湖 (使用命令计时器)");
 
         return true;
     }

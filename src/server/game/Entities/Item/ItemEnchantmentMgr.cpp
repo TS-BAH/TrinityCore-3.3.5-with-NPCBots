@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -72,10 +72,10 @@ void LoadRandomEnchantmentsTable()
             ++count;
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} Item Enchantment definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品附魔定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Item Enchantment definitions. DB table `item_enchantment_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个物品附魔定义. 数据库表 `item_enchantment_template` 为空.");
 }
 
 uint32 GetItemEnchantMod(int32 entry)

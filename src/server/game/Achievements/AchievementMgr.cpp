@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -2303,7 +2303,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaList()
 
     if (sAchievementCriteriaStore.GetNumRows() == 0)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 achievement criteria.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个成就条件.");
         return;
     }
 
@@ -2375,7 +2375,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaList()
         ++loaded;
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} achievement criteria in {} ms.", loaded, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个成就条件, 用时 {} 毫秒.", loaded, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AchievementGlobalMgr::LoadAchievementReferenceList()
@@ -2384,7 +2384,7 @@ void AchievementGlobalMgr::LoadAchievementReferenceList()
 
     if (sAchievementStore.GetNumRows() == 0)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 achievement references.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个成就引用.");
         return;
     }
 
@@ -2404,7 +2404,7 @@ void AchievementGlobalMgr::LoadAchievementReferenceList()
     if (AchievementEntry const* achievement = sAchievementMgr->GetAchievement(4539))
         const_cast<AchievementEntry*>(achievement)->InstanceID = 631;    // Correct map requirement (currently has Ulduar)
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} achievement references in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个成就引用, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AchievementGlobalMgr::LoadAchievementCriteriaData()
@@ -2417,7 +2417,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 additional achievement criteria data. DB table `achievement_criteria_data` is empty.");
+        TC_LOG_INFO("server.loading", ">>  加载了 0 条额外成就条件数据. 数据库表 `achievement_criteria_data` 为空.");
         return;
     }
 
@@ -2538,7 +2538,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
             TC_LOG_ERROR("sql.sql", "Table `achievement_criteria_data` does not contain expected data for criteria (Entry: {} Type: {}) for achievement {}.", criteria->ID, criteria->Type, criteria->AchievementID);
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} additional achievement criteria data in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条额外的成就条件数据, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AchievementGlobalMgr::LoadCompletedAchievements()
@@ -2557,7 +2557,7 @@ void AchievementGlobalMgr::LoadCompletedAchievements()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 realm first completed achievements. DB table `character_achievement` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个服务器首次完成的成就. 数据库表 `character_achievement` 为空.");
         return;
     }
 
@@ -2583,7 +2583,7 @@ void AchievementGlobalMgr::LoadCompletedAchievements()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} realm first completed achievements in {} ms.", (unsigned long)_allCompletedAchievements.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个服务器首次完成的成就, 用时 {} 毫秒.", (unsigned long)_allCompletedAchievements.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AchievementGlobalMgr::LoadRewards()
@@ -2597,7 +2597,7 @@ void AchievementGlobalMgr::LoadRewards()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 achievement rewards. DB table `achievement_reward` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条成就奖励. 数据库表 `achievement_reward` 为空.");
         return;
     }
 
@@ -2698,7 +2698,7 @@ void AchievementGlobalMgr::LoadRewards()
         m_achievementRewards[id] = reward;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} achievement rewards in {} ms.", uint32(m_achievementRewards.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条成就奖励, 用时 {} 毫秒.", uint32(m_achievementRewards.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AchievementGlobalMgr::LoadRewardLocales()
@@ -2712,7 +2712,7 @@ void AchievementGlobalMgr::LoadRewardLocales()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 achievement reward locale strings.  DB table `achievement_reward_locale` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条成就奖励本地化字符串. 数据库表 `achievement_reward_locale` 为空.");
         return;
     }
 
@@ -2738,7 +2738,7 @@ void AchievementGlobalMgr::LoadRewardLocales()
         ObjectMgr::AddLocaleString(fields[3].GetString(), locale, data.Text);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} achievement reward locale strings in {} ms.", uint32(m_achievementRewardLocales.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条成就奖励本地化字符串, 用时 {} 毫秒.", uint32(m_achievementRewardLocales.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 AchievementEntry const* AchievementGlobalMgr::GetAchievement(uint32 achievementId) const

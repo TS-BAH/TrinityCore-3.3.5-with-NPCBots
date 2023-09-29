@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -75,7 +75,7 @@ void CharacterCache::LoadCharacterCacheStorage()
     QueryResult result = CharacterDatabase.Query("SELECT guid, name, account, race, gender, class, level FROM characters");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", "No character name data loaded, empty query");
+        TC_LOG_INFO("server.loading", "未加载角色名称数据, 查询为空");
         return;
     }
 
@@ -86,7 +86,7 @@ void CharacterCache::LoadCharacterCacheStorage()
             fields[4].GetUInt8() /*gender*/, fields[3].GetUInt8() /*race*/, fields[5].GetUInt8() /*class*/, fields[6].GetUInt8() /*level*/);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", "Loaded character infos for {} characters in {} ms", _characterCacheStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", "加载了 {} 个角色信息, 用时 {} 毫秒", _characterCacheStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 /*

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -95,10 +95,10 @@ void LootItemStorage::LoadStorageFromDB()
             ++count;
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} stored item loots in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个存储的物品战利品, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 stored item loots");
+        TC_LOG_INFO("server.loading", ">>  加载了 0 个存储的物品战利品");
 
     stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_ITEMCONTAINER_MONEY);
     result = CharacterDatabase.Query(stmt);
@@ -125,10 +125,10 @@ void LootItemStorage::LoadStorageFromDB()
             ++count;
         } while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} stored item money in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个存储的物品金钱, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 stored item money");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个存储的物品金钱");
 }
 
 bool LootItemStorage::LoadStoredLoot(Item* item, Player* player)

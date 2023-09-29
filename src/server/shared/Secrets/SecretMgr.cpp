@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -155,7 +155,7 @@ void SecretMgr::AttemptLoad(Secrets i, LogLevel errorLevel, std::unique_lock<std
             return;
         }
 
-        TC_LOG_INFO("server.loading", "Successfully transitioned database to new '{}' value.", info.configKey);
+        TC_LOG_INFO("server.loading", "成功将数据库过渡到新的 '{}' 值.", info.configKey);
     }
 
     if (currentValue)

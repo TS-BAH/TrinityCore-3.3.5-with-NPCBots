@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -151,7 +151,7 @@ void WorldSession::HandleBuyBankSlotOpcode(WorldPackets::Bank::BuyBankSlot& buyB
     // next slot
     ++slot;
 
-    TC_LOG_INFO("network", "PLAYER: Buy bank bag slot, slot number = {}", slot);
+    TC_LOG_INFO("network", "PLAYER: 购买银行背包槽位, 槽位编号 = {}", slot);
 
     BankBagSlotPricesEntry const* slotEntry = sBankBagSlotPricesStore.LookupEntry(slot);
 

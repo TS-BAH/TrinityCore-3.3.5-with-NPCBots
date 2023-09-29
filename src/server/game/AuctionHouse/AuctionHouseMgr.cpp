@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -155,7 +155,7 @@ void AuctionHouseMgr::SendAuctionWonMail(AuctionEntry* auction, CharacterDatabas
 
         uint32 ownerAccId = sCharacterCache->GetCharacterAccountIdByGuid(ownerGuid);
 
-        sLog->OutCommand(bidderAccId, "GM {} (Account: {}) won item in auction: {} (Entry: {} Count: {}) and pay money: {}. Original owner {} (Account: {})",
+        sLog->OutCommand(bidderAccId, "GM {} (账号: {}) 在拍卖中赢得了物品: {} (Entry: {} 数量: {}) 并支付了: {}. 原所有者是 {} (账号: {})",
             bidderName, bidderAccId, pItem->GetTemplate()->Name1, pItem->GetEntry(), pItem->GetCount(), auction->bid, ownerName, ownerAccId);
     }
 
@@ -317,7 +317,7 @@ void AuctionHouseMgr::LoadAuctionItems()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 auction items. DB table `auctionhouse` or `item_instance` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个拍卖物品. 数据库表 `auctionhouse` 或 `item_instance` 为空!");
 
         return;
     }
@@ -350,7 +350,7 @@ void AuctionHouseMgr::LoadAuctionItems()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} auction items in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个拍卖物品, 用时{} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
 }
 
@@ -363,7 +363,7 @@ void AuctionHouseMgr::LoadAuctions()
 
     if (!resultAuctions)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 auctions. DB table `auctionhouse` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个拍卖品. 数据库表 `auctionhouse` 为空.");
 
         return;
     }
@@ -409,7 +409,7 @@ void AuctionHouseMgr::LoadAuctions()
 
     CharacterDatabase.CommitTransaction(trans);
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} auctions with {} bidders in {} ms", countAuctions, countBidders, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个拍卖品, 有 {} 个竞拍者, 用时 {} 毫秒", countAuctions, countBidders, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AuctionHouseMgr::AddAItem(Item* it)

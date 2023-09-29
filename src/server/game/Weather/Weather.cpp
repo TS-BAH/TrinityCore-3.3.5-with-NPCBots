@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -37,7 +37,7 @@ Weather::Weather(uint32 zoneId, WeatherData const* weatherChances)
     m_type = WEATHER_TYPE_FINE;
     m_intensity = 0;
 
-    TC_LOG_INFO("misc", "WORLD: Starting weather system for zone {} (change every {} minutes).", m_zone, (uint32)(m_timer.GetInterval() / (MINUTE*IN_MILLISECONDS)));
+    TC_LOG_INFO("misc", "WORLD: 启动区域 {} 的天气系统 (每 {} 分钟更改一次).", m_zone, (uint32)(m_timer.GetInterval() / (MINUTE*IN_MILLISECONDS)));
 }
 
 /// Launch a weather update
@@ -96,9 +96,9 @@ bool Weather::ReGenerate()
     localtime_r(&gtime, &ltime);
     uint32 season = ((ltime.tm_yday - 78 + 365)/91)%4;
 
-    static char const* seasonName[WEATHER_SEASONS] = { "spring", "summer", "fall", "winter" };
+    static char const* seasonName[WEATHER_SEASONS] = { "春季", "夏季", "秋季", "冬季" };
 
-    TC_LOG_INFO("misc", "Generating a change in {} weather for zone {}.", seasonName[season], m_zone);
+    TC_LOG_INFO("misc", "生成了 {} 天气变化, 作用于区域 {}.", seasonName[season], m_zone);
 
     if ((u < 60) && (m_intensity < 0.33333334f))                // Get fair
     {
@@ -224,48 +224,48 @@ bool Weather::UpdateWeather()
     switch (state)
     {
         case WEATHER_STATE_FOG:
-            wthstr = "fog";
+            wthstr = "雾";
             break;
         case WEATHER_STATE_LIGHT_RAIN:
-            wthstr = "light rain";
+            wthstr = "小雨";
             break;
         case WEATHER_STATE_MEDIUM_RAIN:
-            wthstr = "medium rain";
+            wthstr = "中雨";
             break;
         case WEATHER_STATE_HEAVY_RAIN:
-            wthstr = "heavy rain";
+            wthstr = "大雨";
             break;
         case WEATHER_STATE_LIGHT_SNOW:
-            wthstr = "light snow";
+            wthstr = "小雪";
             break;
         case WEATHER_STATE_MEDIUM_SNOW:
-            wthstr = "medium snow";
+            wthstr = "中雪";
             break;
         case WEATHER_STATE_HEAVY_SNOW:
-            wthstr = "heavy snow";
+            wthstr = "大雪";
             break;
         case WEATHER_STATE_LIGHT_SANDSTORM:
-            wthstr = "light sandstorm";
+            wthstr = "轻度沙尘暴";
             break;
         case WEATHER_STATE_MEDIUM_SANDSTORM:
-            wthstr = "medium sandstorm";
+            wthstr = "中度沙尘暴";
             break;
         case WEATHER_STATE_HEAVY_SANDSTORM:
-            wthstr = "heavy sandstorm";
+            wthstr = "重度沙尘暴";
             break;
         case WEATHER_STATE_THUNDERS:
-            wthstr = "thunders";
+            wthstr = "雷暴";
             break;
         case WEATHER_STATE_BLACKRAIN:
-            wthstr = "blackrain";
+            wthstr = "黑雨";
             break;
         case WEATHER_STATE_FINE:
         default:
-            wthstr = "fine";
+            wthstr = "晴天";
             break;
     }
 
-    TC_LOG_INFO("misc", "Change the weather of zone {} to {}.", m_zone, wthstr);
+    TC_LOG_INFO("misc", "将区域 {} 的天气更改为 {}.", m_zone, wthstr);
     sScriptMgr->OnWeatherChange(this, state, m_intensity);
     return true;
 }

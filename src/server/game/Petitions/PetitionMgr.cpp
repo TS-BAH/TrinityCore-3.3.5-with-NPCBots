@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -44,7 +44,7 @@ void PetitionMgr::LoadPetitions()
     QueryResult result = CharacterDatabase.Query("SELECT petitionguid, ownerguid, name, type FROM petition");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 petitions.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个请愿.");
         return;
     }
 
@@ -56,7 +56,7 @@ void PetitionMgr::LoadPetitions()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} petitions in: {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个请愿, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void PetitionMgr::LoadSignatures()
@@ -66,7 +66,7 @@ void PetitionMgr::LoadSignatures()
     QueryResult result = CharacterDatabase.Query("SELECT petitionguid, player_account, playerguid FROM petition_sign");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Petition signs!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个请愿签名!");
         return;
     }
 
@@ -83,7 +83,7 @@ void PetitionMgr::LoadSignatures()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Petition signs in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个请愿签名, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void PetitionMgr::AddPetition(ObjectGuid petitionGuid, ObjectGuid ownerGuid, std::string const& name, CharterTypes type, bool isLoading)

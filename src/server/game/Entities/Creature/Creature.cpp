@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1791,11 +1791,11 @@ bool Creature::LoadFromDB(ObjectGuid::LowType spawnId, Map* map, bool addToMap, 
     //npcbot
     if (IsNPCBot())
     {
-        //prevent loading npcbot twice (grid unload/load case)
+        //防止重复加载 npcbot (grid unload/load case)
         if (sWorld->GetMaxPlayerCount() > 0)
             return false;
 
-        TC_LOG_INFO("entities.unit", "Creature: loading npcbot {} (id: {})", GetName(), GetEntry());
+        TC_LOG_INFO("entities.unit", "Creature: 正在加载 {} (id: {})", GetName(), GetEntry());
         ASSERT(!IsInWorld());
 
         //don't allow removing dead bot's corpse
@@ -3639,7 +3639,7 @@ bool Creature::LoadBotCreatureFromDB(ObjectGuid::LowType spawnId, Map* map, bool
     // checked at creature_template loading
     m_defaultMovementType = data ? MovementGeneratorType(data->movementType) : IDLE_MOTION_TYPE;
 
-    TC_LOG_INFO("entities.unit", "Creature: loading npcbot {} (id: {}, gen: {})", GetName(), GetEntry(), uint32(generated));
+    TC_LOG_INFO("entities.unit", "Creature: 正在加载 npcbot {} (id: {}, 生成: {})", GetName(), GetEntry(), uint32(generated));
     ASSERT(!IsInWorld());
 
     m_corpseDelay = 0;

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -779,7 +779,7 @@ bool LootTemplate::isReference(uint32 id)
 
 void LoadLootTemplates_Creature()
 {
-    TC_LOG_INFO("server.loading", "Loading creature loot templates...");
+    TC_LOG_INFO("server.loading", "加载生物战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -809,14 +809,14 @@ void LoadLootTemplates_Creature()
     LootTemplates_Creature.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} creature loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature loot templates. DB table `creature_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物战利品模板. 数据库表 `creature_loot_template` 为空");
 }
 
 void LoadLootTemplates_Disenchant()
 {
-    TC_LOG_INFO("server.loading", "Loading disenchanting loot templates...");
+    TC_LOG_INFO("server.loading", "加载分解战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -842,14 +842,14 @@ void LoadLootTemplates_Disenchant()
     LootTemplates_Disenchant.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} disenchanting loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个分解战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 disenchanting loot templates. DB table `disenchant_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个分解战利品模板. 数据库表 `disenchant_loot_template` 为空");
 }
 
 void LoadLootTemplates_Fishing()
 {
-    TC_LOG_INFO("server.loading", "Loading fishing loot templates...");
+    TC_LOG_INFO("server.loading", "加载钓鱼战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -865,14 +865,14 @@ void LoadLootTemplates_Fishing()
     LootTemplates_Fishing.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} fishing loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个钓鱼战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 fishing loot templates. DB table `fishing_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个钓鱼战利品模板. 数据库表 `fishing_loot_template` 为空");
 }
 
 void LoadLootTemplates_Gameobject()
 {
-    TC_LOG_INFO("server.loading", "Loading gameobject loot templates...");
+    TC_LOG_INFO("server.loading", "加载游戏对象战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -899,14 +899,14 @@ void LoadLootTemplates_Gameobject()
     LootTemplates_Gameobject.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} gameobject loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 游戏对象战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject loot templates. DB table `gameobject_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 游戏对象战利品模板. 数据库表 `gameobject_loot_template` 为空");
 }
 
 void LoadLootTemplates_Item()
 {
-    TC_LOG_INFO("server.loading", "Loading item loot templates...");
+    TC_LOG_INFO("server.loading", "加载物品战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -923,14 +923,14 @@ void LoadLootTemplates_Item()
     LootTemplates_Item.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} item loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品战利品模板, 用时 1 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 item loot templates. DB table `item_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个物品战利品模板. DB table `item_loot_template` is empty");
 }
 
 void LoadLootTemplates_Milling()
 {
-    TC_LOG_INFO("server.loading", "Loading milling loot templates...");
+    TC_LOG_INFO("server.loading", "加载采矿战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -952,14 +952,14 @@ void LoadLootTemplates_Milling()
     LootTemplates_Milling.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} milling loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 采矿战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 milling loot templates. DB table `milling_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 采矿战利品模板. 数据库表 `milling_loot_template` 为空");
 }
 
 void LoadLootTemplates_Pickpocketing()
 {
-    TC_LOG_INFO("server.loading", "Loading pickpocketing loot templates...");
+    TC_LOG_INFO("server.loading", "加载偷窃战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -986,14 +986,14 @@ void LoadLootTemplates_Pickpocketing()
     LootTemplates_Pickpocketing.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} pickpocketing loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个偷窃战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 pickpocketing loot templates. DB table `pickpocketing_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个偷窃战利品模板. 数据库表 `pickpocketing_loot_template` 为空");
 }
 
 void LoadLootTemplates_Prospecting()
 {
-    TC_LOG_INFO("server.loading", "Loading prospecting loot templates...");
+    TC_LOG_INFO("server.loading", "加载选矿战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1015,14 +1015,14 @@ void LoadLootTemplates_Prospecting()
     LootTemplates_Prospecting.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} prospecting loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个选矿战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 prospecting loot templates. DB table `prospecting_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个选矿战利品模板. 数据库表 `prospecting_loot_template` 为空");
 }
 
 void LoadLootTemplates_Mail()
 {
-    TC_LOG_INFO("server.loading", "Loading mail loot templates...");
+    TC_LOG_INFO("server.loading", "加载邮件战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1039,14 +1039,14 @@ void LoadLootTemplates_Mail()
     LootTemplates_Mail.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} mail loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个邮件战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 mail loot templates. DB table `mail_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个邮件战利品模板. 数据库表 `mail_loot_template` 为空");
 }
 
 void LoadLootTemplates_Skinning()
 {
-    TC_LOG_INFO("server.loading", "Loading skinning loot templates...");
+    TC_LOG_INFO("server.loading", "加载剥皮战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1073,14 +1073,14 @@ void LoadLootTemplates_Skinning()
     LootTemplates_Skinning.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} skinning loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个剥皮战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 skinning loot templates. DB table `skinning_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个剥皮战利品模板. 数据库表 `skinning_loot_template` 为空");
 }
 
 void LoadLootTemplates_Spell()
 {
-    TC_LOG_INFO("server.loading", "Loading spell loot templates...");
+    TC_LOG_INFO("server.loading", "加载法术战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1113,14 +1113,14 @@ void LoadLootTemplates_Spell()
     LootTemplates_Spell.ReportUnusedIds(lootIdSet);
 
     if (count)
-        TC_LOG_INFO("server.loading", ">> Loaded {} spell loot templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个法术战利品模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 spell loot templates. DB table `spell_loot_template` is empty");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个法术战利品模板. 数据库表 `spell_loot_template` 为空");
 }
 
 void LoadLootTemplates_Reference()
 {
-    TC_LOG_INFO("server.loading", "Loading reference loot templates...");
+    TC_LOG_INFO("server.loading", "加载引用战利品模板...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -1143,7 +1143,7 @@ void LoadLootTemplates_Reference()
     // output error for any still listed ids (not referenced from any loot table)
     LootTemplates_Reference.ReportUnusedIds(lootIdSet);
 
-    TC_LOG_INFO("server.loading", ">> Loaded reference loot templates in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了引用战利品模板, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 }
 
 void LoadLootTables()

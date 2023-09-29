@@ -4077,7 +4077,7 @@ public:
         if (!u)
         {
             handler->SendSysMessage(".npcbot revive");
-            handler->SendSysMessage("Revives selected npcbot. If player is selected, revives all selected player's npcbots");
+            handler->SendSysMessage("复活选定的 npcbot. 如果选择了玩家, 则会复活所有选定玩家的 npcbots");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -4086,13 +4086,13 @@ public:
         {
             if (!master->HaveBot())
             {
-                handler->PSendSysMessage("%s has no npcbots!", master->GetName().c_str());
+                handler->PSendSysMessage("%s 没有 npcbots!", master->GetName().c_str());
                 handler->SetSentErrorMessage(true);
                 return false;
             }
 
             master->GetBotMgr()->ReviveAllBots();
-            handler->SendSysMessage("Npcbots revived");
+            handler->SendSysMessage("Npcbots 已复活");
             return true;
         }
         else if (Creature* bot = u->ToCreature())
@@ -4101,18 +4101,18 @@ public:
             {
                 if (bot->IsAlive())
                 {
-                    handler->PSendSysMessage("%s is not dead", bot->GetName().c_str());
+                    handler->PSendSysMessage("%s 未死亡", bot->GetName().c_str());
                     handler->SetSentErrorMessage(true);
                     return false;
                 }
 
                 BotMgr::ReviveBot(bot, (bot->GetBotOwner() == owner) ? owner->ToUnit() : bot->ToUnit());
-                handler->PSendSysMessage("%s revived", bot->GetName().c_str());
+                handler->PSendSysMessage("%s 已复活", bot->GetName().c_str());
                 return true;
             }
         }
 
-        handler->SendSysMessage("You must select player or npcbot");
+        handler->SendSysMessage("你必须选择玩家或 npcbot");
         handler->SetSentErrorMessage(true);
         return false;
     }
@@ -4125,7 +4125,7 @@ public:
         if (!cre || cre->GetTypeId() != TYPEID_UNIT)
         {
             handler->SendSysMessage(".npcbot add");
-            handler->SendSysMessage("Allows to hire selected uncontrolled bot");
+            handler->SendSysMessage("允许雇佣选定的未受控制的机器人");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -4133,7 +4133,7 @@ public:
         Creature* bot = cre->ToCreature();
         if (!bot || !bot->IsNPCBot() || bot->GetBotAI()->GetBotOwnerGuid() || bot->GetBotAI()->IsWanderer())
         {
-            handler->SendSysMessage("You must select uncontrolled non-wandering npcbot");
+            handler->SendSysMessage("你必须选择未受控制的非漫游 npcbot");
             handler->SetSentErrorMessage(true);
             return false;
         }
@@ -4144,23 +4144,23 @@ public:
 
         if (owner->GetBotMgr()->AddBot(bot) == BOT_ADD_SUCCESS)
         {
-            handler->PSendSysMessage("%s is now your npcbot", bot->GetName().c_str());
+            handler->PSendSysMessage("%s 现在是你的 npcbot", bot->GetName().c_str());
             return true;
         }
 
-        handler->SendSysMessage("NpcBot is NOT added for some reason!");
+        handler->SendSysMessage("NpcBot 由于某种原因未被添加!");
         handler->SetSentErrorMessage(true);
         return false;
     }
 
     static bool HandleNpcBotReloadConfigCommand(ChatHandler* handler)
     {
-        TC_LOG_INFO("misc", "Re-Loading config settings...");
+        TC_LOG_INFO("misc", "重新加载配置设置...");
         sWorld->LoadConfigSettings(true);
         sMapMgr->InitializeVisibilityDistanceInfo();
-        handler->SendGlobalGMSysMessage("World config settings reloaded.");
+        handler->SendGlobalGMSysMessage("世界配置设置已重新加载.");
         BotMgr::ReloadConfig();
-        handler->SendGlobalGMSysMessage("NpcBot config settings reloaded.");
+        handler->SendGlobalGMSysMessage("NpcBot 配置设置已重新加载.");
         return true;
     }
 };

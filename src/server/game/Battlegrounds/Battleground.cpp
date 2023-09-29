@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1739,10 +1739,10 @@ GameObject* Battleground::GetBGObject(uint32 type, bool logError)
     if (!obj)
     {
         if (logError)
-            TC_LOG_ERROR("bg.battleground", "Battleground::GetBGObject: gameobject (type: {}, {}) not found for BG (map: {}, instance id: {})!",
+            TC_LOG_ERROR("bg.battleground", "Battleground::GetBGObject: 未找到战场的游戏对象 (类型: {}, {}) (地图: {}, 实例 ID: {})!",
                 type, BgObjects[type].ToString(), m_MapId, m_InstanceID);
         else
-            TC_LOG_INFO("bg.battleground", "Battleground::GetBGObject: gameobject (type: {}, {}) not found for BG (map: {}, instance id: {})!",
+            TC_LOG_INFO("bg.battleground", "Battleground::GetBGObject: 未找到战场的游戏对象 (类型: {}, {}) (地图: {}, 实例 ID: {})!",
                 type, BgObjects[type].ToString(), m_MapId, m_InstanceID);
     }
     return obj;
@@ -1754,10 +1754,10 @@ Creature* Battleground::GetBGCreature(uint32 type, bool logError)
     if (!creature)
     {
         if (logError)
-            TC_LOG_ERROR("bg.battleground", "Battleground::GetBGCreature: creature (type: {}, {}) not found for BG (map: {}, instance id: {})!",
+            TC_LOG_ERROR("bg.battleground", "Battleground::GetBGCreature: 未找到战场的生物 (类型: {}, {}) (地图: {}, 实例 ID: {})!",
                 type, BgCreatures[type].ToString(), m_MapId, m_InstanceID);
         else
-            TC_LOG_INFO("bg.battleground", "Battleground::GetBGCreature: creature (type: {}, {}) not found for BG (map: {}, instance id: {})!",
+            TC_LOG_INFO("bg.battleground", "Battleground::GetBGCreature: 未找到战场的生物 (类型: {}, {}) (地图: {}, 实例 ID: {})!",
                 type, BgCreatures[type].ToString(), m_MapId, m_InstanceID);
     }
     return creature;
@@ -1897,7 +1897,7 @@ bool Battleground::RemoveObjectFromWorld(uint32 type)
         BgObjects[type].Clear();
         return true;
     }
-    TC_LOG_INFO("bg.battleground", "Battleground::RemoveObjectFromWorld: gameobject (type: {}, {}) not found for BG (map: {}, instance id: {})!",
+    TC_LOG_INFO("bg.battleground", "Battleground::RemoveObjectFromWorld: 未找到战场的游戏对象 (类型: {}, {}) (地图: {}, 实例 ID: {})!",
         type, BgObjects[type].ToString(), m_MapId, m_InstanceID);
     return false;
 }

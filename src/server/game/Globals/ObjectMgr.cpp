@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -290,7 +290,7 @@ void ObjectMgr::LoadCreatureLocales()
         AddLocaleString(fields[3].GetString(), locale, data.Title);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature locale strings in {} ms", uint32(_creatureLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 0 个生物本地化字符串, 用时 {} 毫秒", uint32(_creatureLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGossipMenuItemsLocales()
@@ -322,7 +322,7 @@ void ObjectMgr::LoadGossipMenuItemsLocales()
         AddLocaleString(fields[4].GetString(), locale, data.BoxText);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gossip_menu_option locale strings in {} ms", _gossipMenuItemsLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个对话菜单选项的本地化字符串, 用时 {} 毫秒", _gossipMenuItemsLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPointOfInterestLocales()
@@ -352,7 +352,7 @@ void ObjectMgr::LoadPointOfInterestLocales()
         AddLocaleString(fields[2].GetString(), locale, data.Name);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} points_of_interest locale strings in {} ms", uint32(_pointOfInterestLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个兴趣点本地化字符串, 用时 {} 毫秒", uint32(_pointOfInterestLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureTemplates()
@@ -505,7 +505,7 @@ void ObjectMgr::LoadCreatureTemplates()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature template definitions. DB table `creature_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物模板定义. 数据库表 `creature_template` 为空.");
         return;
     }
 
@@ -523,7 +523,7 @@ void ObjectMgr::LoadCreatureTemplates()
     for (auto const& ctPair : _creatureTemplateStore)
         CheckCreatureTemplate(&ctPair.second);
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature definitions in {} ms", _creatureTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物模板定义, 用时 {} 毫秒", _creatureTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureTemplate(Field* fields)
@@ -630,7 +630,7 @@ void ObjectMgr::LoadCreatureTemplateResistances()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature template resistance definitions. DB table `creature_template_resistance` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物模板抗性定义. 数据库表 `creature_template_resistance` 为空.");
         return;
     }
 
@@ -663,7 +663,7 @@ void ObjectMgr::LoadCreatureTemplateResistances()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature template resistances in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物模板抗性定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureTemplateSpells()
@@ -675,7 +675,7 @@ void ObjectMgr::LoadCreatureTemplateSpells()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature template spell definitions. DB table `creature_template_spell` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物模板法术定义. 数据库表 `creature_template_spell` 为空.");
         return;
     }
 
@@ -708,7 +708,7 @@ void ObjectMgr::LoadCreatureTemplateSpells()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature template spells in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物模板法术定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureTemplateAddons()
@@ -720,7 +720,7 @@ void ObjectMgr::LoadCreatureTemplateAddons()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature template addon definitions. DB table `creature_template_addon` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物模板路径定义. 数据库表 `creature_template_addon` 为空.");
         return;
     }
 
@@ -826,7 +826,7 @@ void ObjectMgr::LoadCreatureTemplateAddons()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature template addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物模板路径定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::CheckCreatureTemplate(CreatureTemplate const* cInfo)
@@ -1251,9 +1251,9 @@ void ObjectMgr::CheckCreatureTemplate(CreatureTemplate const* cInfo)
     const_cast<CreatureTemplate*>(cInfo)->ModDamage *= Creature::_GetDamageMod(cInfo->rank);
 
     if (cInfo->GossipMenuId && !(cInfo->npcflag & UNIT_NPC_FLAG_GOSSIP))
-        TC_LOG_INFO("sql.sql", "Creature (Entry: {}) has assigned gossip menu {}, but npcflag does not include UNIT_NPC_FLAG_GOSSIP.", cInfo->Entry, cInfo->GossipMenuId);
+        TC_LOG_INFO("sql.sql", "生物 (Entry: {}) 已分配了对话菜单 {}, 但 npcflag 不包括 UNIT_NPC_FLAG_GOSSIP.", cInfo->Entry, cInfo->GossipMenuId);
     else if (!cInfo->GossipMenuId && cInfo->npcflag & UNIT_NPC_FLAG_GOSSIP)
-        TC_LOG_INFO("sql.sql", "Creature (Entry: {}) has npcflag UNIT_NPC_FLAG_GOSSIP, but gossip menu is unassigned.", cInfo->Entry);
+        TC_LOG_INFO("sql.sql", "生物 (Entry: {}) 具有 npcflag UNIT_NPC_FLAG_GOSSIP, 但暂无对话菜单分配.", cInfo->Entry);
 }
 
 void ObjectMgr::CheckCreatureMovement(char const* table, uint64 id, CreatureMovementData& creatureMovement)
@@ -1296,7 +1296,7 @@ void ObjectMgr::LoadCreatureAddons()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature addon definitions. DB table `creature_addon` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物路径定义. 数据库表 `creature_addon` 为空.");
         return;
     }
 
@@ -1408,7 +1408,7 @@ void ObjectMgr::LoadCreatureAddons()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物路径定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGameObjectAddons()
@@ -1420,7 +1420,7 @@ void ObjectMgr::LoadGameObjectAddons()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject addon definitions. DB table `gameobject_addon` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象插件定义. 数据库表 `gameobject_addon` 为空.");
         return;
     }
 
@@ -1466,7 +1466,7 @@ void ObjectMgr::LoadGameObjectAddons()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gameobject addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象插件定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 GameObjectAddon const* ObjectMgr::GetGameObjectAddon(ObjectGuid::LowType lowguid) const
@@ -1536,7 +1536,7 @@ void ObjectMgr::LoadEquipmentTemplates()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature equipment templates. DB table `creature_equip_template` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物装备模板. 数据库表 `creature_equip_template` 为空!");
         return;
     }
 
@@ -1601,7 +1601,7 @@ void ObjectMgr::LoadEquipmentTemplates()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} equipment templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物装备模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureMovementOverrides()
@@ -1626,7 +1626,7 @@ void ObjectMgr::LoadCreatureMovementOverrides()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature movement overrides. DB table `creature_movement_override` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物移动覆盖. 数据库表 `creature_movement_override` 为空!");
         return;
     }
 
@@ -1660,7 +1660,7 @@ void ObjectMgr::LoadCreatureMovementOverrides()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} movement overrides in {} ms", _creatureMovementOverrides.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物移动覆盖, 用时 {} 毫秒", _creatureMovementOverrides.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 CreatureModelInfo const* ObjectMgr::GetCreatureModelInfo(uint32 modelId) const
@@ -1732,7 +1732,7 @@ void ObjectMgr::LoadCreatureModelInfo()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature model definitions. DB table `creature_model_info` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物模型定义. 数据库表 `creature_model_info` 为空.");
         return;
     }
 
@@ -1783,7 +1783,7 @@ void ObjectMgr::LoadCreatureModelInfo()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature model based info in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物模型定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPlayerTotemModels()
@@ -1794,7 +1794,7 @@ void ObjectMgr::LoadPlayerTotemModels()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 player totem model records. DB table `player_totem_model` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条玩家图腾模型记录. 数据库表 `player_totem_model` 为空.");
         return;
     }
 
@@ -1832,7 +1832,7 @@ void ObjectMgr::LoadPlayerTotemModels()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} player totem model records in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条玩家图腾模型记录, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 ObjectMgr::GetModelForTotem(SummonSlot totemSlot, Races race) const
@@ -1853,7 +1853,7 @@ void ObjectMgr::LoadLinkedRespawn()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 linked respawns. DB table `linked_respawn` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条链接的重生记录. 数据库表 `linked_respawn` 为空.");
         return;
     }
 
@@ -2024,7 +2024,7 @@ void ObjectMgr::LoadLinkedRespawn()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} linked respawns in {} ms", uint64(_linkedRespawnStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条链接的重生记录, 用时 {} 毫秒", uint64(_linkedRespawnStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool ObjectMgr::SetCreatureLinkedRespawn(ObjectGuid::LowType guidLow, ObjectGuid::LowType linkedGuidLow)
@@ -2088,7 +2088,7 @@ void ObjectMgr::LoadTempSummons()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 temp summons. DB table `creature_summon_groups` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个临时召唤. 数据库表 `creature_summon_groups` 为空.");
         return;
     }
 
@@ -2162,7 +2162,7 @@ void ObjectMgr::LoadTempSummons()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} temp summons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个临时召唤, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatures()
@@ -2181,7 +2181,7 @@ void ObjectMgr::LoadCreatures()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creatures. DB table `creature` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物. 数据库表 `creature` 为空.");
         return;
     }
 
@@ -2344,7 +2344,7 @@ void ObjectMgr::LoadCreatures()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creatures in {} ms", _creatureDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物, 用时 {} 毫秒", _creatureDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::AddCreatureToGrid(ObjectGuid::LowType guid, CreatureData const* data)
@@ -2488,7 +2488,7 @@ void ObjectMgr::LoadGameObjects()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobjects. DB table `gameobject` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象. 数据库表 `gameobject` 为空.");
         return;
     }
 
@@ -2649,7 +2649,7 @@ void ObjectMgr::LoadGameObjects()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gameobjects in {} ms", _gameObjectDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象, 用时 {} 毫秒", _gameObjectDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadSpawnGroupTemplates()
@@ -2704,9 +2704,9 @@ void ObjectMgr::LoadSpawnGroupTemplates()
     }
 
     if (result)
-        TC_LOG_INFO("server.loading", ">> Loaded {} spawn group templates in {} ms", _spawnGroupDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个刷新组模板, 用时 {} 毫秒", _spawnGroupDataStore.size(), GetMSTimeDiffToNow(oldMSTime));
     else
-        TC_LOG_INFO("server.loading", ">> Loaded 0 spawn group templates. DB table `spawn_group_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个刷新组模板. 数据库表 `spawn_group_template` 为空.");
 
     return;
 }
@@ -2720,7 +2720,7 @@ void ObjectMgr::LoadSpawnGroups()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 spawn group members. DB table `spawn_group` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个刷新组成员. 数据库表 `spawn_group` 为空.");
         return;
     }
 
@@ -2771,7 +2771,7 @@ void ObjectMgr::LoadSpawnGroups()
         }
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} spawn group members in {} ms", numMembers, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个刷新组成员, 用时 {} 毫秒", numMembers, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadInstanceSpawnGroups()
@@ -2783,7 +2783,7 @@ void ObjectMgr::LoadInstanceSpawnGroups()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 instance spawn groups. DB table `instance_spawn_groups` is empty.");
+        TC_LOG_INFO("server.loading", ">>  加载了 0 个副本刷新组. 数据库表 `instance_spawn_groups` 为空.");
         return;
     }
 
@@ -2839,7 +2839,7 @@ void ObjectMgr::LoadInstanceSpawnGroups()
         ++n;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} instance spawn groups in {} ms", n, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">>  加载了 {} 个副本刷新组, 用时 {} 毫秒", n, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::OnDeleteSpawnData(SpawnData const* data)
@@ -2915,7 +2915,7 @@ void ObjectMgr::LoadItemLocales()
         AddLocaleString(fields[3].GetString(), locale, data.Description);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Item locale strings in {} ms", uint32(_itemLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品本地化字符串, 用时 {} 毫秒", uint32(_itemLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadItemTemplates()
@@ -2957,7 +2957,7 @@ void ObjectMgr::LoadItemTemplates()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 item templates. DB table `item_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个物品模板. 数据库表 `item_template` 为空.");
         return;
     }
 
@@ -3516,7 +3516,7 @@ void ObjectMgr::LoadItemTemplates()
     for (std::set<uint32>::const_iterator itr = notFoundOutfit.begin(); itr != notFoundOutfit.end(); ++itr)
         TC_LOG_ERROR("sql.sql", "Item (Entry: {}) does not exist in `item_template` but is referenced in `CharStartOutfit.dbc`", *itr);
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} item templates in {} ms", _itemTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品模板, 用时 {} 毫秒", _itemTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 ItemTemplate const* ObjectMgr::GetItemTemplate(uint32 entry) const
@@ -3550,7 +3550,7 @@ void ObjectMgr::LoadItemSetNameLocales()
         AddLocaleString(fields[2].GetString(), locale, data.Name);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Item set name locale strings in {} ms", uint64(_itemSetNameLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品套装名称本地化字符串, 用时 {} 毫秒", uint64(_itemSetNameLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadItemSetNames()
@@ -3578,7 +3578,7 @@ void ObjectMgr::LoadItemSetNames()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 item set names. DB table `item_set_names` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个物品套装名称. 数据库表 `item_set_names` 为空.");
         return;
     }
 
@@ -3632,7 +3632,7 @@ void ObjectMgr::LoadItemSetNames()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} item set names in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个物品套装名称, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadVehicleTemplateAccessories()
@@ -3648,7 +3648,7 @@ void ObjectMgr::LoadVehicleTemplateAccessories()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 vehicle template accessories. DB table `vehicle_template_accessory` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个载具模板驾驶员. 数据库表 `vehicle_template_accessory` 为空.");
         return;
     }
 
@@ -3687,7 +3687,7 @@ void ObjectMgr::LoadVehicleTemplateAccessories()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Vehicle Template Accessories in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个载具模板驾驶员, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadVehicleTemplate()
@@ -3701,7 +3701,7 @@ void ObjectMgr::LoadVehicleTemplate()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 vehicle template. DB table `vehicle_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个载具模板. 数据库表 `vehicle_template` 为空.");
         return;
     }
 
@@ -3722,7 +3722,7 @@ void ObjectMgr::LoadVehicleTemplate()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Vehicle Template entries in {} ms", _vehicleTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个载具模板, 用时 {} 毫秒", _vehicleTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadVehicleAccessories()
@@ -3738,7 +3738,7 @@ void ObjectMgr::LoadVehicleAccessories()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Vehicle Accessories in {} ms", GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个载具驾驶员, 数据库表 `vehicle_accessory` 为空.");
         return;
     }
 
@@ -3765,7 +3765,7 @@ void ObjectMgr::LoadVehicleAccessories()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Vehicle Accessories in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个载具驾驶员, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadVehicleSeatAddon()
@@ -3781,7 +3781,7 @@ void ObjectMgr::LoadVehicleSeatAddon()
 
     if (!result)
     {
-        TC_LOG_ERROR("server.loading", ">> Loaded 0 vehicle seat addons. DB table `vehicle_seat_addon` is empty.");
+        TC_LOG_ERROR("server.loading", ">> 加载了 0 个载具座位附件. 数据库表 `vehicle_seat_addon` 为空.");
         return;
     }
 
@@ -3821,7 +3821,7 @@ void ObjectMgr::LoadVehicleSeatAddon()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Vehicle Seat Addon entries in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个载具座位附件, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPetLevelInfo()
@@ -3833,7 +3833,7 @@ void ObjectMgr::LoadPetLevelInfo()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 level pet stats definitions. DB table `pet_levelstats` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个宠物等级属性定义. 数据库表 `pet_levelstats` 为空.");
         return;
     }
 
@@ -3857,7 +3857,7 @@ void ObjectMgr::LoadPetLevelInfo()
                 TC_LOG_ERROR("sql.sql", "Wrong (> {}) level {} in `pet_levelstats` table, ignoring.", STRONG_MAX_LEVEL, current_level);
             else
             {
-                TC_LOG_INFO("misc", "Unused (> MaxPlayerLevel in worldserver.conf) level {} in `pet_levelstats` table, ignoring.", current_level);
+                TC_LOG_INFO("misc", "在 `pet_levelstats` 表中发现未使用的等级 (高于 worldserver.conf 中的最大玩家等级) {}, 已忽略.", current_level);
                 ++count;                                // make result loading percent "expected" correct in case disabled detail mode for example.
             }
             continue;
@@ -3911,7 +3911,7 @@ void ObjectMgr::LoadPetLevelInfo()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} level pet stats definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个宠物等级属性定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 PetLevelInfo const* ObjectMgr::GetPetLevelInfo(uint32 creature_id, uint8 level) const
@@ -3970,7 +3970,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_ERROR("server.loading", ">> Loaded 0 player create definitions. DB table `playercreateinfo` is empty.");
+            TC_LOG_ERROR("server.loading", ">> 加载了 0 个玩家创建定义. 数据库表 `playercreateinfo` 为空.");
             ABORT();
         }
         else
@@ -4043,12 +4043,12 @@ void ObjectMgr::LoadPlayerInfo()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} player create definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个玩家创建定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Load playercreate items
-    TC_LOG_INFO("server.loading", "Loading Player Create Items Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建时拥有的物品数据...");
     {
         uint32 oldMSTime = getMSTime();
         //                                                0     1      2       3
@@ -4056,7 +4056,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 custom player create items. DB table `playercreateinfo_item` is empty.");
+            TC_LOG_INFO("server.loading", ">>  加载了 0 个自定义玩家创建时拥有的物品. 数据库表 `playercreateinfo_item` 为空.");
         }
         else
         {
@@ -4113,12 +4113,12 @@ void ObjectMgr::LoadPlayerInfo()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} custom player create items in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">>  加载了 {} 个自定义玩家创建时拥有的物品, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Load playercreate skills
-    TC_LOG_INFO("server.loading", "Loading Player Create Skill Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建时拥有的专业数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4126,7 +4126,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 player create skills. DB table `playercreateinfo_skills` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个玩家创建时拥有的专业. 数据库表 `playercreateinfo_skills` 为空.");
         }
         else
         {
@@ -4187,12 +4187,12 @@ void ObjectMgr::LoadPlayerInfo()
                 }
             } while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} player create skills in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个玩家创建时拥有的专业, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Load playercreate spells
-    TC_LOG_INFO("server.loading", "Loading Player Create Spell Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建时学会的法术数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4200,7 +4200,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 player create spells. DB table `playercreateinfo_spell_custom` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个玩家创建时学会的法术. 数据库表 `playercreateinfo_spell_custom` 为空.");
         }
         else
         {
@@ -4249,19 +4249,19 @@ void ObjectMgr::LoadPlayerInfo()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} custom player create spells in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个自定义玩家创建时学会的法术, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Load playercreate cast spell
-    TC_LOG_INFO("server.loading", "Loading Player Create Cast Spell Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建时施放的法术数据...");
     {
         uint32 oldMSTime = getMSTime();
 
         QueryResult result = WorldDatabase.PQuery("SELECT raceMask, classMask, spell FROM playercreateinfo_cast_spell");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 player create cast spells. DB table `playercreateinfo_cast_spell` is empty.");
+            TC_LOG_INFO("server.loading", ">>  加载了 0 个玩家创建时施放的法术. 数据库表 `playercreateinfo_cast_spell` 为空.");
         else
         {
             uint32 count = 0;
@@ -4304,12 +4304,12 @@ void ObjectMgr::LoadPlayerInfo()
                 }
             } while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} player create cast spells in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">>  加载了 {} 个玩家创建时施放的法术, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Load playercreate actions
-    TC_LOG_INFO("server.loading", "Loading Player Create Action Data...");
+    TC_LOG_INFO("server.loading", "加载玩家创建默认操作数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4318,7 +4318,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 player create actions. DB table `playercreateinfo_action` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个玩家创建默认操作信息. 数据库表 `playercreateinfo_action` 为空.");
         }
         else
         {
@@ -4349,12 +4349,12 @@ void ObjectMgr::LoadPlayerInfo()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} player create actions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个玩家创建默认操作信息, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Loading levels data (class only dependent)
-    TC_LOG_INFO("server.loading", "Loading Player Create Level HP/Mana Data...");
+    TC_LOG_INFO("server.loading", "加载玩家升级时提升的生命/法力数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4363,7 +4363,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_ERROR("server.loading", ">> Loaded 0 level health/mana definitions. DB table `player_classlevelstats` is empty.");
+            TC_LOG_ERROR("server.loading", ">> 加载了 0 个等级的生命/法力定义. 数据库表 `player_classlevelstats` 为空.");
             ABORT();
         }
 
@@ -4383,7 +4383,7 @@ void ObjectMgr::LoadPlayerInfo()
             uint8 current_level = fields[1].GetUInt8();      // Can't be > than STRONG_MAX_LEVEL (hardcoded level maximum) due to var type
             if (current_level > sWorld->getIntConfig(CONFIG_MAX_PLAYER_LEVEL))
             {
-                TC_LOG_INFO("misc", "Unused (> MaxPlayerLevel in worldserver.conf) level {} in `player_classlevelstats` table, ignoring.", current_level);
+                TC_LOG_INFO("misc", "在 `player_classlevelstats` 表中发现未使用的等级 (高于 worldserver.conf 中的最大玩家等级) {}, 已忽略.", current_level);
                 ++count;                                    // make result loading percent "expected" correct in case disabled detail mode for example.
                 continue;
             }
@@ -4430,11 +4430,11 @@ void ObjectMgr::LoadPlayerInfo()
             }
         }
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} level health/mana definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个等级的生命/法力定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 
     // Loading levels data (class/race dependent)
-    TC_LOG_INFO("server.loading", "Loading Player Create Level Stats Data...");
+    TC_LOG_INFO("server.loading", "加载玩家升级时提升的属性数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4443,7 +4443,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_ERROR("server.loading", ">> Loaded 0 level stats definitions. DB table `player_levelstats` is empty.");
+            TC_LOG_ERROR("server.loading", ">> 加载了 0 个等级属性定义. 数据库表 `player_levelstats` 为空.");
             ABORT();
         }
 
@@ -4474,7 +4474,7 @@ void ObjectMgr::LoadPlayerInfo()
                     TC_LOG_ERROR("sql.sql", "Wrong (> {}) level {} in `player_levelstats` table, ignoring.", STRONG_MAX_LEVEL, current_level);
                 else
                 {
-                    TC_LOG_INFO("misc", "Unused (> MaxPlayerLevel in worldserver.conf) level {} in `player_levelstats` table, ignoring.", current_level);
+                    TC_LOG_INFO("misc", "在 `player_levelstats` 表中发现未使用的等级 (高于 worldserver.conf 中的最大玩家等级) {}, , 已忽略.", current_level);
                     ++count;                                // make result loading percent "expected" correct in case disabled detail mode for example.
                 }
                 continue;
@@ -4538,11 +4538,11 @@ void ObjectMgr::LoadPlayerInfo()
             }
         }
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} level stats definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个等级属性定义 {} ms", count, GetMSTimeDiffToNow(oldMSTime));
     }
 
     // Loading xp per level data
-    TC_LOG_INFO("server.loading", "Loading Player Create XP Data...");
+    TC_LOG_INFO("server.loading", "加载玩家等级经验数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -4555,7 +4555,7 @@ void ObjectMgr::LoadPlayerInfo()
 
         if (!result)
         {
-            TC_LOG_ERROR("server.loading", ">> Loaded 0 xp for level definitions. DB table `player_xp_for_level` is empty.");
+            TC_LOG_ERROR("server.loading", ">> 加载了 0 个等级经验定义. 数据库表 `player_xp_for_level` 为空.");
             ABORT();
         }
 
@@ -4574,7 +4574,7 @@ void ObjectMgr::LoadPlayerInfo()
                     TC_LOG_ERROR("sql.sql", "Wrong (> {}) level {} in `player_xp_for_level` table, ignoring.", STRONG_MAX_LEVEL, current_level);
                 else
                 {
-                    TC_LOG_INFO("misc", "Unused (> MaxPlayerLevel in worldserver.conf) level {} in `player_xp_for_levels` table, ignoring.", current_level);
+                    TC_LOG_INFO("misc", "在 `player_xp_for_levels` 表中发现未使用的等级 (高于 worldserver.conf 中的最大玩家等级) {}, , 已忽略.", current_level);
                     ++count;                                // make result loading percent "expected" correct in case disabled detail mode for example.
                 }
                 continue;
@@ -4595,7 +4595,7 @@ void ObjectMgr::LoadPlayerInfo()
             }
         }
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} xp for level definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个等级经验定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 }
 
@@ -4741,7 +4741,7 @@ void ObjectMgr::LoadQuests()
         " FROM quest_template");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quests definitions. DB table `quest_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务定义. 数据库表 `quest_template` 为空.");
         return;
     }
 
@@ -4794,7 +4794,7 @@ void ObjectMgr::LoadQuests()
     {
         result = WorldDatabase.PQuery("SELECT {} FROM {}", loader.QueryFields, loader.TableName);
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 quest {}. DB table `{}` is empty.", loader.TableDesc, loader.TableName);
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个任务 {}. 数据库表 `{}` 为空.", loader.TableDesc, loader.TableName);
         else
         {
             do
@@ -5441,18 +5441,18 @@ void ObjectMgr::LoadQuests()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quests definitions in {} ms", _questTemplates.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务定义, 用时 {} 毫秒", _questTemplates.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestStartersAndEnders()
 {
-    TC_LOG_INFO("server.loading", "Loading GO Start Quest Data...");
+    TC_LOG_INFO("server.loading", "加载游戏对象开始任务数据...");
     LoadGameobjectQuestStarters();
-    TC_LOG_INFO("server.loading", "Loading GO End Quest Data...");
+    TC_LOG_INFO("server.loading", "加载游戏对象完成任务数据...");
     LoadGameobjectQuestEnders();
-    TC_LOG_INFO("server.loading", "Loading Creature Start Quest Data...");
+    TC_LOG_INFO("server.loading", "加载生物开始任务数据...");
     LoadCreatureQuestStarters();
-    TC_LOG_INFO("server.loading", "Loading Creature End Quest Data...");
+    TC_LOG_INFO("server.loading", "加载生物完成任务数据...");
     LoadCreatureQuestEnders();
 }
 
@@ -5489,7 +5489,7 @@ void ObjectMgr::LoadQuestLocales()
             AddLocaleString(fields[i + 7].GetString(), locale, data.ObjectiveText[i]);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Quest locale strings in {} ms", uint32(_questLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务本地化字符串, 用时 {} 毫秒", uint32(_questLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadScripts(ScriptsType type)
@@ -5507,7 +5507,7 @@ void ObjectMgr::LoadScripts(ScriptsType type)
     if (sMapMgr->IsScriptScheduled())                    // function cannot be called when scripts are in use.
         return;
 
-    TC_LOG_INFO("server.loading", "Loading {}...", tableName);
+    TC_LOG_INFO("server.loading", "加载了 {}...", tableName);
 
     scripts->clear();                                       // need for reload support
 
@@ -5517,7 +5517,7 @@ void ObjectMgr::LoadScripts(ScriptsType type)
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 script definitions. DB table `{}` is empty!", tableName);
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个脚本定义. 数据库表 `{}` 为空!", tableName);
         return;
     }
 
@@ -5802,7 +5802,7 @@ void ObjectMgr::LoadScripts(ScriptsType type)
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} script definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个脚本定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadSpellScripts()
@@ -5915,7 +5915,7 @@ void ObjectMgr::LoadSpellScriptNames()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 spell script names. DB table `spell_script_names` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个法术脚本名称. 数据库表 `spell_script_names` 为空!");
         return;
     }
 
@@ -5972,7 +5972,7 @@ void ObjectMgr::LoadSpellScriptNames()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} spell script names in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个法术脚本名称, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::ValidateSpellScripts()
@@ -5981,7 +5981,7 @@ void ObjectMgr::ValidateSpellScripts()
 
     if (_spellScriptsStore.empty())
     {
-        TC_LOG_INFO("server.loading", ">> Validated 0 scripts.");
+        TC_LOG_INFO("server.loading", ">> 验证了 0 个脚本.");
         return;
     }
 
@@ -6042,7 +6042,7 @@ void ObjectMgr::ValidateSpellScripts()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Validated {} scripts in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 验证了 {} 个脚本, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPageTexts()
@@ -6054,7 +6054,7 @@ void ObjectMgr::LoadPageTexts()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 page texts. DB table `page_text` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个页面文本. 数据库表 `page_text` 为空!");
         return;
     }
 
@@ -6083,7 +6083,7 @@ void ObjectMgr::LoadPageTexts()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} page texts in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个页面文本, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 PageText const* ObjectMgr::GetPageText(uint32 pageEntry)
@@ -6122,7 +6122,7 @@ void ObjectMgr::LoadPageTextLocales()
         AddLocaleString(fields[2].GetString(), locale, data.Text);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} PageText locale strings in {} ms", uint32(_pageTextLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 PageText 本地化字符串, 用时 {} 毫秒", uint32(_pageTextLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadInstanceTemplate()
@@ -6134,7 +6134,7 @@ void ObjectMgr::LoadInstanceTemplate()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 instance templates. DB table `page_text` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个副本模板. 数据库表 `instance_template` 为空!");
         return;
     }
 
@@ -6163,7 +6163,7 @@ void ObjectMgr::LoadInstanceTemplate()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} instance templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个副本模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 InstanceTemplate const* ObjectMgr::GetInstanceTemplate(uint32 mapID) const
@@ -6183,7 +6183,7 @@ void ObjectMgr::LoadInstanceEncounters()
     QueryResult result = WorldDatabase.Query("SELECT entry, creditType, creditEntry, lastEncounterDungeon FROM instance_encounters");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 instance encounters, table is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个副本进度, 表为空!");
         return;
     }
 
@@ -6259,7 +6259,7 @@ void ObjectMgr::LoadInstanceEncounters()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} instance encounters in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">>  加载了 {} 个副本进度, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 GossipText const* ObjectMgr::GetGossipText(uint32 Text_ID) const
@@ -6287,7 +6287,7 @@ void ObjectMgr::LoadGossipText()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 npc texts, table is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 Npc 文本, 表为空!");
         return;
     }
 
@@ -6349,7 +6349,7 @@ void ObjectMgr::LoadGossipText()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} npc texts in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 Npc 文本, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadNpcTextLocales()
@@ -6385,7 +6385,7 @@ void ObjectMgr::LoadNpcTextLocales()
         }
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} NpcText locale strings in {} ms", uint32(_npcTextLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 Npc 文本本地化字符串, 用时 {} 毫秒", uint32(_npcTextLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 //not very fast function but it is called only once a day, or on starting-up
@@ -6397,7 +6397,7 @@ void ObjectMgr::ReturnOrDeleteOldMails(bool serverUp)
     tm lt;
     localtime_r(&curTime, &lt);
     uint64 basetime(curTime);
-    TC_LOG_INFO("misc", "Returning mails current time: hour: {}, minute: {}, second: {} ", lt.tm_hour, lt.tm_min, lt.tm_sec);
+    TC_LOG_INFO("misc", "返回邮件的当前时间: 小时: {}, 分钟: {}, 秒: {} ", lt.tm_hour, lt.tm_min, lt.tm_sec);
 
     // Delete all old mails without item and without body immediately, if starting server
     if (!serverUp)
@@ -6411,7 +6411,7 @@ void ObjectMgr::ReturnOrDeleteOldMails(bool serverUp)
     PreparedQueryResult result = CharacterDatabase.Query(stmt);
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> No expired mails found.");
+        TC_LOG_INFO("server.loading", ">> 未找到过期的邮件.");
         return;                                             // any mails need to be returned or deleted
     }
 
@@ -6511,7 +6511,7 @@ void ObjectMgr::ReturnOrDeleteOldMails(bool serverUp)
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Processed {} expired mails: {} deleted and {} returned in {} ms", deletedCount + returnedCount, deletedCount, returnedCount, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 处理了 {} 封过期邮件: 已删除 {} 封, 已退回 {} 封, 用时 {} 毫秒", deletedCount + returnedCount, deletedCount, returnedCount, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestAreaTriggers()
@@ -6524,7 +6524,7 @@ void ObjectMgr::LoadQuestAreaTriggers()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quest trigger points. DB table `areatrigger_involvedrelation` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务触发点. 数据库表 `areatrigger_involvedrelation` 为空.");
         return;
     }
 
@@ -6568,7 +6568,7 @@ void ObjectMgr::LoadQuestAreaTriggers()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quest trigger points in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务触发点, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 QuestGreeting const* ObjectMgr::GetQuestGreeting(ObjectGuid guid) const
@@ -6594,7 +6594,7 @@ void ObjectMgr::LoadQuestGreetings()
     QueryResult result = WorldDatabase.Query("SELECT ID, Type, GreetEmoteType, GreetEmoteDelay, Greeting FROM quest_greeting");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quest greetings. DB table `quest_greeting` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务问候. 数据库表 `quest_greeting` 为空.");
         return;
     }
 
@@ -6649,7 +6649,7 @@ void ObjectMgr::LoadQuestGreetings()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quest_greeting in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务问候, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestGreetingLocales()
@@ -6662,7 +6662,7 @@ void ObjectMgr::LoadQuestGreetingLocales()
     QueryResult result = WorldDatabase.Query("SELECT ID, Type, Locale, Greeting FROM quest_greeting_locale");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quest_greeting locales. DB table `quest_greeting_locale` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务问候本地化字符串. 数据库表 `quest_greeting_locale` 为空.");
         return;
     }
 
@@ -6695,7 +6695,7 @@ void ObjectMgr::LoadQuestGreetingLocales()
         AddLocaleString(fields[3].GetString(), locale, data.greeting);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quest greeting locale strings in {} ms", uint32(_questGreetingLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务问候本地化字符串, 用时 {} 毫秒", uint32(_questGreetingLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestOfferRewardLocale()
@@ -6723,7 +6723,7 @@ void ObjectMgr::LoadQuestOfferRewardLocale()
         AddLocaleString(fields[2].GetString(), locale, data.RewardText);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Quest Offer Reward locale strings in {} ms", _questOfferRewardLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务奖励选项本地化字符串, 用时 {} 毫秒", _questOfferRewardLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestRequestItemsLocale()
@@ -6751,7 +6751,7 @@ void ObjectMgr::LoadQuestRequestItemsLocale()
         AddLocaleString(fields[2].GetString(), locale, data.CompletionText);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Quest Request Items locale strings in {} ms", _questRequestItemsLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务请求物品本地化字符串, 用时 {} 毫秒", _questRequestItemsLocaleStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadTavernAreaTriggers()
@@ -6764,7 +6764,7 @@ void ObjectMgr::LoadTavernAreaTriggers()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 tavern triggers. DB table `areatrigger_tavern` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个酒馆触发器. 数据库表 `areatrigger_tavern` 为空.");
         return;
     }
 
@@ -6788,7 +6788,7 @@ void ObjectMgr::LoadTavernAreaTriggers()
         _tavernAreaTriggerStore.insert(Trigger_ID);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} tavern triggers in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个酒馆触发器, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadAreaTriggerScripts()
@@ -6800,7 +6800,7 @@ void ObjectMgr::LoadAreaTriggerScripts()
     QueryResult result = WorldDatabase.Query("SELECT entry, ScriptName FROM areatrigger_scripts");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 areatrigger scripts. DB table `areatrigger_scripts` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个区域触发器脚本. 数据库表 `areatrigger_scripts` 为空.");
         return;
     }
 
@@ -6821,7 +6821,7 @@ void ObjectMgr::LoadAreaTriggerScripts()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} areatrigger scripts in {} ms", _areaTriggerScriptStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个区域触发器脚本, 用时 {} 毫秒", _areaTriggerScriptStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 ObjectMgr::GetNearestTaxiNode(float x, float y, float z, uint32 mapid, uint32 team)
@@ -6944,7 +6944,7 @@ void ObjectMgr::LoadGraveyardZones()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 graveyard-zone links. DB table `graveyard_zone` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个墓地-区域链接. 数据库表 `graveyard_zone` 为空.");
         return;
     }
 
@@ -6990,7 +6990,7 @@ void ObjectMgr::LoadGraveyardZones()
             TC_LOG_ERROR("sql.sql", "Table `graveyard_zone` has a duplicate record for Graveyard (ID: {}) and Zone (ID: {}), skipped.", safeLocId, zoneId);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} graveyard-zone links in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个墓地-区域链接, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 WorldSafeLocsEntry const* ObjectMgr::GetDefaultGraveyard(uint32 team) const
@@ -7246,7 +7246,7 @@ void ObjectMgr::LoadAreaTriggerTeleports()
     QueryResult result = WorldDatabase.Query("SELECT ID,  target_map, target_position_x, target_position_y, target_position_z, target_orientation FROM areatrigger_teleport");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 area trigger teleport definitions. DB table `areatrigger_teleport` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个区域触发传送定义. 数据库表 `areatrigger_teleport` 为空.");
         return;
     }
 
@@ -7292,7 +7292,7 @@ void ObjectMgr::LoadAreaTriggerTeleports()
 
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} area trigger teleport definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个区域触发传送定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadAccessRequirements()
@@ -7306,7 +7306,7 @@ void ObjectMgr::LoadAccessRequirements()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 access requirement definitions. DB table `access_requirement` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个进入副本或区域条件. 数据库表 `access_requirement` 为空.");
         return;
     }
 
@@ -7383,7 +7383,7 @@ void ObjectMgr::LoadAccessRequirements()
         }
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} access requirement definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个进入副本或区域条件, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 /*
@@ -7585,7 +7585,7 @@ void ObjectMgr::LoadGameObjectLocales()
         AddLocaleString(fields[3].GetString(), locale, data.CastBarCaption);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gameobject_template_locale strings in {} ms", uint32(_gameObjectLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象模板本地化字符串, 用时 {} 毫秒", uint32(_gameObjectLocaleStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 inline void CheckGOLockId(GameObjectTemplate const* goInfo, uint32 dataN, uint32 N)
@@ -7661,7 +7661,7 @@ void ObjectMgr::LoadGameObjectTemplate()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject definitions. DB table `gameobject_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象定义. 数据库表 `gameobject_template` 为空.");
         return;
     }
 
@@ -7827,7 +7827,7 @@ void ObjectMgr::LoadGameObjectTemplate()
         }
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} game object templates in {} ms", _gameObjectTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象定义, 用时 {} 毫秒", _gameObjectTemplateStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGameObjectTemplateAddons()
@@ -7839,7 +7839,7 @@ void ObjectMgr::LoadGameObjectTemplateAddons()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject template addon definitions. DB table `gameobject_template_addon` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象模板附加定义. 数据库表 `gameobject_template_addon` 为空.");
         return;
     }
 
@@ -7899,7 +7899,7 @@ void ObjectMgr::LoadGameObjectTemplateAddons()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} game object template addons in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象模板附加定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGameObjectOverrides()
@@ -7910,7 +7910,7 @@ void ObjectMgr::LoadGameObjectOverrides()
     QueryResult result = WorldDatabase.Query("SELECT spawnId, faction, flags FROM gameobject_overrides");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject faction and flags overrides. DB table `gameobject_overrides` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象阵营和标志覆盖. 数据库表 `gameobject_overrides` 为空.");
         return;
     }
 
@@ -7937,7 +7937,7 @@ void ObjectMgr::LoadGameObjectOverrides()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gameobject faction and flags overrides in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象阵营和标志覆盖, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadExplorationBaseXP()
@@ -7948,7 +7948,7 @@ void ObjectMgr::LoadExplorationBaseXP()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 BaseXP definitions. DB table `exploration_basexp` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个基础经验定义. 数据库表 `exploration_basexp` 为空.");
         return;
     }
 
@@ -7964,7 +7964,7 @@ void ObjectMgr::LoadExplorationBaseXP()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} BaseXP definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个基础经验定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 ObjectMgr::GetBaseXP(uint8 level)
@@ -7987,7 +7987,7 @@ void ObjectMgr::LoadPetNames()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 pet name parts. DB table `pet_name_generation` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个宠物名字部分. 数据库表 `pet_name_generation` 为空!");
         return;
     }
 
@@ -8007,7 +8007,7 @@ void ObjectMgr::LoadPetNames()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} pet name parts in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个宠物名字部分, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPetNumber()
@@ -8021,7 +8021,7 @@ void ObjectMgr::LoadPetNumber()
         _hiPetNumber = fields[0].GetUInt32()+1;
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded the max pet number: {} in {} ms", _hiPetNumber-1, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了最大宠物数量: {}, 用时 {} 毫秒", _hiPetNumber-1, GetMSTimeDiffToNow(oldMSTime));
 }
 
 std::string ObjectMgr::GeneratePetName(uint32 entry)
@@ -8055,7 +8055,7 @@ void ObjectMgr::LoadReputationRewardRate()
     QueryResult result = WorldDatabase.Query("SELECT faction, quest_rate, quest_daily_rate, quest_weekly_rate, quest_monthly_rate, quest_repeatable_rate, creature_rate, spell_rate FROM reputation_reward_rate");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded `reputation_reward_rate`, table is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个特殊阵营声望倍率定义, 数据库表 `reputation_reward_rate` 为空!");
         return;
     }
 
@@ -8130,7 +8130,7 @@ void ObjectMgr::LoadReputationRewardRate()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} reputation_reward_rate in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个特殊阵营声望倍率定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadReputationOnKill()
@@ -8150,7 +8150,7 @@ void ObjectMgr::LoadReputationOnKill()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature award reputation definitions. DB table `creature_onkill_reputation` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物击杀声望定义. 数据库表 `creature_onkill_reputation` 为空.");
         return;
     }
 
@@ -8202,7 +8202,7 @@ void ObjectMgr::LoadReputationOnKill()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature award reputation definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物击杀声望定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadReputationSpilloverTemplate()
@@ -8216,7 +8216,7 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded `reputation_spillover_template`, table is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个声望溢出模板定义, 数据库表 `reputation_spillover_template` 为空.");
         return;
     }
 
@@ -8294,7 +8294,7 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} reputation_spillover_template in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 竞争力 {} 个声望溢出模板定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadPointsOfInterest()
@@ -8310,7 +8310,7 @@ void ObjectMgr::LoadPointsOfInterest()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 Points of Interest definitions. DB table `points_of_interest` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个兴趣点定义. 数据库表 `points_of_interest` 为空.");
         return;
     }
 
@@ -8340,7 +8340,7 @@ void ObjectMgr::LoadPointsOfInterest()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Points of Interest definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个兴趣点定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadQuestPOI()
@@ -8353,7 +8353,7 @@ void ObjectMgr::LoadQuestPOI()
     QueryResult result = WorldDatabase.Query("SELECT QuestID, id, ObjectiveIndex, MapID, WorldMapAreaId, Floor, Priority, Flags FROM quest_poi");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quest POI definitions. DB table `quest_poi` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务兴趣点定义. 数据库表 `quest_poi` 为空.");
         return;
     }
 
@@ -8433,7 +8433,7 @@ void ObjectMgr::LoadQuestPOI()
             TC_LOG_ERROR("sql.sql", "Table quest_poi references unknown quest points for quest {} POI id {}", questId, id);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quest POI definitions in {} ms", _questPOIStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个任务兴趣点定义, 用时 {} 毫秒", _questPOIStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadNPCSpellClickSpells()
@@ -8446,7 +8446,7 @@ void ObjectMgr::LoadNPCSpellClickSpells()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 spellclick spells. DB table `npc_spellclick_spells` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个法术点击法术. 数据库表 `npc_spellclick_spells` 为空.");
         return;
     }
 
@@ -8498,7 +8498,7 @@ void ObjectMgr::LoadNPCSpellClickSpells()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} spellclick definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个法术点击法术, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::DeleteCreatureData(ObjectGuid::LowType guid)
@@ -8539,7 +8539,7 @@ void ObjectMgr::LoadQuestRelationsHelper(QuestRelations& map, std::string const&
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 quest relations from `{}`, table is empty.", table);
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个任务关系, 数据库表 `{}` 为空.", table);
         return;
     }
 
@@ -8558,7 +8558,7 @@ void ObjectMgr::LoadQuestRelationsHelper(QuestRelations& map, std::string const&
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} quest relations from {} in {} ms", count, table, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 0 个任务关系, 表: {}, 用时 {} 毫秒", count, table, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGameobjectQuestStarters()
@@ -8638,7 +8638,7 @@ void ObjectMgr::LoadReservedPlayersNames()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 reserved player names. DB table `reserved_name` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个已保留的玩家名称. 数据库表 `reserved_name` 为空!");
         return;
     }
 
@@ -8664,7 +8664,7 @@ void ObjectMgr::LoadReservedPlayersNames()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} reserved player names in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个已保留的玩家名称, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool ObjectMgr::IsReservedName(std::string_view name) const
@@ -8833,7 +8833,7 @@ void ObjectMgr::LoadGameObjectForQuests()
 
     if (_gameObjectTemplateStore.empty())
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 GameObjects for quests");
+        TC_LOG_INFO("server.loading", ">> 为任务加载了 0 个游戏对象");
         return;
     }
 
@@ -8875,7 +8875,7 @@ void ObjectMgr::LoadGameObjectForQuests()
         ++count;
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} GameObjects for quests in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 为任务加载了 {} 个游戏对象, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool ObjectMgr::LoadTrinityStrings()
@@ -8887,7 +8887,7 @@ bool ObjectMgr::LoadTrinityStrings()
     QueryResult result = WorldDatabase.Query("SELECT entry, content_default, content_loc1, content_loc2, content_loc3, content_loc4, content_loc5, content_loc6, content_loc7, content_loc8 FROM trinity_string");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 trinity strings. DB table `trinity_string` is empty. You have imported an incorrect database for more info search for TCE00003 on forum.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条 Trinity 字符串. 数据库表 `trinity_string` 为空. 你导入了不正确的数据库, 欲了解更多信息, 请在论坛上搜索 TCE00003.");
         return false;
     }
 
@@ -8906,7 +8906,7 @@ bool ObjectMgr::LoadTrinityStrings()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} trinity strings in {} ms", _trinityStringStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条 Trinity 字符串, 用时 {} 毫秒", _trinityStringStore.size(), GetMSTimeDiffToNow(oldMSTime));
     return true;
 }
 
@@ -8919,7 +8919,7 @@ char const* ObjectMgr::GetTrinityString(uint32 entry, LocaleConstant locale) con
         return ts->Content[DEFAULT_LOCALE].c_str();
     }
 
-    TC_LOG_ERROR("sql.sql", "Trinity string entry {} not found in DB.", entry);
+    TC_LOG_ERROR("sql.sql", "数据库中未找到 Trinity 字符串 entry {}.", entry);
     return "<error>";
 }
 
@@ -8933,7 +8933,7 @@ void ObjectMgr::LoadFishingBaseSkillLevel()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 areas for fishing base skill level. DB table `skill_fishing_base_level` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个特定钓鱼技能限制区域. 数据库表 `skill_fishing_base_level` 为空.");
         return;
     }
 
@@ -8957,7 +8957,7 @@ void ObjectMgr::LoadFishingBaseSkillLevel()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} areas for fishing base skill level in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个特定钓鱼技能限制区域, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool ObjectMgr::CheckDeclinedNames(const std::wstring& w_ownname, DeclinedName const& names)
@@ -9054,7 +9054,7 @@ void ObjectMgr::LoadCreatureOutfits()
 
     if (!result)
     {
-        TC_LOG_ERROR("server.loading", ">> Loaded 0 creature outfits. DB table `creature_template_outfits` is empty!");
+        TC_LOG_ERROR("server.loading", ">> 加载了 0 个生物装备. 数据库表 `creature_template_outfits` 为空!");
         return;
     }
 
@@ -9114,7 +9114,7 @@ void ObjectMgr::LoadCreatureOutfits()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature outfits in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物装备, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGameTele()
@@ -9128,7 +9128,7 @@ void ObjectMgr::LoadGameTele()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 GameTeleports. DB table `game_tele` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏传送门. 数据库表 `game_tele` 为空!");
         return;
     }
 
@@ -9169,7 +9169,7 @@ void ObjectMgr::LoadGameTele()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} GameTeleports in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏传送门, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 GameTele const* ObjectMgr::GetGameTele(std::string_view name) const
@@ -9286,7 +9286,7 @@ void ObjectMgr::LoadMailLevelRewards()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 level dependent mail rewards. DB table `mail_level_reward` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个与等级相关的邮件奖励. 数据库表 `mail_level_reward` 为空.");
         return;
     }
 
@@ -9331,7 +9331,7 @@ void ObjectMgr::LoadMailLevelRewards()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} level dependent mail rewards in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个与等级相关的邮件奖励, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadTrainers()
@@ -9479,7 +9479,7 @@ void ObjectMgr::LoadTrainers()
         } while (trainerLocalesResult->NextRow());
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Trainers in {} ms", _trainers.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个训练师, 用时 {} 毫秒", _trainers.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureDefaultTrainers()
@@ -9514,7 +9514,7 @@ void ObjectMgr::LoadCreatureDefaultTrainers()
         } while (result->NextRow());
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} default trainers in {} ms", _creatureDefaultTrainers.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个默认训练师, 用时 {} 毫秒", _creatureDefaultTrainers.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 ObjectMgr::LoadReferenceVendor(int32 vendor, int32 item, std::set<uint32>* skip_vendors)
@@ -9571,7 +9571,7 @@ void ObjectMgr::LoadVendors()
     if (!result)
     {
 
-        TC_LOG_ERROR("sql.sql", ">>  Loaded 0 Vendors. DB table `npc_vendor` is empty!");
+        TC_LOG_ERROR("sql.sql", ">> 加载了 0 个供应商. 数据库表 `npc_vendor` 为空!");
         return;
     }
 
@@ -9604,7 +9604,7 @@ void ObjectMgr::LoadVendors()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} Vendors in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个供应商, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGossipMenu()
@@ -9618,7 +9618,7 @@ void ObjectMgr::LoadGossipMenu()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gossip_menu IDs. DB table `gossip_menu` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个对话菜单 ID. 数据库表 `gossip_menu` 为空!");
         return;
     }
 
@@ -9640,7 +9640,7 @@ void ObjectMgr::LoadGossipMenu()
         _gossipMenusStore.insert(GossipMenusContainer::value_type(gMenu.MenuID, gMenu));
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gossip_menu IDs in {} ms", uint32(_gossipMenusStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个对话菜单 ID, 用时 {} 毫秒", uint32(_gossipMenusStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadGossipMenuItems()
@@ -9656,7 +9656,7 @@ void ObjectMgr::LoadGossipMenuItems()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gossip_menu_option IDs. DB table `gossip_menu_option` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个对话菜单选项 ID. 数据库表 `gossip_menu_option` 为空!");
         return;
     }
 
@@ -9716,7 +9716,7 @@ void ObjectMgr::LoadGossipMenuItems()
         _gossipMenuItemsStore.insert(GossipMenuItemsContainer::value_type(gMenuItem.MenuID, gMenuItem));
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gossip_menu_option entries in {} ms", uint32(_gossipMenuItemsStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个交谈菜单选项 ID, 用时 {} 毫秒", uint32(_gossipMenuItemsStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 Trainer::Trainer const* ObjectMgr::GetTrainer(uint32 creatureId) const
@@ -9888,7 +9888,7 @@ void ObjectMgr::LoadScriptNames()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded empty set of Script Names!");
+        TC_LOG_INFO("server.loading", ">> 加载了空的脚本名称集合!");
         return;
     }
 
@@ -9902,7 +9902,7 @@ void ObjectMgr::LoadScriptNames()
 
     std::sort(_scriptNamesStore.begin(), _scriptNamesStore.end());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} ScriptNames in {} ms", _scriptNamesStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个脚本名称集合, 用时 {} 毫秒", _scriptNamesStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 ObjectMgr::ScriptNameContainer const& ObjectMgr::GetAllScriptNames() const
@@ -9940,7 +9940,7 @@ void ObjectMgr::LoadBroadcastTexts()
     QueryResult result = WorldDatabase.Query("SELECT ID, LanguageID, `Text`, Text1, EmoteID1, EmoteID2, EmoteID3, EmoteDelay1, EmoteDelay2, EmoteDelay3, SoundEntriesID, EmotesID, Flags FROM broadcast_text");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 broadcast texts. DB table `broadcast_text` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条公告板文本. 数据库表 `broadcast_text` 为空.");
         return;
     }
 
@@ -10012,7 +10012,7 @@ void ObjectMgr::LoadBroadcastTexts()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} broadcast texts in {} ms", _broadcastTextStore.size(), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条公告板文本, 用时 {} 毫秒", _broadcastTextStore.size(), GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadBroadcastTextLocales()
@@ -10023,7 +10023,7 @@ void ObjectMgr::LoadBroadcastTextLocales()
     QueryResult result = WorldDatabase.Query("SELECT ID, locale, `Text`, Text1 FROM broadcast_text_locale");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 broadcast text locales. DB table `broadcast_text_locale` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条公告板文本本地化. 数据库表 `broadcast_text_locale` 为空.");
         return;
     }
 
@@ -10049,7 +10049,7 @@ void ObjectMgr::LoadBroadcastTextLocales()
         AddLocaleString(fields[3].GetString(), locale, bct->second.Text1);
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} broadcast text locales in {} ms", uint32(_broadcastTextStore.size()), GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条公告板文本本地化, 用时 {} 毫秒", uint32(_broadcastTextStore.size()), GetMSTimeDiffToNow(oldMSTime));
 }
 
 CreatureBaseStats const* ObjectMgr::GetCreatureBaseStats(uint8 level, uint8 unitClass)
@@ -10086,7 +10086,7 @@ void ObjectMgr::LoadCreatureClassLevelStats()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature base stats. DB table `creature_classlevelstats` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条生物基础属性数据. 数据库表 `creature_classlevelstats` 为空.");
         return;
     }
 
@@ -10142,7 +10142,7 @@ void ObjectMgr::LoadCreatureClassLevelStats()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature base stats in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条生物基础属性数据, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeAchievements()
@@ -10153,7 +10153,7 @@ void ObjectMgr::LoadFactionChangeAchievements()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change achievement pairs. DB table `player_factionchange_achievement` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换成就对. 数据库表 `player_factionchange_achievement` 为空.");
         return;
     }
 
@@ -10177,7 +10177,7 @@ void ObjectMgr::LoadFactionChangeAchievements()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change achievement pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条阵营转换成就对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeItems()
@@ -10188,7 +10188,7 @@ void ObjectMgr::LoadFactionChangeItems()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change item pairs. DB table `player_factionchange_items` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换物品对. 数据库表 `player_factionchange_items` 为空.");
         return;
     }
 
@@ -10212,7 +10212,7 @@ void ObjectMgr::LoadFactionChangeItems()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change item pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换物品对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeQuests()
@@ -10223,7 +10223,7 @@ void ObjectMgr::LoadFactionChangeQuests()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change quest pairs. DB table `player_factionchange_quests` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换任务对. 数据库表 `player_factionchange_quests` 为空.");
         return;
     }
 
@@ -10247,7 +10247,7 @@ void ObjectMgr::LoadFactionChangeQuests()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change quest pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条阵营转换任务对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeReputations()
@@ -10258,7 +10258,7 @@ void ObjectMgr::LoadFactionChangeReputations()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change reputation pairs. DB table `player_factionchange_reputations` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换声望对. 数据库表 `player_factionchange_reputations` 为空.");
         return;
     }
 
@@ -10282,7 +10282,7 @@ void ObjectMgr::LoadFactionChangeReputations()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change reputation pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条阵营转换声望对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeSpells()
@@ -10293,7 +10293,7 @@ void ObjectMgr::LoadFactionChangeSpells()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change spell pairs. DB table `player_factionchange_spells` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换法术对. 数据库表 `player_factionchange_spells` 为空.");
         return;
     }
 
@@ -10317,7 +10317,7 @@ void ObjectMgr::LoadFactionChangeSpells()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change spell pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条阵营转换法术对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadFactionChangeTitles()
@@ -10328,7 +10328,7 @@ void ObjectMgr::LoadFactionChangeTitles()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 faction change title pairs. DB table `player_factionchange_title` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 条阵营转换头衔对. 数据库表 `player_factionchange_title` 为空.");
         return;
     }
 
@@ -10352,7 +10352,7 @@ void ObjectMgr::LoadFactionChangeTitles()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} faction change title pairs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 条阵营转换头衔对, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 GameObjectTemplate const* ObjectMgr::GetGameObjectTemplate(uint32 entry) const
@@ -10447,7 +10447,7 @@ void ObjectMgr::LoadGameObjectQuestItems()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 gameobject quest items. DB table `gameobject_questitem` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象任务物品. 数据库表 `gameobject_questitem` 为空.");
         return;
     }
 
@@ -10480,7 +10480,7 @@ void ObjectMgr::LoadGameObjectQuestItems()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} gameobject quest items in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象任务物品, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::LoadCreatureQuestItems()
@@ -10492,7 +10492,7 @@ void ObjectMgr::LoadCreatureQuestItems()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 creature quest items. DB table `creature_questitem` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个生物任务物品. 数据库表 `creature_questitem` 为空.");
         return;
     }
 
@@ -10525,7 +10525,7 @@ void ObjectMgr::LoadCreatureQuestItems()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creature quest items in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物任务物品, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void ObjectMgr::InitializeQueriesData(QueryDataGroup mask)
@@ -10535,7 +10535,7 @@ void ObjectMgr::InitializeQueriesData(QueryDataGroup mask)
     // cache disabled
     if (!sWorld->getBoolConfig(CONFIG_CACHE_DATA_QUERIES))
     {
-        TC_LOG_INFO("server.loading", ">> Query data caching is disabled. Skipped initialization.");
+        TC_LOG_INFO("server.loading", ">> 查询数据缓存已禁用. 跳过初始化.");
         return;
     }
 
@@ -10568,7 +10568,7 @@ void ObjectMgr::InitializeQueriesData(QueryDataGroup mask)
 
     pool.Join();
 
-    TC_LOG_INFO("server.loading", ">> Initialized query cache data in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 初始化了查询数据缓存, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 }
 
 void QuestPOIWrapper::InitializeQueryData()

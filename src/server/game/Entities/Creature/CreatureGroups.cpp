@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -101,7 +101,7 @@ void FormationMgr::LoadCreatureFormations()
     QueryResult result = WorldDatabase.Query("SELECT leaderGUID, memberGUID, dist, angle, groupAI, point_1, point_2 FROM creature_formations ORDER BY leaderGUID");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">>  Loaded 0 creatures in formations. DB table `creature_formations` is empty!");
+        TC_LOG_INFO("server.loading", ">>  加载了 0 个生物编队. 数据库表 `creature_formations` 为空!");
         return;
     }
 
@@ -168,7 +168,7 @@ void FormationMgr::LoadCreatureFormations()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} creatures in formations in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个生物编队, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 FormationInfo* FormationMgr::GetFormationInfo(ObjectGuid::LowType spawnId)

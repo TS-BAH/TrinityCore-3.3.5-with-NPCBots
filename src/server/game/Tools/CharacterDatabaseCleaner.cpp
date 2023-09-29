@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -30,7 +30,7 @@ void CharacterDatabaseCleaner::CleanDatabase()
     if (!sWorld->getBoolConfig(CONFIG_CLEAN_CHARACTER_DB))
         return;
 
-    TC_LOG_INFO("misc", "Cleaning character database...");
+    TC_LOG_INFO("misc", "正在清理角色数据库...");
 
     uint32 oldMSTime = getMSTime();
 
@@ -64,7 +64,7 @@ void CharacterDatabaseCleaner::CleanDatabase()
 
     sWorld->SetCleaningFlags(flags);
 
-    TC_LOG_INFO("server.loading", ">> Cleaned character database in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 清理了角色数据库, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 }
 
 void CharacterDatabaseCleaner::CheckUnique(char const* column, char const* table, bool (*check)(uint32))
@@ -72,7 +72,7 @@ void CharacterDatabaseCleaner::CheckUnique(char const* column, char const* table
     QueryResult result = CharacterDatabase.PQuery("SELECT DISTINCT {} FROM {}", column, table);
     if (!result)
     {
-        TC_LOG_INFO("misc", "Table {} is empty.", table);
+        TC_LOG_INFO("misc", "表 {} 为空.", table);
         return;
     }
 

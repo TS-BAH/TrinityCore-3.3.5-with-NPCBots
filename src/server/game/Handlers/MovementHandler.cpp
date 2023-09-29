@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -501,7 +501,7 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket &recvData)
         case MovementChangeType::SPEED_CHANGE_FLIGHT_BACK_SPEED:    moveTypeSent = MOVE_FLIGHT_BACK; break;
         case MovementChangeType::RATE_CHANGE_PITCH:                 moveTypeSent = MOVE_PITCH_RATE; break;
         default:
-            TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: Player {} from account id {} kicked for incorrect data returned in an ack. movementChangeType: {}",
+            TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: 玩家 {} (账号 ID {}) 因在确认中返回的不正确数据而被踢出游戏. MovementChangeType: {}",
                 _player->GetName(), _player->GetSession()->GetAccountId(), static_cast<uint32>(AsUnderlyingType(changeType)));
             if (sWorld->getIntConfig(CONFIG_PENDING_MOVE_CHANGES_TIMEOUT) != 0)
                 _player->GetSession()->KickPlayer("incorrect movementChangeType returned in an ack");
@@ -510,7 +510,7 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket &recvData)
 
     if (pendingChange.movementCounter != movementCounter)
     {
-        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: Player {} from account id {} kicked for incorrect data returned in an ack. pendingChange.movementCounter: {}, movementCounter: {}",
+        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: 玩家 {} (账号 ID {}) 因在确认中返回的不正确数据而被踢出游戏. pendingChange.movementCounter: {}, movementCounter: {}",
             _player->GetName(), _player->GetSession()->GetAccountId(), pendingChange.movementCounter, movementCounter);
         if (sWorld->getIntConfig(CONFIG_PENDING_MOVE_CHANGES_TIMEOUT) != 0)
             _player->GetSession()->KickPlayer("incorrect movementCounter returned in an ack");
@@ -519,7 +519,7 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket &recvData)
 
     if (std::fabs(speedSent - speedReceived) > 0.01f)
     {
-        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: Player {} from account id {} kicked for incorrect data returned in an ack. speedSent - speedReceived: {}",
+        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: 玩家 {} (账号 ID {}) 因在确认中返回的不正确数据而被踢出游戏. speedSent - speedReceived: {}",
             _player->GetName(), _player->GetSession()->GetAccountId(), std::fabs(speedSent - speedReceived));
         if (sWorld->getIntConfig(CONFIG_PENDING_MOVE_CHANGES_TIMEOUT) != 0)
             _player->GetSession()->KickPlayer("incorrect speed returned in an ack");
@@ -528,7 +528,7 @@ void WorldSession::HandleForceSpeedChangeAck(WorldPacket &recvData)
 
     if (moveTypeSent != move_type)
     {
-        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: Player {} from account id {} kicked for incorrect data returned in an ack. moveTypeSent: {}, move_type: {}",
+        TC_LOG_INFO("cheat", "WorldSession::HandleForceSpeedChangeAck: 玩家 {} (账号 ID {}) 因在确认中返回的不正确数据而被踢出游戏. moveTypeSent: {}, move_type: {}",
             _player->GetName(), _player->GetSession()->GetAccountId(), static_cast<uint32>(AsUnderlyingType(moveTypeSent)), static_cast<uint32>(AsUnderlyingType(move_type)));
         if (sWorld->getIntConfig(CONFIG_PENDING_MOVE_CHANGES_TIMEOUT) != 0)
             _player->GetSession()->KickPlayer("incorrect moveType returned in an ack");

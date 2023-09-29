@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -1102,7 +1102,7 @@ void ConditionMgr::LoadConditions(bool isReload)
     //must clear all custom handled cases (groupped types) before reload
     if (isReload)
     {
-        TC_LOG_INFO("misc", "Reseting Loot Conditions...");
+        TC_LOG_INFO("misc", "重置拾取条件...");
         LootTemplates_Creature.ResetConditions();
         LootTemplates_Fishing.ResetConditions();
         LootTemplates_Gameobject.ResetConditions();
@@ -1116,10 +1116,10 @@ void ConditionMgr::LoadConditions(bool isReload)
         LootTemplates_Prospecting.ResetConditions();
         LootTemplates_Spell.ResetConditions();
 
-        TC_LOG_INFO("misc", "Re-Loading `gossip_menu` Table for Conditions!");
+        TC_LOG_INFO("misc", "重新加载用于条件的 `gossip_menu` 表!");
         sObjectMgr->LoadGossipMenu();
 
-        TC_LOG_INFO("misc", "Re-Loading `gossip_menu_option` Table for Conditions!");
+        TC_LOG_INFO("misc", "重新加载用于条件的 `gossip_menu_option` 表!");
         sObjectMgr->LoadGossipMenuItems();
         sSpellMgr->UnloadSpellInfoImplicitTargetConditionLists();
     }
@@ -1129,7 +1129,7 @@ void ConditionMgr::LoadConditions(bool isReload)
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 conditions. DB table `conditions` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个条件. 数据库表 `conditions` 为空!");
         return;
     }
 
@@ -1345,7 +1345,7 @@ void ConditionMgr::LoadConditions(bool isReload)
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} conditions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个条件, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 bool ConditionMgr::addToLootTemplate(Condition* cond, LootTemplate* loot) const

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -366,14 +366,14 @@ void AuthSession::LogonChallengeCallback(PreparedQueryResult result)
         {
             pkt << uint8(WOW_FAIL_BANNED);
             SendPacket(pkt);
-            TC_LOG_INFO("server.authserver.banned", "'{}:{}' [AuthChallenge] Banned account {} tried to login!", ipAddress, port, _accountInfo.Login);
+            TC_LOG_INFO("server.authserver.banned", "'{}:{}' [AuthChallenge] 被封禁的账号 {} 尝试登录!", ipAddress, port, _accountInfo.Login);
             return;
         }
         else
         {
             pkt << uint8(WOW_FAIL_SUSPENDED);
             SendPacket(pkt);
-            TC_LOG_INFO("server.authserver.banned", "'{}:{}' [AuthChallenge] Temporarily banned account {} tried to login!", ipAddress, port, _accountInfo.Login);
+            TC_LOG_INFO("server.authserver.banned", "'{}:{}' [AuthChallenge] 临时封禁的账号 {} 尝试登录!", ipAddress, port, _accountInfo.Login);
             return;
         }
     }
@@ -556,7 +556,7 @@ bool AuthSession::HandleLogonProof()
         packet << uint16(0);    // LoginFlags, 1 has account message
         SendPacket(packet);
 
-        TC_LOG_INFO("server.authserver.hack", "'{}:{}' [AuthChallenge] account {} tried to login with invalid password!",
+        TC_LOG_INFO("server.authserver.hack", "'{}:{}' [AuthChallenge] 账号 {} 尝试使用无效的密码登录!",
             GetRemoteIpAddress().to_string(), GetRemotePort(), _accountInfo.Login);
 
         uint32 MaxWrongPassCount = sConfigMgr->GetIntDefault("WrongPass.MaxCount", 0);

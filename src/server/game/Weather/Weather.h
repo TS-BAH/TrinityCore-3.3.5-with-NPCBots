@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -42,23 +42,23 @@ struct WeatherData
     uint32 ScriptId;
 };
 
-enum WeatherState : uint32
+enum WeatherState : uint32  //天气状态
 {
-    WEATHER_STATE_FINE              = 0,
-    WEATHER_STATE_FOG               = 1,
-    WEATHER_STATE_DRIZZLE           = 2,
-    WEATHER_STATE_LIGHT_RAIN        = 3,
-    WEATHER_STATE_MEDIUM_RAIN       = 4,
-    WEATHER_STATE_HEAVY_RAIN        = 5,
-    WEATHER_STATE_LIGHT_SNOW        = 6,
-    WEATHER_STATE_MEDIUM_SNOW       = 7,
-    WEATHER_STATE_HEAVY_SNOW        = 8,
-    WEATHER_STATE_LIGHT_SANDSTORM   = 22,
-    WEATHER_STATE_MEDIUM_SANDSTORM  = 41,
-    WEATHER_STATE_HEAVY_SANDSTORM   = 42,
-    WEATHER_STATE_THUNDERS          = 86,
-    WEATHER_STATE_BLACKRAIN         = 90,
-    WEATHER_STATE_BLACKSNOW         = 106
+    WEATHER_STATE_FINE              = 0,    // 晴天
+    WEATHER_STATE_FOG               = 1,    // 雾
+    WEATHER_STATE_DRIZZLE           = 2,    // 细雨
+    WEATHER_STATE_LIGHT_RAIN        = 3,    // 小雨
+    WEATHER_STATE_MEDIUM_RAIN       = 4,    // 中雨
+    WEATHER_STATE_HEAVY_RAIN        = 5,    // 大雨
+    WEATHER_STATE_LIGHT_SNOW        = 6,    // 小雪
+    WEATHER_STATE_MEDIUM_SNOW       = 7,    // 中雪
+    WEATHER_STATE_HEAVY_SNOW        = 8,    // 大雪
+    WEATHER_STATE_LIGHT_SANDSTORM   = 22,   // 小沙尘暴
+    WEATHER_STATE_MEDIUM_SANDSTORM  = 41,   // 中沙尘暴
+    WEATHER_STATE_HEAVY_SANDSTORM   = 42,   // 大沙尘暴
+    WEATHER_STATE_THUNDERS          = 86,   // 雷暴
+    WEATHER_STATE_BLACKRAIN         = 90,   // 黑雨
+    WEATHER_STATE_BLACKSNOW         = 106   // 黑雪
 };
 
 /// Weather for one zone

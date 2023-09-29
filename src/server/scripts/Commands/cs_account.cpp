@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -258,7 +258,7 @@ public:
                 handler->PSendSysMessage(LANG_ACCOUNT_CREATED, accountName);
                 if (handler->GetSession())
                 {
-                    TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {}) created Account {} (Email: '{}')",
+                    TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {}) 创建账号  {} (邮箱: '{}')",
                         handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                         handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString(),
                         accountName, email.value_or(""));
@@ -441,7 +441,7 @@ public:
             }
             else
             {
-                handler->PSendSysMessage("No IP2Location information - account not locked");
+                handler->PSendSysMessage("没有 IP2Location 信息 - 账号未被锁定");
                 handler->SetSentErrorMessage(true);
                 return false;
             }
@@ -485,7 +485,7 @@ public:
             handler->SendSysMessage(LANG_COMMAND_WRONGEMAIL);
             sScriptMgr->OnFailedEmailChange(handler->GetSession()->GetAccountId());
             handler->SetSentErrorMessage(true);
-            TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Tried to change email, but the provided email [{}] is not equal to registration email [{}].",
+            TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 试图更改邮箱, 但提供的邮箱 [{}] 与注册邮箱 [{}] 不一致.",
                 handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                 handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString(),
                 email, oldEmail);
@@ -497,7 +497,7 @@ public:
             handler->SendSysMessage(LANG_COMMAND_WRONGOLDPASSWORD);
             sScriptMgr->OnFailedEmailChange(handler->GetSession()->GetAccountId());
             handler->SetSentErrorMessage(true);
-            TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Tried to change email, but the provided password is wrong.",
+            TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 试图更改邮箱, 但提供的密码错误.",
                 handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                 handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString());
             return false;
@@ -516,7 +516,7 @@ public:
             handler->SendSysMessage(LANG_NEW_EMAILS_NOT_MATCH);
             sScriptMgr->OnFailedEmailChange(handler->GetSession()->GetAccountId());
             handler->SetSentErrorMessage(true);
-            TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Tried to change email, but the confirm email does not match.",
+            TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 试图更改邮箱, 但确认邮箱不匹配.",
                 handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                 handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString());
             return false;
@@ -528,7 +528,7 @@ public:
             case AccountOpResult::AOR_OK:
                 handler->SendSysMessage(LANG_COMMAND_EMAIL);
                 sScriptMgr->OnEmailChange(handler->GetSession()->GetAccountId());
-                TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Changed Email from [{}] to [{}].",
+                TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 将邮箱从 [{}] 更改为 [{}].",
                     handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                     handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString(),
                     oldEmail, email);
@@ -558,7 +558,7 @@ public:
             handler->SendSysMessage(LANG_COMMAND_WRONGOLDPASSWORD);
             sScriptMgr->OnFailedPasswordChange(handler->GetSession()->GetAccountId());
             handler->SetSentErrorMessage(true);
-            TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Tried to change password, but the provided old password is wrong.",
+            TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 试图更改密码, 但提供的旧密码错误.",
                 handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                 handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString());
             return false;
@@ -571,7 +571,7 @@ public:
             handler->SendSysMessage(LANG_COMMAND_WRONGEMAIL);
             sScriptMgr->OnFailedPasswordChange(handler->GetSession()->GetAccountId());
             handler->SetSentErrorMessage(true);
-            TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} Tried to change password, but the entered email [{}] is wrong.",
+            TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 试图更改密码, 但输入的邮箱 [{}] 错误.",
                 handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                 handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString(),
                 confirmEmail.value_or(""));
@@ -594,7 +594,7 @@ public:
             case AccountOpResult::AOR_OK:
                 handler->SendSysMessage(LANG_COMMAND_PASSWORD);
                 sScriptMgr->OnPasswordChange(handler->GetSession()->GetAccountId());
-                TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] {} changed password.",
+                TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] {} 修改了密码.",
                     handler->GetSession()->GetAccountId(), handler->GetSession()->GetRemoteAddress(),
                     handler->GetSession()->GetPlayer()->GetName(), handler->GetSession()->GetPlayer()->GetGUID().ToString());
                 break;
@@ -622,10 +622,10 @@ public:
         bool hasRBAC = (handler->HasPermission(rbac::RBAC_PERM_EMAIL_CONFIRM_FOR_PASS_CHANGE) ? true : false);
         uint32 pwConfig = sWorld->getIntConfig(CONFIG_ACC_PASSCHANGESEC); // 0 - PW_NONE, 1 - PW_EMAIL, 2 - PW_RBAC
 
-        handler->PSendSysMessage(LANG_ACCOUNT_SEC_TYPE, (pwConfig == PW_NONE  ? "Lowest level: No Email input required." :
-                                                         pwConfig == PW_EMAIL ? "Highest level: Email input required." :
-                                                         pwConfig == PW_RBAC  ? "Special level: Your account may require email input depending on settings. That is the case if another line is printed." :
-                                                                                "Unknown security level: Config error?"));
+        handler->PSendSysMessage(LANG_ACCOUNT_SEC_TYPE, (pwConfig == PW_NONE  ? "最低等级: 无需输入邮箱." :
+                                                         pwConfig == PW_EMAIL ? "最高等级: 需要输入邮箱." :
+                                                         pwConfig == PW_RBAC  ? "特殊等级: 根据设置, 您的帐户可能需要输入电子邮件. 如果打印了另一行, 那就是情况如此." :
+                                                                                "未知安全级别: 配置错误?"));
 
         // RBAC required display - is not displayed for console
         if (pwConfig == PW_RBAC && handler->GetSession() && hasRBAC)
@@ -944,7 +944,7 @@ public:
         {
             case AccountOpResult::AOR_OK:
                 handler->SendSysMessage(LANG_COMMAND_EMAIL);
-                TC_LOG_INFO("entities.player.character", "ChangeEmail: Account {} [Id: {}] had it's email changed to {}.",
+                TC_LOG_INFO("entities.player.character", "更改邮箱: 账号 {} [Id: {}] 的邮箱更改为 {}.",
                     accountName, targetAccountId, email);
                 break;
             case AccountOpResult::AOR_NAME_NOT_EXIST:
@@ -999,7 +999,7 @@ public:
         {
             case AccountOpResult::AOR_OK:
                 handler->SendSysMessage(LANG_COMMAND_EMAIL);
-                TC_LOG_INFO("entities.player.character", "ChangeRegEmail: Account {} [Id: {}] had it's Registration Email changed to {}.",
+                TC_LOG_INFO("entities.player.character", "更改注册邮箱: 账号 {} [Id: {}] 的注册邮箱已更改为 {}.",
                     accountName, targetAccountId, email);
                 break;
             case AccountOpResult::AOR_NAME_NOT_EXIST:

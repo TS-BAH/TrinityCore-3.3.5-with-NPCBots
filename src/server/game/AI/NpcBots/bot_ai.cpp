@@ -289,7 +289,7 @@ bot_ai::bot_ai(Creature* creature) : CreatureAI(creature)
 }
 bot_ai::~bot_ai()
 {
-    TC_LOG_INFO("scripts", "bot_ai destructor call for {} ({})", me->GetName(), me->GetEntry());
+    TC_LOG_INFO("scripts", "bot_ai 析构函数调用: {} ({})", me->GetName(), me->GetEntry());
 
     while (!_spells.empty())
     {
@@ -340,7 +340,7 @@ const std::string& bot_ai::LocalizedNpcText(Player const* forPlayer, uint32 text
                 textId, localeNames[loc]);
 
             std::ostringstream msg;
-            msg << (loc == DEFAULT_LOCALE ? "<undefined string " : "<unlocalized string ") << textId << ">";
+            msg << (loc == DEFAULT_LOCALE ? "<未定义的字符串 " : "<未本地化的字符串 ") << textId << ">";
             unk_botstrings[textId] = msg.str();
         }
 

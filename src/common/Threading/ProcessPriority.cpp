@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -45,7 +45,7 @@ void SetProcessPriority(std::string const& logChannel, uint32 affinity, bool hig
             if (!currentAffinity)
                 TC_LOG_ERROR(logChannel, "Processors marked in UseProcessors bitmask (hex) {:x} are not accessible. Accessible processors bitmask (hex): {:x}", affinity, appAff);
             else if (SetProcessAffinityMask(hProcess, currentAffinity))
-                TC_LOG_INFO(logChannel, "Using processors (bitmask, hex): {:x}", currentAffinity);
+                TC_LOG_INFO(logChannel, "正在使用处理器 (位掩码, 十六进制): {:x}", currentAffinity);
             else
                 TC_LOG_ERROR(logChannel, "Can't set used processors (hex): {:x}", currentAffinity);
         }
@@ -54,7 +54,7 @@ void SetProcessPriority(std::string const& logChannel, uint32 affinity, bool hig
     if (highPriority)
     {
         if (SetPriorityClass(hProcess, HIGH_PRIORITY_CLASS))
-            TC_LOG_INFO(logChannel, "Process priority class set to HIGH");
+            TC_LOG_INFO(logChannel, "进程优先级类别已设置为高");
         else
             TC_LOG_ERROR(logChannel, "Can't set process priority class.");
     }
@@ -76,7 +76,7 @@ void SetProcessPriority(std::string const& logChannel, uint32 affinity, bool hig
         {
             CPU_ZERO(&mask);
             sched_getaffinity(0, sizeof(mask), &mask);
-            TC_LOG_INFO(logChannel, "Using processors (bitmask, hex): {:x}", *(__cpu_mask*)(&mask));
+            TC_LOG_INFO(logChannel, "正在使用处理器 (位掩码, 十六进制): {:x}", *(__cpu_mask*)(&mask));
         }
     }
 
@@ -85,7 +85,7 @@ void SetProcessPriority(std::string const& logChannel, uint32 affinity, bool hig
         if (setpriority(PRIO_PROCESS, 0, PROCESS_HIGH_PRIORITY))
             TC_LOG_ERROR(logChannel, "Can't set process priority class, error: {}", strerror(errno));
         else
-            TC_LOG_INFO(logChannel, "Process priority class set to {}", getpriority(PRIO_PROCESS, 0));
+            TC_LOG_INFO(logChannel, "进程优先级类别设置为 {}", getpriority(PRIO_PROCESS, 0));
     }
 
 #else

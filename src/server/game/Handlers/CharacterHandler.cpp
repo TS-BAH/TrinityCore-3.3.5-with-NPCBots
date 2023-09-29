@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -237,7 +237,7 @@ void WorldSession::HandleCharEnum(PreparedQueryResult result)
         do
         {
             ObjectGuid guid(HighGuid::Player, (*result)[0].GetUInt32());
-            TC_LOG_INFO("network", "Loading {} from account {}.", guid.ToString(), GetAccountId());
+            TC_LOG_INFO("network", "从账号 {} 加载 {}.", GetAccountId(), guid.ToString());
             if (Player::BuildEnumData(result, &data))
             {
                 // Do not allow banned characters to log in
@@ -608,7 +608,7 @@ void WorldSession::HandleCharCreateOpcode(WorldPacket& recvData)
             {
                 if (success)
                 {
-                    TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Create Character: {} {}", GetAccountId(), GetRemoteAddress(), newChar->GetName(), newChar->GetGUID().ToString());
+                    TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 创建角色: {} {}", GetAccountId(), GetRemoteAddress(), newChar->GetName(), newChar->GetGUID().ToString());
                     sScriptMgr->OnPlayerCreate(newChar.get());
                     sCharacterCache->AddCharacterCacheEntry(newChar->GetGUID(), GetAccountId(), newChar->GetName(), newChar->GetNativeGender(), newChar->GetRace(), newChar->GetClass(), newChar->GetLevel());
 
@@ -684,7 +684,7 @@ void WorldSession::HandleCharDeleteOpcode(WorldPacket& recvData)
         return;
     }
 
-    TC_LOG_INFO("entities.player.character", "Account: {}, IP: {} deleted character: {}, {}, Level: {}", accountId, GetRemoteAddress(), name, guid.ToString(), level);
+    TC_LOG_INFO("entities.player.character", "账号: {}, IP: {} 删除了角色: {}, {}, 等级: {}", accountId, GetRemoteAddress(), name, guid.ToString(), level);
 
     // To prevent hook failure, place hook before removing reference from DB
     sScriptMgr->OnPlayerDelete(guid, initAccountId); // To prevent race conditioning, but as it also makes sense, we hand the accountId over for successful delete.
@@ -996,7 +996,7 @@ void WorldSession::HandlePlayerLogin(LoginQueryHolder const& holder)
         SendNotification(LANG_GM_ON);
 
     std::string IP_str = GetRemoteAddress();
-    TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Login Character:[{}] {} Level: {}, XP: {}/{} ({} left)",
+    TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 登录角色:[{}] {} 等级: {}, 经验: {}/{} (还需 {})",
         GetAccountId(), IP_str, pCurrChar->GetName(), pCurrChar->GetGUID().ToString(), pCurrChar->GetLevel(),
         _player->GetXP(), _player->GetXPForNextLevel(), std::max(0, (int32)_player->GetXPForNextLevel() - (int32)_player->GetXP()));
 
@@ -1190,7 +1190,7 @@ void WorldSession::HandleCharRenameCallBack(std::shared_ptr<CharacterRenameInfo>
 
     CharacterDatabase.Execute(stmt);
 
-    TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}) Character:[{}] ({}) Changed name to: {}", GetAccountId(), GetRemoteAddress(), oldName, renameInfo->Guid.ToString(), renameInfo->Name);
+    TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}) 角色:[{}] ({}) 更名为: {}", GetAccountId(), GetRemoteAddress(), oldName, renameInfo->Guid.ToString(), renameInfo->Name);
 
     SendCharRename(RESPONSE_SUCCESS, renameInfo.get());
 
@@ -1487,7 +1487,7 @@ void WorldSession::HandleCharCustomizeCallback(std::shared_ptr<CharacterCustomiz
 
     SendCharCustomize(RESPONSE_SUCCESS, customizeInfo.get());
 
-    TC_LOG_INFO("entities.player.character", "Account: {} (IP: {}), Character[{}] ({}) Customized to: {}",
+    TC_LOG_INFO("entities.player.character", "账号: {} (IP: {}), 角色[{}] ({}) 定制为: {}",
         GetAccountId(), GetRemoteAddress(), oldName, customizeInfo->Guid.ToString(), customizeInfo->Name);
 }
 

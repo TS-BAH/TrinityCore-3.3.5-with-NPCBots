@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -425,7 +425,7 @@ void AccountMgr::LoadRBAC()
     QueryResult result = LoginDatabase.Query("SELECT id, name FROM rbac_permissions");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 account permission definitions. DB table `rbac_permissions` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个账号权限定义. 数据库表 `rbac_permissions` 为空.");
         return;
     }
 
@@ -442,7 +442,7 @@ void AccountMgr::LoadRBAC()
     result = LoginDatabase.Query("SELECT id, linkedId FROM rbac_linked_permissions ORDER BY id ASC");
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 linked permissions. DB table `rbac_linked_permissions` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个链接的权限. 数据库表 `rbac_linked_permissions` 为空.");
         return;
     }
 
@@ -474,7 +474,7 @@ void AccountMgr::LoadRBAC()
     result = LoginDatabase.PQuery("SELECT secId, permissionId FROM rbac_default_permissions WHERE (realmId = {} OR realmId = -1) ORDER BY secId ASC", realm.Id.Realm);
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 default permission definitions. DB table `rbac_default_permissions` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个默认权限定义. 数据库表 `rbac_default_permissions` 为空.");
         return;
     }
 
@@ -495,7 +495,7 @@ void AccountMgr::LoadRBAC()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} permission definitions, {} linked permissions and {} default permissions in {} ms", count1, count2, count3, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个权限定义, {} 个链接的权限以及 {} 个默认权限, 用时{}毫秒", count1, count2, count3, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AccountMgr::UpdateAccountAccess(rbac::RBACData* rbac, uint32 accountId, uint8 securityLevel, int32 realmId)

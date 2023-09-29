@@ -1,4 +1,4 @@
-#include "botspell.h"
+﻿#include "botspell.h"
 #include "DBCStores.h"
 #include "Log.h"
 #include "SpellInfo.h"
@@ -199,7 +199,7 @@ void GenerateBotCustomSpellProcs()
         botSpellProcOverrides[spellInfo.Id] = std::move(procEntry);
     }
 
-    TC_LOG_INFO("server.loading", ">> Bot spell proc overrides generated for {} spells", uint32(botSpellProcOverrides.size()));
+    TC_LOG_INFO("server.loading", ">> 为 {} 个法术生成了机器人法术触发覆盖", uint32(botSpellProcOverrides.size()));
 
 }
 
@@ -2081,7 +2081,7 @@ void GenerateBotCustomSpells()
         }
     }
 
-    TC_LOG_INFO("server.loading", ">> Bot spellInfo overrides generated for {} spells", uint32(botSpellInfoOverrides.size()));
+    TC_LOG_INFO("server.loading", ">> 为 {} 个法术生成了机器人法术信息覆盖", uint32(botSpellInfoOverrides.size()));
 
     GenerateBotCustomSpellProcs();
 }

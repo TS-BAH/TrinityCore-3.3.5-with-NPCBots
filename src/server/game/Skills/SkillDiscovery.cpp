@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -55,7 +55,7 @@ void LoadSkillDiscoveryTable()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 skill discovery definitions. DB table `skill_discovery_template` is empty.");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个技能发现定义. 数据库表 `skill_discovery_template` 为空.");
         return;
     }
 
@@ -152,7 +152,7 @@ void LoadSkillDiscoveryTable()
             TC_LOG_ERROR("sql.sql", "Spell (ID: {}) has got 100% chance random discovery ability, but does not have data in the `skill_discovery_template` table.", spell_id);
     }
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} skill discovery definitions in {} ms.", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个技能发现定义, 用时 {} 毫秒.", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 uint32 GetExplicitDiscoverySpell(uint32 spellId, Player* player)

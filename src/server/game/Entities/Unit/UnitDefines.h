@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -341,17 +341,17 @@ enum MovementFlags2 : uint32
     MOVEMENTFLAG2_UNK16                                 = 0x00008000
 };
 
-enum UnitMoveType
+enum UnitMoveType   // 单位的移动类型
 {
-    MOVE_WALK           = 0,
-    MOVE_RUN            = 1,
-    MOVE_RUN_BACK       = 2,
-    MOVE_SWIM           = 3,
-    MOVE_SWIM_BACK      = 4,
-    MOVE_TURN_RATE      = 5,
-    MOVE_FLIGHT         = 6,
-    MOVE_FLIGHT_BACK    = 7,
-    MOVE_PITCH_RATE     = 8
+    MOVE_WALK           = 0,    // 步行
+    MOVE_RUN            = 1,    // 奔跑
+    MOVE_RUN_BACK       = 2,    // 倒退奔跑
+    MOVE_SWIM           = 3,    // 游泳
+    MOVE_SWIM_BACK      = 4,    // 倒退游泳
+    MOVE_TURN_RATE      = 5,    // 转身速度
+    MOVE_FLIGHT         = 6,    // 飞行
+    MOVE_FLIGHT_BACK    = 7,    // 倒退飞行
+    MOVE_PITCH_RATE     = 8     // 俯仰速度
 };
 
 #define MAX_MOVE_TYPE     9

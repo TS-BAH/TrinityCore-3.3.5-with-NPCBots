@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -376,7 +376,7 @@ void PlayerDump::InitializeTables()
 
     ASSERT(CharacterTables.size() == DUMP_TABLE_COUNT);
 
-    TC_LOG_INFO("server.loading", ">> Initialized tables for PlayerDump in {} ms.", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 初始化了 PlayerDump 表, 用时 {} 毫秒.", GetMSTimeDiffToNow(oldMSTime));
 }
 
 // Low level functions

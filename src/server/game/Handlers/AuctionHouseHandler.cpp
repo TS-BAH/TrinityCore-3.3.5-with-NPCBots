@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -313,7 +313,7 @@ void WorldSession::HandleAuctionSellItem(WorldPacket& recvData)
         AH->auctionHouseEntry = auctionHouseEntry;
         AH->Flags = AUCTION_ENTRY_FLAG_NONE;
 
-        TC_LOG_INFO("network", "CMSG_AUCTION_SELL_ITEM: Player {} {} is selling item {} entry {} {} with count {} with initial bid {} with buyout {} and with time {} (in sec) in auctionhouse {}",
+        TC_LOG_INFO("network", "CMSG_AUCTION_SELL_ITEM: 玩家 {} {} 正在拍卖物品 {} 条目 {} {}，数量 {}，起始出价 {}，一口价 {}，拍卖时间 {}（秒），在拍卖行 {} 中",
             _player->GetName(), _player->GetGUID().ToString(), item->GetTemplate()->Name1, item->GetEntry(), item->GetGUID().ToString(), item->GetCount(), bid, buyout, auctionTime, AH->GetHouseId());
 
         // Add to pending auctions, or fail with insufficient funds error
@@ -371,7 +371,7 @@ void WorldSession::HandleAuctionSellItem(WorldPacket& recvData)
         AH->auctionHouseEntry = auctionHouseEntry;
         AH->Flags = AUCTION_ENTRY_FLAG_NONE;
 
-        TC_LOG_INFO("network", "CMSG_AUCTION_SELL_ITEM: Player {} {} is selling item {} entry {} {} with count {} with initial bid {} with buyout {} and with time {} (in sec) in auctionhouse {}",
+        TC_LOG_INFO("network", "CMSG_AUCTION_SELL_ITEM: 玩家 {} {} 正在拍卖物品 {} 条目 {} {}，数量 {}，起始出价 {}，一口价 {}，拍卖时间 {}（秒），在拍卖行 {} 中",
             _player->GetName(), _player->GetGUID().ToString(), newItem->GetTemplate()->Name1, newItem->GetEntry(), newItem->GetGUID().ToString(), newItem->GetCount(), bid, buyout, auctionTime, AH->GetHouseId());
 
         // Add to pending auctions, or fail with insufficient funds error

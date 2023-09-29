@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -197,7 +197,7 @@ void WorldSession::HandleOpenItemOpcode(WorldPacket& recvPacket)
     uint8 bagIndex, slot;
     recvPacket >> bagIndex >> slot;
 
-    TC_LOG_INFO("network", "bagIndex: {}, slot: {}", bagIndex, slot);
+    TC_LOG_INFO("network", "背包索引: {}, 槽位: {}", bagIndex, slot);
 
     Item* item = player->GetItemByPos(bagIndex, slot);
     if (!item)

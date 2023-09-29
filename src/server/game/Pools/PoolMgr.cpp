@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -453,7 +453,7 @@ void PoolMgr::LoadFromDB()
         if (!result)
         {
             mPoolTemplate.clear();
-            TC_LOG_INFO("server.loading", ">> Loaded 0 object pools. DB table `pool_template` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个对象池. 数据库表 `pool_template` 为空.");
             return;
         }
 
@@ -471,12 +471,12 @@ void PoolMgr::LoadFromDB()
         }
         while (result->NextRow());
 
-        TC_LOG_INFO("server.loading", ">> Loaded {} objects pools in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 加载了 {} 个对象池, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
     }
 
     // Creatures
 
-    TC_LOG_INFO("server.loading", "Loading Creatures Pooling Data...");
+    TC_LOG_INFO("server.loading", "加载生物池数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -485,7 +485,7 @@ void PoolMgr::LoadFromDB()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 creatures in pools. DB table `pool_creature` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在池中加载了 0 个生物. 数据库表 `pool_creature` 为空.");
         }
         else
         {
@@ -501,7 +501,7 @@ void PoolMgr::LoadFromDB()
                 CreatureData const* data = sObjectMgr->GetCreatureData(guid);
                 if (!data)
                 {
-                    TC_LOG_ERROR("sql.sql", "`pool_creature` has a non existing creature spawn (GUID: {}) defined for pool id ({}), skipped.", guid, pool_id);
+                    TC_LOG_ERROR("sql.sql", "`pool_creatusre` has a non existing creature spawn (GUID: {}) defined for pool id ({}), skipped.", guid, pool_id);
                     continue;
                 }
                 auto it = mPoolTemplate.find(pool_id);
@@ -527,13 +527,13 @@ void PoolMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} creatures in pools in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在池中加载了 {} 个生物, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Gameobjects
 
-    TC_LOG_INFO("server.loading", "Loading Gameobject Pooling Data...");
+    TC_LOG_INFO("server.loading", "加载游戏对象池数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -542,7 +542,7 @@ void PoolMgr::LoadFromDB()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 gameobjects in pools. DB table `pool_gameobject` is empty.");
+            TC_LOG_INFO("server.loading", ">> 在池中加载了 0 个游戏对象. 数据库表 `pool_gameobject` 为空.");
         }
         else
         {
@@ -597,13 +597,13 @@ void PoolMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} gameobject in pools in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在池中加载了 {} 个游戏对象, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // Pool of pools
 
-    TC_LOG_INFO("server.loading", "Loading Mother Pooling Data...");
+    TC_LOG_INFO("server.loading", "加载母池数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -612,7 +612,7 @@ void PoolMgr::LoadFromDB()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 pools in pools");
+            TC_LOG_INFO("server.loading", ">> 在母池中加载了 0 个池");
         }
         else
         {
@@ -688,12 +688,12 @@ void PoolMgr::LoadFromDB()
                 }
             }
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} pools in mother pools in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 在母池中加载了 {} 个池, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // The initialize method will spawn all pools not in an event and not in another pool, this is why there is 2 left joins with 2 null checks
-    TC_LOG_INFO("server.loading", "Starting objects pooling system...");
+    TC_LOG_INFO("server.loading", "启动对象池系统...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -703,7 +703,7 @@ void PoolMgr::LoadFromDB()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Pool handling system initialized, 0 pools spawned.");
+            TC_LOG_INFO("server.loading", ">> 池处理系统已初始化, 生成了 0 个池.");
         }
         else
         {
@@ -734,7 +734,7 @@ void PoolMgr::LoadFromDB()
             }
             while (result->NextRow());
 
-            TC_LOG_DEBUG("pool", "Pool handling system initialized, {} pools spawned in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_DEBUG("pool", "池处理系统已初始化, 生成了 {} 个池, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
         }
     }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -36,7 +36,7 @@ IpLocationStore::~IpLocationStore()
 void IpLocationStore::Load()
 {
     _ipLocationStore.clear();
-    TC_LOG_INFO("server.loading", "Loading IP Location Database...");
+    TC_LOG_INFO("server.loading", "正在加载 IP 位置数据库...");
 
     std::string databaseFilePath = sConfigMgr->GetStringDefault("IPLocationFile", "");
     if (databaseFilePath.empty())
@@ -103,7 +103,7 @@ void IpLocationStore::Load()
 
     databaseFile.close();
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} ip location entries.", _ipLocationStore.size());
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 IP 位置条目.", _ipLocationStore.size());
 }
 
 IpLocationRecord const* IpLocationStore::GetLocationRecord(std::string const& ipAddress) const

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -325,7 +325,7 @@ void TicketMgr::LoadTickets()
     PreparedQueryResult result = CharacterDatabase.Query(stmt);
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 GM tickets. DB table `gm_ticket` is empty!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个 GM 工单. 数据库表 `gm_ticket` 为空!");
 
         return;
     }
@@ -352,7 +352,7 @@ void TicketMgr::LoadTickets()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} GM tickets in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个 GM 工单, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 
 }
 
@@ -365,7 +365,7 @@ void TicketMgr::LoadSurveys()
     if (QueryResult result = CharacterDatabase.Query("SELECT MAX(surveyId) FROM gm_survey"))
         _lastSurveyId = (*result)[0].GetUInt32();
 
-    TC_LOG_INFO("server.loading", ">> Loaded GM Survey count from database in {} ms", GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 从数据库加载了 GM 调查计数, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
 
 }
 

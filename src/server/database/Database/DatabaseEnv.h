@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -31,11 +31,11 @@
 #include "QueryResult.h"
 #include "Transaction.h"
 
-/// Accessor to the world database
+/// world 数据库的访问器
 TC_DATABASE_API extern DatabaseWorkerPool<WorldDatabaseConnection> WorldDatabase;
-/// Accessor to the character database
+/// character 数据库的访问器
 TC_DATABASE_API extern DatabaseWorkerPool<CharacterDatabaseConnection> CharacterDatabase;
-/// Accessor to the realm/login database
+/// realm/login 数据库的访问器
 TC_DATABASE_API extern DatabaseWorkerPool<LoginDatabaseConnection> LoginDatabase;
 
 #endif

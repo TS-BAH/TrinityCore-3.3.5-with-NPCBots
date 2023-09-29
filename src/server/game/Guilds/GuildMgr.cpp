@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -97,7 +97,7 @@ Guild* GuildMgr::GetGuildByLeader(ObjectGuid guid) const
 void GuildMgr::LoadGuilds()
 {
     // 1. Load all guilds
-    TC_LOG_INFO("server.loading", "Loading guilds definitions...");
+    TC_LOG_INFO("server.loading", "正在加载公会定义...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -109,7 +109,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild definitions. DB table `guild` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会定义. 数据库表 `guild` 为空.");
             return;
         }
         else
@@ -132,12 +132,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild definitions in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会定义, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 2. Load all guild ranks
-    TC_LOG_INFO("server.loading", "Loading guild ranks...");
+    TC_LOG_INFO("server.loading", "正在加载公会等级...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -149,7 +149,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild ranks. DB table `guild_rank` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会等级. 数据库表 `guild_rank` 为空.");
         }
         else
         {
@@ -166,12 +166,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild ranks in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会等级, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 3. Load all guild members
-    TC_LOG_INFO("server.loading", "Loading guild members...");
+    TC_LOG_INFO("server.loading", "正在加载公会成员...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -188,7 +188,7 @@ void GuildMgr::LoadGuilds()
                                                      "LEFT JOIN characters c ON c.guid = gm.guid ORDER BY guildid ASC");
 
         if (!result)
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild members. DB table `guild_member` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会成员. 数据库表 `guild_member` 为空.");
         else
         {
             uint32 count = 0;
@@ -205,12 +205,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild members in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会成员, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 4. Load all guild bank tab rights
-    TC_LOG_INFO("server.loading", "Loading bank tab rights...");
+    TC_LOG_INFO("server.loading", "正在加载银行标签页权限...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -222,7 +222,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild bank tab rights. DB table `guild_bank_right` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个银行标签页权限. 数据库表 `guild_bank_right` 为空.");
         }
         else
         {
@@ -239,12 +239,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} bank tab rights in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个银行标签页权限, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 5. Load all event logs
-    TC_LOG_INFO("server.loading", "Loading guild event logs...");
+    TC_LOG_INFO("server.loading", "正在加载公会事件日志...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -255,7 +255,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild event logs. DB table `guild_eventlog` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会事件日志. 数据库表 `guild_eventlog` 为空.");
         }
         else
         {
@@ -272,12 +272,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild event logs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会事件日志, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 6. Load all bank event logs
-    TC_LOG_INFO("server.loading", "Loading guild bank event logs...");
+    TC_LOG_INFO("server.loading", "正在加载公会银行事件日志...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -289,7 +289,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild bank event logs. DB table `guild_bank_eventlog` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会银行事件日志. 数据库表 `guild_bank_eventlog` 为空.");
         }
         else
         {
@@ -306,12 +306,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild bank event logs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会银行事件日志, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 7. Load all guild bank tabs
-    TC_LOG_INFO("server.loading", "Loading guild bank tabs...");
+    TC_LOG_INFO("server.loading", "正在加载公会银行标签页...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -323,7 +323,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild bank tabs. DB table `guild_bank_tab` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会银行标签页. 数据库表 `guild_bank_tab` 为空.");
         }
         else
         {
@@ -340,12 +340,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild bank tabs in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会银行标签页, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
-    // 8. Fill all guild bank tabs
-    TC_LOG_INFO("guild", "Filling bank tabs with items...");
+    // 8. 填充所有公会银行标签页
+    TC_LOG_INFO("guild", "正在填充银行标签页的物品...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -359,7 +359,7 @@ void GuildMgr::LoadGuilds()
 
         if (!result)
         {
-            TC_LOG_INFO("server.loading", ">> Loaded 0 guild bank tab items. DB table `guild_bank_item` or `item_instance` is empty.");
+            TC_LOG_INFO("server.loading", ">> 加载了 0 个公会银行标签页的物品. 数据库表 `guild_bank_item` 或 `item_instance` 为空.");
         }
         else
         {
@@ -376,12 +376,12 @@ void GuildMgr::LoadGuilds()
             }
             while (result->NextRow());
 
-            TC_LOG_INFO("server.loading", ">> Loaded {} guild bank tab items in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+            TC_LOG_INFO("server.loading", ">> 加载了 {} 个公会银行标签页的物品, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
         }
     }
 
     // 9. Validate loaded guild data
-    TC_LOG_INFO("guild", "Validating data of loaded guilds...");
+    TC_LOG_INFO("guild", "正在验证已加载的公会的数据...");
     {
         uint32 oldMSTime = getMSTime();
 
@@ -393,7 +393,7 @@ void GuildMgr::LoadGuilds()
                 delete guild;
         }
 
-        TC_LOG_INFO("server.loading", ">> Validated data of loaded guilds in {} ms", GetMSTimeDiffToNow(oldMSTime));
+        TC_LOG_INFO("server.loading", ">> 验证了已加载的公会数据, 用时 {} 毫秒", GetMSTimeDiffToNow(oldMSTime));
     }
 }
 

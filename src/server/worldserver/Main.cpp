@@ -210,14 +210,14 @@ extern int main(int argc, char** argv)
         },
         []()
         {
-            TC_LOG_INFO("server.worldserver", "Using configuration file {}.", sConfigMgr->GetFilename());
-            TC_LOG_INFO("server.worldserver", "Using SSL version: {} (library: {})", OPENSSL_VERSION_TEXT, OpenSSL_version(OPENSSL_VERSION));
-            TC_LOG_INFO("server.worldserver", "Using Boost version: {}.{}.{}", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
+            TC_LOG_INFO("server.worldserver", "使用配置文件 {}.", sConfigMgr->GetFilename());
+            TC_LOG_INFO("server.worldserver", "使用 SSL 版本: {} (库: {})", OPENSSL_VERSION_TEXT, OpenSSL_version(OPENSSL_VERSION));
+            TC_LOG_INFO("server.worldserver", "使用 Boost 版本: {}.{}.{}", BOOST_VERSION / 100000, BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
         }
     );
 
     for (std::string const& key : overriddenKeys)
-        TC_LOG_INFO("server.worldserver", "Configuration field '{}' was overridden with environment variable.", key);
+        TC_LOG_INFO("server.worldserver", "配置字段 '{}' 已被环境变量覆盖.", key);
 
     OpenSSLCrypto::threadsSetup(boost::dll::program_location().remove_filename());
 
@@ -233,7 +233,7 @@ extern int main(int argc, char** argv)
     if (!pidFile.empty())
     {
         if (uint32 pid = CreatePIDFile(pidFile))
-            TC_LOG_INFO("server.worldserver", "Daemon PID: {}\n", pid);
+            TC_LOG_INFO("server.worldserver", "守护进程 PID: {}\n", pid);
         else
         {
             TC_LOG_ERROR("server.worldserver", "Cannot create PID file {}.\n", pidFile);
@@ -376,10 +376,10 @@ extern int main(int argc, char** argv)
     {
         freezeDetector = std::make_shared<FreezeDetector>(*ioContext, coreStuckTime * 1000);
         FreezeDetector::Start(freezeDetector);
-        TC_LOG_INFO("server.worldserver", "Starting up anti-freeze thread ({} seconds max stuck time)...", coreStuckTime);
+        TC_LOG_INFO("server.worldserver", "启动防冻结线程 (最大卡住时间为 {} 秒)...", coreStuckTime);
     }
 
-    TC_LOG_INFO("server.worldserver", "{} (worldserver-daemon) ready...", GitRevision::GetFullVersion());
+    TC_LOG_INFO("server.worldserver", "{} (世界服务器守护进程) 准备就绪...", GitRevision::GetFullVersion());
 
     sScriptMgr->OnStartup();
 
@@ -408,7 +408,7 @@ extern int main(int argc, char** argv)
     // set server offline
     LoginDatabase.DirectPExecute("UPDATE realmlist SET flag = flag | {} WHERE id = '{}'", REALM_FLAG_OFFLINE, realm.Id.Realm);
 
-    TC_LOG_INFO("server.worldserver", "Halting process...");
+    TC_LOG_INFO("server.worldserver", "停止进程...");
 
     // 0 - normal shutdown
     // 1 - shutdown at error
@@ -654,7 +654,7 @@ bool StartDB()
         return false;
     }
 
-    TC_LOG_INFO("server.worldserver", "Realm running as realm ID {}", realm.Id.Realm);
+    TC_LOG_INFO("server.worldserver", "领域以领域 ID {} 运行", realm.Id.Realm);
 
     ///- Clean the database before starting
     ClearOnlineAccounts();
@@ -664,7 +664,7 @@ bool StartDB()
 
     sWorld->LoadDBVersion();
 
-    TC_LOG_INFO("server.worldserver", "Using World DB: {}", sWorld->GetDBVersion());
+    TC_LOG_INFO("server.worldserver", "使用世界数据库: {}", sWorld->GetDBVersion());
     return true;
 }
 

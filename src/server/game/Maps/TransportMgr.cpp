@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -53,7 +53,7 @@ void TransportMgr::LoadTransportTemplates()
 
     if (!result)
     {
-        TC_LOG_INFO("server.loading", ">> Loaded 0 transport templates. DB table `gameobject_template` has no transports!");
+        TC_LOG_INFO("server.loading", ">> 加载了 0 个游戏对象模板. 数据库表 `gameobject_template` 为空!");
         return;
     }
 
@@ -88,7 +88,7 @@ void TransportMgr::LoadTransportTemplates()
         ++count;
     } while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> Loaded {} transport templates in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个游戏对象模板, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void TransportMgr::LoadTransportAnimationAndRotation()
@@ -451,7 +451,7 @@ void TransportMgr::SpawnContinentTransports()
         } while (result->NextRow());
     }
 
-    TC_LOG_INFO("server.loading", ">> Spawned {} continent transports in {} ms", count, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 生成了 {} 个大陆传送工具, 用时 {} 毫秒", count, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void TransportMgr::CreateInstanceTransports(Map* map)

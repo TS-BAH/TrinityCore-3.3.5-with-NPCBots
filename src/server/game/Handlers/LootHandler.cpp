@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -423,7 +423,7 @@ void WorldSession::HandleLootMasterGiveOpcode(WorldPacket& recvData)
     if (!_player->IsInRaidWith(target) || !_player->IsInMap(target))
     {
         _player->SendLootError(lootguid, LOOT_ERROR_MASTER_OTHER);
-        TC_LOG_INFO("entities.player.cheat", "MasterLootItem: Player {} tried to give an item to ineligible player {} !", GetPlayer()->GetName(), target->GetName());
+        TC_LOG_INFO("entities.player.cheat", "MasterLootItem: 玩家 {} 试图将物品分配给不符合资格的玩家 {} !", GetPlayer()->GetName(), target->GetName());
         return;
     }
 
