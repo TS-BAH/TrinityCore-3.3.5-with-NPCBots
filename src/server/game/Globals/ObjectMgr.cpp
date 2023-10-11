@@ -5507,7 +5507,7 @@ void ObjectMgr::LoadScripts(ScriptsType type)
     if (sMapMgr->IsScriptScheduled())                    // function cannot be called when scripts are in use.
         return;
 
-    TC_LOG_INFO("server.loading", "加载了 {}...", tableName);
+    TC_LOG_INFO("server.loading", "加载 {}...", tableName);
 
     scripts->clear();                                       // need for reload support
 

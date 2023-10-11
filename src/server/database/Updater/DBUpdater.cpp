@@ -236,7 +236,7 @@ bool DBUpdater<T>::Update(DatabaseWorkerPool<T>& pool)
         return false;
     }
 
-    std::string const info = Trinity::StringFormat("Containing {} new and {} archived updates.",
+    std::string const info = Trinity::StringFormat("包含 {} 个新的更新和 {} 个已存档的更新.",
         result.recent, result.archived);
 
     if (!result.updated)

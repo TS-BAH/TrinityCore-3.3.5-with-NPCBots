@@ -495,7 +495,7 @@ void AccountMgr::LoadRBAC()
     }
     while (result->NextRow());
 
-    TC_LOG_INFO("server.loading", ">> 加载了 {} 个权限定义, {} 个链接的权限以及 {} 个默认权限, 用时{}毫秒", count1, count2, count3, GetMSTimeDiffToNow(oldMSTime));
+    TC_LOG_INFO("server.loading", ">> 加载了 {} 个权限定义, {} 个链接的权限以及 {} 个默认权限, 用时 {} 毫秒", count1, count2, count3, GetMSTimeDiffToNow(oldMSTime));
 }
 
 void AccountMgr::UpdateAccountAccess(rbac::RBACData* rbac, uint32 accountId, uint8 securityLevel, int32 realmId)
