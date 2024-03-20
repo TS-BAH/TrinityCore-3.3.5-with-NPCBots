@@ -1031,3 +1031,8 @@ std::string Vehicle::GetDebugInfo() const
 
     return sstr.str();
 }
+
+Trinity::unique_weak_ptr<Vehicle> Vehicle::GetWeakPtr() const
+{
+    return _me->GetVehicleKitWeakPtr();
+}

@@ -23,6 +23,7 @@
 #include "ObjectGuid.h"
 #include "Position.h"
 #include "SharedDefines.h"
+#include "UniqueTrackablePtr.h"
 #include <deque>
 #include <map>
 
@@ -446,6 +447,9 @@ class TC_GAME_API Battleground
         TeamId GetBotTeamId(ObjectGuid guid) const;
         TeamId GetOtherTeamId(TeamId teamId) const;
         void AddOrSetBotToCorrectBgGroup(Creature* bot, uint32 team);
+        void RewardXPAtKill(Player* killer, Creature* victim);
+        void RewardXPAtKill(Creature* killer, Player* victim);
+        void RewardXPAtKill(Creature* killer, Creature* victim);
         virtual void AddBot(Creature* bot);
         virtual void RemoveBotAtLeave(ObjectGuid guid);
         virtual WorldSafeLocsEntry const* GetClosestGraveyardForBot(WorldLocation const& curPos, uint32 team) const;
@@ -527,6 +531,9 @@ class TC_GAME_API Battleground
 
         // because BattleGrounds with different types and same level range has different m_BracketId
         uint8 GetUniqueBracketId() const;
+
+        Trinity::unique_weak_ptr<Battleground> GetWeakPtr() const { return m_weakRef; }
+        void SetWeakPtr(Trinity::unique_weak_ptr<Battleground> weakRef) { m_weakRef = std::move(weakRef); }
 
     protected:
         // this method is called, when BG cannot spawn its own spirit guide, or something is wrong, It correctly ends Battleground
@@ -662,5 +669,7 @@ class TC_GAME_API Battleground
         Position StartPosition[PVP_TEAMS_COUNT];
         float m_StartMaxDist;
         uint32 ScriptId;
+
+        Trinity::unique_weak_ptr<Battleground> m_weakRef;
 };
 #endif

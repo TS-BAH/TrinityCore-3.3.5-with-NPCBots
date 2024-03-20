@@ -1983,6 +1983,11 @@ void Spell::EffectOpenLock()
                 return;
             }
         }
+        else if (botGoInfo->type == GAMEOBJECT_TYPE_TRAP)
+        {
+            gameObjTarget->SetLootState(GO_ACTIVATED);
+            return;
+        }
 
         return;
     }

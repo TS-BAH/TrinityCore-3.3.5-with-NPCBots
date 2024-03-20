@@ -234,11 +234,11 @@ bool Condition::Meets(ConditionSourceInfo& sourceInfo) const
         {
             //npcbot
             if (object->IsNPCBot())
-                condMeets = object->ToCreature()->GetGender() == ConditionValue1;
+                condMeets = object->ToCreature()->GetGender() == Gender(ConditionValue1);
             else
             //end npcbot
             if (Player* player = object->ToPlayer())
-                condMeets = player->GetNativeGender() == ConditionValue1;
+                condMeets = player->GetNativeGender() == Gender(ConditionValue1);
             break;
         }
         case CONDITION_SKILL:

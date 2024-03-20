@@ -454,7 +454,6 @@ Creature* BattlegroundAV::AddAVCreature(uint16 cinfoid, uint16 type)
         if (Creature* trigger = AddCreature(WORLD_TRIGGER, triggerSpawnID, BG_AV_CreaturePos[triggerSpawnID]))
         {
             trigger->SetFaction(newFaction);
-            trigger->CastSpell(trigger, SPELL_HONORABLE_DEFENDER_25Y, false);
         }
     }
 
@@ -879,9 +878,7 @@ void BattlegroundAV::PopulateNode(BG_AV_Nodes node)
                              GetTeamIndexByTeamId(owner));
     }
 
-    //add bonus honor aura trigger creature when node is accupied
-    //cast bonus aura (+50% honor in 25yards)
-    //aura should only apply to players who have accupied the node, set correct faction for trigger
+    // set correct faction for trigger
     if (trigger)
     {
         if (owner != ALLIANCE && owner != HORDE)//node can be neutral, remove trigger
@@ -890,7 +887,6 @@ void BattlegroundAV::PopulateNode(BG_AV_Nodes node)
             return;
         }
         trigger->SetFaction(owner == ALLIANCE ? FACTION_ALLIANCE_GENERIC : FACTION_HORDE_GENERIC);
-        trigger->CastSpell(trigger, SPELL_HONORABLE_DEFENDER_25Y, false);
     }
 }
 void BattlegroundAV::DePopulateNode(BG_AV_Nodes node)
@@ -1135,8 +1131,8 @@ void BattlegroundAV::EventBotDefendsPoint(Creature* bot, uint32 object)
 
     if (!IsTower(node))
     {
-        SpawnBGObject(BG_AV_OBJECT_AURA_N_FIRSTAID_STATION+3*node, RESPAWN_ONE_DAY);
-        SpawnBGObject(BG_AV_OBJECT_AURA_A_FIRSTAID_STATION+GetTeamIndexByTeamId(team)+3*node, RESPAWN_IMMEDIATELY);
+        SpawnBGObject(BG_AV_OBJECT_AURA_N_FIRSTAID_STATION + 3 * node, RESPAWN_ONE_DAY);
+        SpawnBGObject(BG_AV_OBJECT_AURA_A_FIRSTAID_STATION + uint32(GetTeamIndexByTeamId(team)) + 3 * node, RESPAWN_IMMEDIATELY);
     }
         // despawn old go
     SpawnBGObject(object, RESPAWN_ONE_DAY);
@@ -1332,8 +1328,8 @@ void BattlegroundAV::EventBotAssaultsPoint(Creature* bot, uint32 object)
         else
         {
             //spawning/despawning of aura
-            SpawnBGObject(BG_AV_OBJECT_AURA_N_FIRSTAID_STATION+3*node, RESPAWN_IMMEDIATELY); //neutral aura spawn
-            SpawnBGObject(BG_AV_OBJECT_AURA_A_FIRSTAID_STATION+GetTeamIndexByTeamId(owner)+3*node, RESPAWN_ONE_DAY); //teeamaura despawn
+            SpawnBGObject(BG_AV_OBJECT_AURA_N_FIRSTAID_STATION + 3 * node, RESPAWN_IMMEDIATELY); //neutral aura spawn
+            SpawnBGObject(BG_AV_OBJECT_AURA_A_FIRSTAID_STATION + uint32(GetTeamIndexByTeamId(owner)) + 3 * node, RESPAWN_ONE_DAY); //teeamaura despawn
 
             RelocateDeadPlayers(BgCreatures[node]);
         }

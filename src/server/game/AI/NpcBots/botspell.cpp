@@ -1407,7 +1407,6 @@ void GenerateBotCustomSpells()
     sinfo->AttributesEx |= SPELL_ATTR1_CANT_BE_REDIRECTED | SPELL_ATTR1_CANT_BE_REFLECTED;
     sinfo->AttributesEx2 |= SPELL_ATTR2_NOT_RESET_AUTO_ACTIONS/* | SPELL_ATTR2_CANT_CRIT*/;
     sinfo->AttributesEx4 |= SPELL_ATTR4_IGNORE_RESISTANCES;
-    sinfo->AttributesEx4 &= ~(SPELL_ATTR4_INHERIT_CRIT_FROM_AURA);
 
     sinfo->_effects[0].Effect = SPELL_EFFECT_WEAPON_DAMAGE;
     sinfo->_effects[0].TargetA = SpellImplicitTargetInfo(TARGET_UNIT_TARGET_ENEMY);
